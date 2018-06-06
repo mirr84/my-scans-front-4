@@ -1,0 +1,14 @@
+{
+  "skeleton": {
+    "viewRegister": {
+      "rus": "http://localhost:8080/docs/skeleton/viewRegister/rus.html",
+      "eng": "http://localhost:8080/docs/skeleton/viewRegister/eng.html",
+      "zho": "http://localhost:8080/docs/skeleton/viewRegister/zho.html"
+    },
+    "viewRegisterData": {
+      "rus": "http://localhost:8080/docs/skeleton/viewRegisterData/rus.html",
+      "eng": "http://localhost:8080/docs/skeleton/viewRegisterData/eng.html",
+      "zho": "http://localhost:8080/docs/skeleton/viewRegisterData/zho.html"
+    }
+  }
+}

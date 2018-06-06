@@ -1,0 +1,56 @@
+{
+  "appenders": [
+    {
+      "type": "console",
+      "category": "console"
+    },
+    {
+      "type": "file",
+      "filename": "preback_app.log",
+      "maxLogSize": 10485760,
+      "backups": 10,
+      "category": "AppLogger"
+    },
+    {
+      "type": "file",
+      "filename": "preback_login.log",
+      "maxLogSize": 10485760,
+      "backups": 10,
+      "category": "LoginLogger"
+    },
+    {
+      "type": "file",
+      "filename": "preback_error.log",
+      "maxLogSize": 10485760,
+      "backups": 10,
+      "category": "ErrorLogger"
+    },
+    {
+      "type": "file",
+      "filename": "preback_try_catch.log",
+      "maxLogSize": 10485760,
+      "backups": 10,
+      "category": "TryCatchLogger"
+    },
+    {
+      "type": "file",
+      "filename": "preback_http.log",
+      "maxLogSize": 10485760,
+      "backups": 10,
+      "category": "HttpLogger"
+    },
+    {
+      "type": "file",
+      "filename": "preback_req_time.log",
+      "maxLogSize": 10485760,
+      "backups": 10,
+      "category": "ReqTimeLogger"
+    }
+
+  ],
+  "levels": {
+    "AppLogger": "ALL",
+    "ErrorLogger": "ERROR",
+    "TryCatchLogger": "FATAL"
+  }
+}

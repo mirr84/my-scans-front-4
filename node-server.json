@@ -1,0 +1,52 @@
+{
+  "id_service": "Preback service",
+  "sitepath": "",
+  "appPath": ".",
+  "logPath": "./logs/",
+  "port": "9009",
+  "uploads_path": "./uploads/",
+
+  "api_host": {
+    "auth": "http://172.16.83.51:8009",
+    "loginAutocomplete": "http://172.16.83.51:8009",
+
+    "order": "http://172.16.83.51:8022",
+    "orderPhoto": "http://172.16.83.51:8050/ordersPhoto"
+
+  },
+  "help_url": "help-url.json",
+  "error_400_url": "/http_errors/400.html",
+  "error_401_url": "/http_errors/401.html",
+  "http_request_timeout_ms": "60000",
+  "init_page": "/main-view",
+  "pagination_size": "20",
+  "check_activity": {
+    "timeout_sec": "5",
+    "url": "api_url_for_kill"
+  },
+
+  "profile_storage_type": "redis",
+  "profile_storage_params": {
+    "redis": {
+      "host": "192.168.1.223",
+      "port": "6379"
+    }
+  },
+  "session_storage_type": "redis",
+  "session_storage_params": {
+    "timeout_min": "1440",
+    "secret": "NFIueiur#348yfwb9nm0ufbw;j=ughfd",
+
+    "redis": {
+      "host": "192.168.1.223",
+      "port": "6379"
+    },
+
+    "mongodb": {
+      "host": "127.0.0.1",
+      "port": "6565",
+      "db":   "prebackSessions"
+    }
+  }
+
+}
