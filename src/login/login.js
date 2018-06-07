@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {Modal} from 'antd';
+import {connect} from "react-redux";
 
-const Login = () => {
+const Login = ({user}) => {
 
     const showLoginForm = () => {
         Modal.info({
@@ -23,10 +24,15 @@ const Login = () => {
     return (
         <div>
             {
-                /*{showLoginForm()}*/
+                showLoginForm()
             }
         </div>
     );
 };
 
-export default Login;
+export default connect(
+    state => ({
+        user: state.user
+    }),
+    dispatch => ({})
+)(Login);
