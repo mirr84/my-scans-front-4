@@ -1,22 +1,45 @@
 import React from 'react';
 
-import {Modal} from 'antd';
 import {connect} from "react-redux";
 
-const Login = ({user}) => {
+import {Modal, Mention} from 'antd';
+
+const Login = ({
+                   user,
+                   onChangeLogin, onChangeLoginModal, onChangeLoginRequest
+               }) => {
+
+    const onSearchChange = (value) => {
+        onChangeLoginRequest(true, []);
+        setTimeout(
+            () => {
+                onChangeLoginRequest(false, ['afc163', 'benjycui', 'yiminghe', 'jljsj33', 'dqaria', 'RaoHai']);
+            }, 1500
+        );
+    }
+
+    const onChange = (value) => onChangeLogin(value);
+
+    let content =
+        <div>
+            <Mention
+                prefix={''}
+                loading={user.loading}
+                suggestions={user.suggestions}
+                onSearchChange={onSearchChange}
+                onChange={onChange}
+                notFoundContent={'Нет данных'}
+            />
+        </div>
 
     const showLoginForm = () => {
+        onChangeLoginModal(true);
         Modal.info({
             title: 'Авторизация',
-            content: (
-                <div>
-                    111
-                </div>
-            ),
+            content,
             okText: 'Войти',
             onOk() {
-                console.log('OK');
-                showLoginForm();
+                onChangeLoginModal(false);
             }
         });
     }
@@ -24,15 +47,23 @@ const Login = ({user}) => {
     return (
         <div>
             {
-                showLoginForm()
+                !user.showLoginModal ? showLoginForm() : ''
             }
         </div>
     );
 };
 
 export default connect(
-    state => ({
-        user: state.user
-    }),
-    dispatch => ({})
+    state => (
+        {
+            user: state.user
+        }
+    ),
+    dispatch => (
+        {
+            onChangeLoginModal: (value) => dispatch({type: 'LOGIN_MODAL', value}),
+            onChangeLogin: (value) => dispatch({type: 'CHANGE_LOGIN', value}),
+            onChangeLoginRequest: (loading, suggestions) => dispatch({type: 'CHANGE_LOGIN_REQUEST', loading, suggestions})
+        }
+    )
 )(Login);
