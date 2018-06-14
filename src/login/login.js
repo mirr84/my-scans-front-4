@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import axios from 'axios';
-import {Modal, Mention, Button, Icon, Input} from 'antd';
+import {Modal, Mention, Button, Icon, Input, notification} from 'antd';
 
 const Login = ({
                    user,
@@ -15,10 +15,10 @@ const Login = ({
         axios.post(
             '/api/auth/getLoginList',
             {
-                user: {lang: "rus"},
                 filter: {name},
                 paging: {size: 10, offset: 0},
-                lang: "rus"
+                lang: "rus",
+                user: {lang: "rus"}
             }
         )
             .then(
@@ -29,10 +29,27 @@ const Login = ({
 
     const doLogin = () => {
         onChangeDoLoginRequest(true);
-        setTimeout(() => {
-            onChangeDoLoginRequest(false);
-
-        }, 1000)
+        axios.post(
+            '/api/auth/login',
+            {
+                login: user.login,
+                password: user.password,
+                lang: "rus",
+                user: {lang: "rus"}
+            }
+        )
+            .then(
+                resp => {
+                    onChangeDoLoginRequest(false);
+                },
+                err => {
+                    onChangeDoLoginRequest(false);
+                    notification.warning({
+                        message: 'Ошибка авторизации',
+                        description: err.response.data.alerts.map(item => item.msg).join(',')
+                    });
+                }
+            )
     }
 
     const showLoginForm = () => {
@@ -70,7 +87,7 @@ const Login = ({
                     />
                     <Input type={'password'}
                            placeholder={'Пароль'}
-                           onChange={(value) => onChangePassword(value)}
+                           onChange={(value) => onChangePassword(value.target.value)}
                            disabled={user.doLoginProgress}
                     />
                 </div>
@@ -88,8 +105,8 @@ export default connect(
     dispatch => (
         {
             onChangeLoginModal: (value) => dispatch({type: 'LOGIN_MODAL', value}),
-            onChangeLogin: (value) => dispatch({type: 'CHANGE_LOGIN', value}),
-            onChangePassword: (value) => dispatch({type: 'CHANGE_PASSWORD', value}),
+            onChangeLogin: (login) => dispatch({type: 'CHANGE_LOGIN', login}),
+            onChangePassword: (password) => dispatch({type: 'CHANGE_PASSWORD', password}),
             onChangeLoginRequest: (loading, suggestions) => dispatch({
                 type: 'CHANGE_LOGIN_REQUEST',
                 loading,

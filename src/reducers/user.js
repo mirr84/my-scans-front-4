@@ -22,7 +22,7 @@ export default function user(state = initialState, action) {
     }
 
     if (action.type === 'CHANGE_LOGIN') {
-        newState.login = action.value;
+        newState.login = action.login;
         console.log('CHANGE_LOGIN', newState);
     }
 
