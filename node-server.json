@@ -7,8 +7,8 @@
   "uploads_path": "./uploads/",
 
   "api_host": {
-    "auth": "http://172.16.83.51:8009",
-    "loginAutocomplete": "http://172.16.83.51:8009",
+    "auth": "http://172.16.100.27:8095",
+    "loginAutocomplete": "http://172.16.100.27:8095",
 
     "order": "http://172.16.83.51:8022",
     "orderPhoto": "http://172.16.83.51:8050/ordersPhoto"

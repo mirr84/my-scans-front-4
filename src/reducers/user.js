@@ -4,6 +4,7 @@ const initialState = {
     showLoginModal: false,
     loading: false,
     suggestions: [],
+    doLoginProgress: false,
 
     login: '',
     password: '',
@@ -25,10 +26,22 @@ export default function user(state = initialState, action) {
         console.log('CHANGE_LOGIN', newState);
     }
 
+    if (action.type === 'CHANGE_PASSWORD') {
+        newState.password = action.value;
+        console.log('CHANGE_PASSWORD', newState);
+    }
+
     if (action.type === 'CHANGE_LOGIN_REQUEST') {
         newState.loading = action.loading;
         newState.suggestions = action.suggestions;
         console.log('CHANGE_LOGIN_REQUEST', newState);
+    }
+
+    if (action.type === 'CHANGE_DO_LOGIN_REQUEST') {
+        newState.login = action.login;
+        newState.token = action.token;
+        newState.doLoginProgress = action.progress;
+        console.log('CHANGE_DO_LOGIN_REQUEST', newState);
     }
 
     return newState;

@@ -2,53 +2,79 @@ import React from 'react';
 
 import {connect} from "react-redux";
 
-import {Modal, Mention} from 'antd';
+import axios from 'axios';
+import {Modal, Mention, Button, Icon, Input} from 'antd';
 
 const Login = ({
                    user,
-                   onChangeLogin, onChangeLoginModal, onChangeLoginRequest
+                   onChangeLogin, onChangePassword, onChangeLoginModal, onChangeLoginRequest, onChangeDoLoginRequest
                }) => {
 
-    const onSearchChange = (value) => {
-        onChangeLoginRequest(true, []);
-        setTimeout(
-            () => {
-                onChangeLoginRequest(false, ['afc163', 'benjycui', 'yiminghe', 'jljsj33', 'dqaria', 'RaoHai']);
-            }, 1500
-        );
+    const onSearchChange = (name) => {
+        onChangeLoginRequest(true);
+        axios.post(
+            '/api/auth/getLoginList',
+            {
+                user: {lang: "rus"},
+                filter: {name},
+                paging: {size: 10, offset: 0},
+                lang: "rus"
+            }
+        )
+            .then(
+                resp => onChangeLoginRequest(false, resp.data.items.map(item => item.login)),
+                err => onChangeLoginRequest(false)
+            )
     }
 
-    const onChange = (value) => onChangeLogin(value);
+    const doLogin = () => {
+        onChangeDoLoginRequest(true);
+        setTimeout(() => {
+            onChangeDoLoginRequest(false);
 
-    let content =
-        <div>
-            <Mention
-                prefix={''}
-                loading={user.loading}
-                suggestions={user.suggestions}
-                onSearchChange={onSearchChange}
-                onChange={onChange}
-                notFoundContent={'Нет данных'}
-            />
-        </div>
+        }, 1000)
+    }
 
     const showLoginForm = () => {
-        onChangeLoginModal(true);
-        Modal.info({
-            title: 'Авторизация',
-            content,
-            okText: 'Войти',
-            onOk() {
-                onChangeLoginModal(false);
-            }
-        });
-    }
+        if (!user.showLoginModal) {
+            onChangeLoginModal(true);
+        }
+    };
+    showLoginForm();
 
     return (
         <div>
-            {
-                !user.showLoginModal ? showLoginForm() : ''
-            }
+            <Modal title="Авторизация"
+                   closable={false}
+                   footer={
+                       <div>
+                           <Button type="primary"
+                                   loading={user.doLoginProgress}
+                                   onClick={doLogin}>
+                               Войти
+                           </Button>
+                       </div>
+                   }
+                   visible={user.showLoginModal}
+            >
+                <div>
+                    <Mention
+                        prefix={''}
+                        loading={user.loading}
+                        suggestions={user.suggestions}
+                        disabled={user.doLoginProgress}
+                        onSearchChange={onSearchChange}
+                        onChange={(value) => onChangeLogin(value)}
+                        notFoundContent={'Нет данных'}
+                        placeholder={'Имя пользователя'}
+                    />
+                    <Input type={'password'}
+                           placeholder={'Пароль'}
+                           onChange={(value) => onChangePassword(value)}
+                           disabled={user.doLoginProgress}
+                    />
+                </div>
+            </Modal>
         </div>
     );
 };
@@ -63,7 +89,18 @@ export default connect(
         {
             onChangeLoginModal: (value) => dispatch({type: 'LOGIN_MODAL', value}),
             onChangeLogin: (value) => dispatch({type: 'CHANGE_LOGIN', value}),
-            onChangeLoginRequest: (loading, suggestions) => dispatch({type: 'CHANGE_LOGIN_REQUEST', loading, suggestions})
+            onChangePassword: (value) => dispatch({type: 'CHANGE_PASSWORD', value}),
+            onChangeLoginRequest: (loading, suggestions) => dispatch({
+                type: 'CHANGE_LOGIN_REQUEST',
+                loading,
+                suggestions
+            }),
+            onChangeDoLoginRequest: (progress, login, token) => dispatch({
+                type: 'CHANGE_DO_LOGIN_REQUEST',
+                progress,
+                login,
+                token
+            }),
         }
     )
 )(Login);
