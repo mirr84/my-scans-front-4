@@ -9,10 +9,11 @@ import {Route, HashRouter, Link} from 'react-router-dom';
 import reducer from './../reducers';
 import Scan from "../scan/scan";
 import Journal from "../journal/journal";
+import Nav from "../nav/nav";
 
-import {Layout, Menu} from 'antd';
+import {Layout} from 'antd';
 
-const {Header, Content} = Layout;
+const {Content} = Layout;
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -21,20 +22,7 @@ const App = () => {
         <Provider store={store}>
             <HashRouter>
                 <Layout style={{'height': '100%'}}>
-                    <Header style={{padding: '0 10px', position: 'fixed', width: '100%', background: '#00152900'}}>
-                        <Menu mode="horizontal"
-                              defaultSelectedKeys={[window.location.href.split('#/')[1] || 'journal']}>
-                            <Menu.Item key="scan">
-                                <Link to={'/scan'}>Заказ</Link>
-                            </Menu.Item>
-                            <Menu.Item key="journal">
-                                <Link to={'/journal'}>Требует вноса</Link>
-                            </Menu.Item>
-                            <Menu.Item disabled style={ { 'float': 'right' } }>
-                                Логин:
-                            </Menu.Item>
-                        </Menu>
-                    </Header>
+                    <Nav />
                     <Content style={{padding: '0 10px', marginTop: 50}}>
                         <div style={{background: '#fff', padding: 24}}>
                             <Route exact name={'scan'} path='/scan' component={Scan}/>

@@ -74,6 +74,7 @@ const Login = ({
                     }
                 ).then(
                     resp => {
+                        onChangeLogin(resp.data.login);
                         // востановление токена если ктонибудь криворукий зашел в консоль
                         sessionStorage.token = user.token;
                         sessionStorage.isProgressCheckLogin = 0;

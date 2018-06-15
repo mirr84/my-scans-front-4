@@ -44,6 +44,15 @@ export default function user(state = initialState, action) {
         console.log('CHANGE_DO_LOGIN_REQUEST', newState);
     }
 
+    if (action.type === 'CHANGE_DO_LOGOUT_REQUEST') {
+        newState.login = '';
+        newState.token = '';
+        newState.password = '';
+        //todo: уберу от сюда потом
+        sessionStorage.token = '';
+        console.log('CHANGE_DO_LOGOUT_REQUEST', newState);
+    }
+
     return newState;
 
 }

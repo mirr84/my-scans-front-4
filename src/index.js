@@ -5,6 +5,9 @@ import App from './app/App';
 
 import 'antd/dist/antd.min.css';
 
+// init
+sessionStorage.isProgressCheckLogin = 0;
+
 ReactDOM.render(
     <App />,
     document.getElementById('root')
