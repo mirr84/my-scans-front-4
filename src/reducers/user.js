@@ -27,7 +27,7 @@ export default function user(state = initialState, action) {
     }
 
     if (action.type === 'CHANGE_PASSWORD') {
-        newState.password = action.value;
+        newState.password = action.password;
         console.log('CHANGE_PASSWORD', newState);
     }
 

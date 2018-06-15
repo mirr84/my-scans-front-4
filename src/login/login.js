@@ -3,7 +3,8 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import axios from 'axios';
-import {Modal, Mention, Button, Icon, Input, notification} from 'antd';
+import {Modal, Mention, Button, Icon, Input, notification, AutoComplete, Row} from 'antd';
+import Col from "antd/es/grid/col";
 
 const Login = ({
                    user,
@@ -40,10 +41,11 @@ const Login = ({
         )
             .then(
                 resp => {
-                    onChangeDoLoginRequest(false);
+                    onChangeDoLoginRequest(false, user.login, resp.headers.pwt);
+                    onChangeLoginModal(false);
                 },
                 err => {
-                    onChangeDoLoginRequest(false);
+                    onChangeDoLoginRequest(false, user.login);
                     notification.warning({
                         message: 'Ошибка авторизации',
                         description: err.response.data.alerts.map(item => item.msg).join(',')
@@ -75,21 +77,29 @@ const Login = ({
                    visible={user.showLoginModal}
             >
                 <div>
-                    <Mention
-                        prefix={''}
-                        loading={user.loading}
-                        suggestions={user.suggestions}
-                        disabled={user.doLoginProgress}
-                        onSearchChange={onSearchChange}
-                        onChange={(value) => onChangeLogin(value)}
-                        notFoundContent={'Нет данных'}
-                        placeholder={'Имя пользователя'}
-                    />
-                    <Input type={'password'}
-                           placeholder={'Пароль'}
-                           onChange={(value) => onChangePassword(value.target.value)}
-                           disabled={user.doLoginProgress}
-                    />
+                    <Row gutter={8}>
+                        <Col span={12}>
+                            <AutoComplete
+                                backfill={true}
+                                dataSource={user.suggestions}
+                                onSelect={value => onChangeLogin(value)}
+                                onChange={value => onChangeLogin(value)}
+                                onSearch={onSearchChange}
+                                notFoundContent={'Нет данных'}
+                                placeholder={'Имя пользователя'} >
+                                {
+                                    <Input suffix={ user.loading ? <Icon type="loading"/> : '' }/>
+                                }
+                            </AutoComplete>
+                        </Col>
+                        <Col span={12}>
+                            <Input type={'password'}
+                                   placeholder={'Пароль'}
+                                   onChange={value => onChangePassword(value.target.value)}
+                                   disabled={user.doLoginProgress}
+                            />
+                        </Col>
+                    </Row>
                 </div>
             </Modal>
         </div>
