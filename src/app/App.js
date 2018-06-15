@@ -11,7 +11,6 @@ import Scan from "../scan/scan";
 import Journal from "../journal/journal";
 
 import {Layout, Menu} from 'antd';
-import Login from "../login/login";
 
 const {Header, Content} = Layout;
 
@@ -22,7 +21,6 @@ const App = () => {
         <Provider store={store}>
             <HashRouter>
                 <Layout style={{'height': '100%'}}>
-                    <Login/>
                     <Header style={{padding: '0 10px', position: 'fixed', width: '100%', background: '#00152900'}}>
                         <Menu mode="horizontal"
                               defaultSelectedKeys={[window.location.href.split('#/')[1] || 'journal']}>

@@ -43,6 +43,7 @@ const Login = ({
                 resp => {
                     onChangeDoLoginRequest(false, user.login, resp.headers.pwt);
                     onChangeLoginModal(false);
+                    sessionStorage.token = resp.headers.pwt;
                 },
                 err => {
                     onChangeDoLoginRequest(false, user.login);
@@ -55,9 +56,37 @@ const Login = ({
     }
 
     const showLoginForm = () => {
+
+        if (user.token) {
+
+            axios.post(
+                '/api/auth/checkLogin',
+                {
+                    login: user.login,
+                    password: user.password,
+                    lang: "rus",
+                    user: {lang: "rus"}
+                },
+                {
+                    headers: {'PWT': user.token}
+                }
+            ). then(
+                resp => {
+                    // востановление токена если ктонибудь криворукий зашел в консоль
+                    sessionStorage.token = user.token;
+                },
+                err => {
+                    onChangeLoginModal(true);
+                    onChangeDoLoginRequest(false);
+                    sessionStorage.token = '';
+                }
+            )
+
+        } else
         if (!user.showLoginModal) {
             onChangeLoginModal(true);
         }
+
     };
     showLoginForm();
 

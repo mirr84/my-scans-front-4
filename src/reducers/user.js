@@ -8,7 +8,7 @@ const initialState = {
 
     login: '',
     password: '',
-    token: '',
+    token: sessionStorage.token || '',
 
 };
 

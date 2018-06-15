@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Login from "../login/login";
+
 const Journal = () => {
   return (
     <div>
+        <Login/>
+
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda ea et natus perspiciatis quia soluta
             suscipit totam. Enim, eum id illum laboriosam minima odio possimus reprehenderit sed sint vero?
         </div>
