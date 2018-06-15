@@ -84,6 +84,10 @@ const Login = ({
                         onChangeDoLoginRequest(false);
                         sessionStorage.token = '';
                         sessionStorage.isProgressCheckLogin = 0;
+                        notification.error({
+                            message: 'Ошибка проверка авторизации',
+                            description: JSON.stringify(err.response.data)
+                        });
                     }
                 )
             }
