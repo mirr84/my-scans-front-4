@@ -59,31 +59,35 @@ const Login = ({
 
         if (user.token) {
 
-            axios.post(
-                '/api/auth/checkLogin',
-                {
-                    login: user.login,
-                    password: user.password,
-                    lang: "rus",
-                    user: {lang: "rus"}
-                },
-                {
-                    headers: {'PWT': user.token}
-                }
-            ). then(
-                resp => {
-                    // востановление токена если ктонибудь криворукий зашел в консоль
-                    sessionStorage.token = user.token;
-                },
-                err => {
-                    onChangeLoginModal(true);
-                    onChangeDoLoginRequest(false);
-                    sessionStorage.token = '';
-                }
-            )
+            if (!sessionStorage.isProgressCheckLogin || sessionStorage.isProgressCheckLogin === '0') {
+                sessionStorage.isProgressCheckLogin = 1;
+                axios.post(
+                    '/api/auth/checkLogin',
+                    {
+                        login: user.login,
+                        password: user.password,
+                        lang: "rus",
+                        user: {lang: "rus"}
+                    },
+                    {
+                        headers: {'PWT': user.token}
+                    }
+                ).then(
+                    resp => {
+                        // востановление токена если ктонибудь криворукий зашел в консоль
+                        sessionStorage.token = user.token;
+                        sessionStorage.isProgressCheckLogin = 0;
+                    },
+                    err => {
+                        onChangeLoginModal(true);
+                        onChangeDoLoginRequest(false);
+                        sessionStorage.token = '';
+                        sessionStorage.isProgressCheckLogin = 0;
+                    }
+                )
+            }
 
-        } else
-        if (!user.showLoginModal) {
+        } else if (!user.showLoginModal) {
             onChangeLoginModal(true);
         }
 
@@ -115,9 +119,9 @@ const Login = ({
                                 onChange={value => onChangeLogin(value)}
                                 onSearch={onSearchChange}
                                 notFoundContent={'Нет данных'}
-                                placeholder={'Имя пользователя'} >
+                                placeholder={'Имя пользователя'}>
                                 {
-                                    <Input suffix={ user.loading ? <Icon type="loading"/> : '' }/>
+                                    <Input suffix={user.loading ? <Icon type="loading"/> : ''}/>
                                 }
                             </AutoComplete>
                         </Col>
