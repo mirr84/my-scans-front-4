@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import axios from 'axios';
-import {Modal, Mention, Button, Icon, Input, notification, AutoComplete, Row} from 'antd';
+import {Modal, Button, Icon, Input, notification, AutoComplete, Row} from 'antd';
 import Col from "antd/es/grid/col";
 
 const Login = ({

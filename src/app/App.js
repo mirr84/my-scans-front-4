@@ -30,6 +30,9 @@ const App = () => {
                             <Menu.Item key="journal">
                                 <Link to={'/journal'}>Требует вноса</Link>
                             </Menu.Item>
+                            <Menu.Item disabled style={ { 'float': 'right' } }>
+                                Логин:
+                            </Menu.Item>
                         </Menu>
                     </Header>
                     <Content style={{padding: '0 10px', marginTop: 50}}>
