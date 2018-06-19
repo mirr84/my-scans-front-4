@@ -118,6 +118,7 @@ const Login = ({
                     <Row gutter={8}>
                         <Col span={12}>
                             <AutoComplete
+                                style={{'width': '100%'}}
                                 backfill={true}
                                 dataSource={user.suggestions}
                                 onSelect={value => onChangeLogin(value)}

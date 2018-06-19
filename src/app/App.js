@@ -24,7 +24,7 @@ const App = () => {
                 <Layout style={{'height': '100%'}}>
                     <Nav />
                     <Content style={{padding: '0 10px', marginTop: 50}}>
-                        <div style={{background: '#fff', padding: 24}}>
+                        <div style={{background: '#fff', padding: 24, minHeight: 'calc(100vh - 50px)'}}>
                             <Route exact name={'scan'} path='/scan' component={Scan}/>
                             <Route exact name={'journal'} path='/' component={Journal}/>
                             <Route exact name={'journal'} path='/journal' component={Journal}/>
