@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './app/App';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
-import 'antd/dist/antd.min.css';
+import reducer from './store/reducers/index';
+import Main from "./Main/Main";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
-// init
-sessionStorage.isProgressCheckLogin = 0;
+const store = createStore(reducer);
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <Main />
+    </Provider>,
     document.getElementById('root')
 );
