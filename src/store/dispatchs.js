@@ -1,7 +1,7 @@
 import {
     actionChangeMenuCollapse, actionChangeMenuItem, actionChangeLogOut,
     actionChangeIsAuth, actionChangeIsShowModal, actionChangeLoginInput, actionChangePasswordInput, actionChangePwt,
-    actionChangeJournalFilterCollapse
+    actionChangeJournalFilterCollapse, actionChangeDataJournal, actionChangeSelectRowJournal
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -21,6 +21,9 @@ export const dispatchs = (dispatch) =>
                     changePwt: (v) => dispatch(actionChangePwt(v)),
 
                     changeJournalFilterCollapse: (v) => dispatch(actionChangeJournalFilterCollapse(v)),
+                    changeDataJournal: (v) => dispatch(actionChangeDataJournal(v)),
+                    changeSelectRowJournal: (v) => dispatch(actionChangeSelectRowJournal(v)),
+
 
                 }
         }

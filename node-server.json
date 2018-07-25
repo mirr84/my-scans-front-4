@@ -8,7 +8,9 @@
 
   "api_host": {
     "auth": "http://172.16.100.27:8095",
-    "loginAutocomplete": "http://172.16.100.27:8095"
+    "loginAutocomplete": "http://172.16.100.27:8095",
+
+    "orderPhoto": "http://172.16.100.27:8050/ordersPhoto"
 
   },
   "help_url": "help-url.json",
