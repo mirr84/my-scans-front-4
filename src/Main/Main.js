@@ -6,12 +6,12 @@ import lifecycle from 'react-pure-lifecycle';
 import Menu from "../Menu/Menu";
 
 import {ToastContainer, toast} from "react-toastify";
-import {cheakAuth} from "../Login/checkLogin";
+import {checkLogin} from "../Login/serviceLogin";
 import Login from "../Login/Login";
 
 const methods = {
     componentDidMount(props) {
-        cheakAuth(props);
+        checkLogin(props);
     }
 }
 

@@ -13,9 +13,11 @@ import './index.css';
 
 const store = createStore(reducer);
 
+store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getState())));
+
 ReactDOM.render(
     <Provider store={store}>
-        <Main />
+        <Main/>
     </Provider>,
     document.getElementById('root')
 );

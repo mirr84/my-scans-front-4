@@ -3,7 +3,7 @@ import React from 'react';
 import {connector} from "../store/utils/connector";
 
 import {Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink} from 'reactstrap';
-import {cheakAuth} from "../Login/checkLogin";
+import {checkLogin} from "../Login/serviceLogin";
 
 const Menu = ({state, dispatch}) =>
     (
@@ -15,7 +15,7 @@ const Menu = ({state, dispatch}) =>
                         <NavItem active={state.menuReducer.item === 'scan'}>
                             <NavLink href="#"
                                      onClick={
-                                         () => { dispatch.changeMenuItem('scan'); cheakAuth({state, dispatch}); }
+                                         () => { dispatch.changeMenuItem('scan'); checkLogin({state, dispatch}); }
                                      } >
                                 Заказ
                             </NavLink>
@@ -23,7 +23,7 @@ const Menu = ({state, dispatch}) =>
                         <NavItem active={state.menuReducer.item === 'journal'}>
                             <NavLink href="#"
                                      onClick={
-                                         () => { dispatch.changeMenuItem('journal'); cheakAuth({state, dispatch}); }
+                                         () => { dispatch.changeMenuItem('journal'); checkLogin({state, dispatch}); }
                                      } >
                                 Требует вноса
                             </NavLink>
@@ -31,10 +31,10 @@ const Menu = ({state, dispatch}) =>
                     </Nav>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="#">Пользователь: tester_nsk</NavLink>
+                            <NavLink href="#">Пользователь: {state.loginReducer.login}</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#" onClick={ () => {} }>Выход</NavLink>
+                            <NavLink href="#" onClick={ () => { dispatch.changeLogOut(); } }>Выход</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>

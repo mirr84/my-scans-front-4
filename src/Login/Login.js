@@ -4,46 +4,54 @@ import {connector} from "../store/utils/connector";
 
 import {
     Modal,
-    ModalHeader,
     ModalBody,
     Button,
     Card,
-    CardImg,
     CardBody,
     CardTitle,
-    CardSubtitle,
-    CardText,
-    FormGroup, Label, Input
+    FormGroup, Label, Input, Form
 } from "reactstrap";
+import {doLogin} from "./serviceLogin";
 
 const Login = ({state, dispatch}) =>
     (
         <Modal isOpen={state.loginReducer.isShowModal}>
             <ModalBody>
                 <Card>
-                {/*<CardImg top src="resources/img/logo.png"  />*/}
-                <CardBody>
-                    <CardTitle>Форма авторизации</CardTitle>
-                        <FormGroup>
-                            <Label for="login">Имя пользователя:</Label>
-                            <Input type="text" id="login" placeholder="Логин" />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="password">Пароль:</Label>
-                            <Input type="password" id="password" placeholder="Пароль" />
-                        </FormGroup>
-                    <Button
-                        className={'ld-ext-right'}
-                        onClick={
-                            () => {
-                                dispatch.changeIsShowModal(false);
-                                dispatch.changeIsAuth(true);
-                            }
-                        }>
-                        Войти
-                    </Button>
-                </CardBody>
-            </Card>
+                    {/*<CardImg top src="resources/img/logo.png"  />*/}
+
+                    <CardBody>
+                        <CardTitle>Форма авторизации</CardTitle>
+                        <Form onSubmit={(e) => { e.preventDefault(); doLogin({state, dispatch});}}>
+                            <FormGroup>
+                                <Label for="login">Имя пользователя:</Label>
+                                <Input type="text"
+                                       id="login"
+                                       placeholder="Логин"
+                                       value={state.loginReducer.login}
+                                       onChange={(e) => {
+                                           dispatch.changeLoginInput(e.target.value)
+                                       }}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="password">Пароль:</Label>
+                                <Input type="password"
+                                       id="password"
+                                       placeholder="Пароль"
+                                       value={state.loginReducer.password}
+                                       onChange={(e) => {
+                                           dispatch.changePasswordInput(e.target.value)
+                                       }}
+                                />
+                            </FormGroup>
+                            <Button disabled={!state.loginReducer.login || !state.loginReducer.password}>
+                                Войти
+                            </Button>
+                        </Form>
+                    </CardBody>
+
+                </Card>
             </ModalBody>
         </Modal>
     )
