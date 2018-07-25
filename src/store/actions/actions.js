@@ -1,6 +1,6 @@
 import {
     ACTION_MENU_COLLAPSE, ACTION_MENU_ITEM, ACTION_IS_AUTH, ACTION_IS_SHOW_MODAL, ACTION_CHANGE_LOGIN_INPUT,
-    ACTION_CHANGE_PASSWORD_INPUT, ACTION_CHANGE_PWT, ACTION_LOGOUT} from "./actionConst";
+    ACTION_CHANGE_PASSWORD_INPUT, ACTION_CHANGE_PWT, ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE} from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
     {
@@ -52,6 +52,13 @@ export const actionChangePasswordInput = (payload) => (
 export const actionChangePwt = (payload) => (
     {
         type: ACTION_CHANGE_PWT,
+        payload
+    }
+)
+
+export const actionChangeJournalFilterCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE,
         payload
     }
 )

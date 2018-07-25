@@ -3,11 +3,14 @@ import React from 'react';
 import {connector} from "../store/utils/connector";
 import lifecycle from 'react-pure-lifecycle';
 
-import Menu from "../Menu/Menu";
-
 import {ToastContainer, toast} from "react-toastify";
+
 import {checkLogin} from "../Login/serviceLogin";
+
+import Menu from "../Menu/Menu";
 import Login from "../Login/Login";
+import Journal from "../Journal/Journal";
+import Scan from "../Scan/Scan";
 
 const methods = {
     componentDidMount(props) {
@@ -27,8 +30,8 @@ const Main = ({state, dispatch}) =>
                     (
                         <div>
                             <Menu />
-                            { state.menuReducer.item === 'scan'? (<div>scan</div>) : <div/> }
-                            { state.menuReducer.item === 'journal'? (<div>journal</div>) : <div/> }
+                            { state.menuReducer.item === 'scan'? (<Scan />) : <div/> }
+                            { state.menuReducer.item === 'journal'? (<Journal />) : <div/> }
                         </div>
                     )
                     : <div />
