@@ -27,6 +27,8 @@ const Main = ({state, dispatch}) =>
                     (
                         <div>
                             <Menu />
+                            { state.menuReducer.item === 'scan'? (<div>scan</div>) : <div/> }
+                            { state.menuReducer.item === 'journal'? (<div>journal</div>) : <div/> }
                         </div>
                     )
                     : <div />

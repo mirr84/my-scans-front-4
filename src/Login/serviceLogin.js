@@ -32,6 +32,7 @@ export const doLogin = (props) => {
                 props.dispatch.changePwt(resp.headers.pwt);
                 props.dispatch.changeIsAuth(true);
                 props.dispatch.changeIsShowModal(false);
+                props.dispatch.changePasswordInput('');
             },
             err => {
                 props.dispatch.changePwt(null);
