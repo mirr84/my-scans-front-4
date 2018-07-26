@@ -3,7 +3,8 @@ import {
     actionChangeIsAuth, actionChangeIsShowLoginModal, actionChangeLoginInput, actionChangePasswordInput, actionChangePwt,
     actionChangeJournalFilterCollapse, actionChangeDataJournal, actionChangeSelectRowJournal, actionChangeJournalImage,
     actionChangeZoomImageJournal, actionChangeJournalImageProgress, actionChangeIsShowRePhotographedModal, actionChangeRephotoReasonsList,
-    actionChangeReasonsItem, actionChangeCleanRephotoReasons, actionChangeOtherReason
+    actionChangeReasonsItem, actionChangeCleanRephotoReasons, actionChangeOtherReason, actionChangeGetStatusList,
+    actionChangeSelectStatus
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -33,6 +34,8 @@ export const dispatchs = (dispatch) =>
                     changeReasonsItem: (v) => dispatch(actionChangeReasonsItem(v)),
                     changeCleanRephotoReasons: () => dispatch(actionChangeCleanRephotoReasons()),
                     changeOtherReason: (v) => dispatch(actionChangeOtherReason(v)),
+                    changeGetStatusList: (v) => dispatch(actionChangeGetStatusList(v)),
+                    changeSelectStatus: (v) => dispatch(actionChangeSelectStatus(v)),
 
                 }
         }

@@ -11,7 +11,7 @@ export const doFilter = (props, isUnSelect = true) => {
         limit: LIMIT_ROW_PAGE,
         offset: 0,
         fields: [
-            {field: "status", values: []},
+            {field: "status", values: props.state.journalReducer.selectStatus.map(item => item.value)},
             {field: "courierCity", value: null},
             {field: "courier", value: null},
             {field: "number", value: null},
@@ -129,6 +129,36 @@ export const operationRephoto = (props) => {
                 doFilter(props, false);
             },
             err => {
+                messages(err.response.data);
+            }
+        )
+
+}
+
+export const getStatusList = (props) => {
+
+    let body = {
+        apiName:"orderPhoto",
+        apiPath:"/getStatusList",
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+    }
+
+    axios.post('/api/preback',
+        {...body},
+        {headers: {PWT: props.state.loginReducer.pwt}}
+    )
+        .then(
+            resp => {
+                props.dispatch.changeGetStatusList(resp.data.items);
+                props.dispatch.changeSelectStatus(
+                    resp.data.items
+                        .filter( item => item.select === true )
+                        .map( item => ({ value: item.code, label: item.name }) )
+                );
+            },
+            err => {
+                props.dispatch.changeSelectStatus([]);
                 messages(err.response.data);
             }
         )

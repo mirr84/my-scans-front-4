@@ -3,7 +3,7 @@ import {
     ACTION_CHANGE_PASSWORD_INPUT, ACTION_CHANGE_PWT, ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL,
     ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE, ACTION_CHANGE_ZOOM_IMAGE_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS,
     ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST, ACTION_CHANGE_REASONS_ITEM, ACTION_CHANGE_CLEAN_REASONS_ITEM,
-    ACTION_CHANGE_OTHER_REASONS
+    ACTION_CHANGE_OTHER_REASONS, ACTION_CHANGE_STATUS_LIST, ACTION_CHANGE_SELECT_STATUS
 } from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
@@ -132,6 +132,20 @@ export const actionChangeCleanRephotoReasons = (payload) => (
 export const actionChangeOtherReason = (payload) => (
     {
         type: ACTION_CHANGE_OTHER_REASONS,
+        payload
+    }
+)
+
+export const actionChangeGetStatusList = (payload) => (
+    {
+        type: ACTION_CHANGE_STATUS_LIST,
+        payload
+    }
+)
+
+export const actionChangeSelectStatus = (payload) => (
+    {
+        type: ACTION_CHANGE_SELECT_STATUS,
         payload
     }
 )

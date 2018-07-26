@@ -2,23 +2,35 @@ import {
     ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL,
     ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE, ACTION_CHANGE_ZOOM_IMAGE_JOURNAL,
     ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS, ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST,
-    ACTION_CHANGE_REASONS_ITEM, ACTION_CHANGE_CLEAN_REASONS_ITEM, ACTION_CHANGE_OTHER_REASONS
+    ACTION_CHANGE_REASONS_ITEM, ACTION_CHANGE_CLEAN_REASONS_ITEM, ACTION_CHANGE_OTHER_REASONS, ACTION_CHANGE_STATUS_LIST,
+    ACTION_CHANGE_SELECT_STATUS
 } from "../actions/actionConst";
 import {getLocalStorage} from "../utils/getLocalStorage";
 
 const initState = {
+
+    // filter
     collapse: true,
+    statusList: [],
+    selectStatus: [],
+
+    // journal
     data: {
         items: []
     },
     selectRowCode: null,
+
+    // image
     imageData: null,
     imageZoom: false,
     imageProgress: false,
+
+    // перефото
     isShowModal: false,
     reasonsList: [],
     selectReasonCode: [],
-    otherReason: ''
+    otherReason: '',
+
 }
 
 export const journalReducer = (state = getLocalStorage('journalReducer', initState), action) => {
@@ -77,6 +89,14 @@ export const journalReducer = (state = getLocalStorage('journalReducer', initSta
 
     if (action.type === ACTION_CHANGE_OTHER_REASONS) {
         newState.otherReason = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_STATUS_LIST) {
+        newState.statusList = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SELECT_STATUS) {
+        newState.selectStatus = action.payload;
     }
 
     return newState;
