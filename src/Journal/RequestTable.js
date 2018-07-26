@@ -3,12 +3,20 @@ import React from 'react';
 import {connector} from "../store/utils/connector";
 import {Table} from "reactstrap";
 import {getImage} from "./serviceJournal";
+import TablePagination from "./TablePagination";
 
 const RequestTable = ({state, dispatch}) =>
     (
         <div>
 
-            <span> Заявок найдено: {state.journalReducer.data.foundCount | 0} </span>
+            <div>
+                <span> Заявок найдено: {state.journalReducer.data.foundCount | 0} </span>
+                <div style={{float: 'right'}}>
+                    {
+                        state.journalReducer.data.foundCount ? <TablePagination/> : <div/>
+                    }
+                </div>
+            </div>
 
             <Table size="sm" hover striped>
                 <thead>
@@ -51,6 +59,14 @@ const RequestTable = ({state, dispatch}) =>
 
                 </tbody>
             </Table>
+
+            <div>
+                <div style={{float: 'right'}}>
+                    {
+                        state.journalReducer.data.foundCount ? <TablePagination/> : <div/>
+                    }
+                </div>
+            </div>
 
         </div>
     )

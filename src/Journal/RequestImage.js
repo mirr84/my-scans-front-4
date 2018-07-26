@@ -27,7 +27,7 @@ const RequestImage = ({state, dispatch}) =>
             {
                 !state.journalReducer.imageProgress && state.journalReducer.imageData ?
                     <img className="img-thumbnail"
-                         style={{width: '100%'}}
+                         style={{width: '100%', cursor: 'pointer'}}
                          onClick={() => {
                              dispatch.changeZoomImageJournal(true);
                          }}

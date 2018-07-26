@@ -1,12 +1,14 @@
 import {messages} from "../resources/js/utils";
 import axios from "axios";
 
+export const LIMIT_ROW_PAGE = 100;
+
 export const doFilter = (props) => {
 
     let body = {
         apiName: "orderPhoto",
         apiPath: "/getJournal",
-        limit: 100,
+        limit: LIMIT_ROW_PAGE,
         offset: 0,
         fields: [
             {field: "status", values: []},
