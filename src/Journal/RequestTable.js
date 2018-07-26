@@ -33,7 +33,7 @@ const RequestTable = ({state, dispatch}) =>
                                 onClick={
                                     () => {
                                         dispatch.changeSelectRowJournal(item.code);
-                                        getImage({state, dispatch});
+                                        getImage(item.code, {state, dispatch});
                                     }
                                 }
                             >
@@ -51,8 +51,6 @@ const RequestTable = ({state, dispatch}) =>
 
                 </tbody>
             </Table>
-
-            {state.journalReducer.selectRowCode}
 
         </div>
     )

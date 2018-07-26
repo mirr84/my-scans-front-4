@@ -39,16 +39,15 @@ export const doFilter = (props) => {
 
 }
 
-export const getImage = (props) => {
+export const getImage = (value, props) => {
 
     props.dispatch.changeJournalImageProgress(true);
-
     let body = {
         apiName: "orderPhoto",
         apiPath: "/getPhoto",
         lang: props.state.loginReducer.lang,
         user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login},
-        value: props.state.journalReducer.selectRowCode
+        value // props.state.journalReducer.selectRowCode
     }
 
     axios.post('/api/preback',
