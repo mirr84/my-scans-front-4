@@ -41,6 +41,8 @@ export const doFilter = (props) => {
 
 export const getImage = (props) => {
 
+    props.dispatch.changeJournalImageProgress(true);
+
     let body = {
         apiName: "orderPhoto",
         apiPath: "/getPhoto",
@@ -58,8 +60,12 @@ export const getImage = (props) => {
                 props.dispatch.changeJournalImage(resp.data);
             },
             err => {
+                props.dispatch.changeJournalImage(null);
                 messages(err.response.data);
             }
+        )
+        .then(
+            resp => props.dispatch.changeJournalImageProgress(false)
         )
 
 }

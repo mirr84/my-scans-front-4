@@ -1,6 +1,8 @@
 .modal-content,
 .btn,
 .card,
-.form-control {
+.form-control,
+.img-thumbnail
+{
     border-radius: 0px;
 }

@@ -1,7 +1,8 @@
 import {
     actionChangeMenuCollapse, actionChangeMenuItem, actionChangeLogOut,
     actionChangeIsAuth, actionChangeIsShowModal, actionChangeLoginInput, actionChangePasswordInput, actionChangePwt,
-    actionChangeJournalFilterCollapse, actionChangeDataJournal, actionChangeSelectRowJournal, actionChangeJournalImage
+    actionChangeJournalFilterCollapse, actionChangeDataJournal, actionChangeSelectRowJournal, actionChangeJournalImage,
+    actionChangeZoomImageJournal, actionChangeJournalImageProgress
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -24,7 +25,8 @@ export const dispatchs = (dispatch) =>
                     changeDataJournal: (v) => dispatch(actionChangeDataJournal(v)),
                     changeSelectRowJournal: (v) => dispatch(actionChangeSelectRowJournal(v)),
                     changeJournalImage: (v) => dispatch(actionChangeJournalImage(v)),
-
+                    changeZoomImageJournal: (v) => dispatch(actionChangeZoomImageJournal(v)),
+                    changeJournalImageProgress: (v) => dispatch(actionChangeJournalImageProgress(v)),
 
                 }
         }

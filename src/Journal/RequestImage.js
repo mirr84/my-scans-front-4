@@ -1,10 +1,47 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
+import Viewer from 'react-viewer';
 
 const RequestImage = ({state, dispatch}) =>
     (
-        <div> RequestImage </div>
+        <div>
+
+            <Viewer
+                visible={state.journalReducer.imageZoom}
+                onClose={() => {
+                    dispatch.changeZoomImageJournal(false);
+                }}
+                images={[{
+                    src: 'data:image/jpeg;base64;charset=utf-8,' + state.journalReducer.imageData
+                }]}
+            />
+
+            {
+                state.journalReducer.imageProgress ?
+                    <img className="img-thumbnail"
+                         style={{width: '100%'}}
+                         src={'resources/img/loaadimage.gif'}/> : (<div/>)
+            }
+
+            {
+                !state.journalReducer.imageProgress && state.journalReducer.imageData ?
+                    <img className="img-thumbnail"
+                         style={{width: '100%'}}
+                         onClick={() => {
+                             dispatch.changeZoomImageJournal(true);
+                         }}
+                         src={'data:image/jpeg;base64;charset=utf-8,' + state.journalReducer.imageData}/> : (<div/>)
+            }
+
+            {
+                !state.journalReducer.imageProgress && !state.journalReducer.imageData ?
+                    <img className="img-thumbnail"
+                         style={{width: '100%'}}
+                         src={'resources/img/noimage.jpg'}/> : (<div/>)
+            }
+
+        </div>
     )
 
 export default connector(RequestImage);
