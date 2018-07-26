@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const LIMIT_ROW_PAGE = 100;
 
-export const doFilter = (props) => {
+export const doFilter = (props, isUnSelect = true) => {
 
     let body = {
         apiName: "orderPhoto",
@@ -15,7 +15,7 @@ export const doFilter = (props) => {
             {field: "courierCity", value: null},
             {field: "courier", value: null},
             {field: "number", value: null},
-            {field: "dateFrom", value: "25.04.2018" },
+            {field: "dateFrom", value: "25.04.2018"},
             {field: "dateTo", value: "25.07.2018"},
             {field: "onlyUrgent", value: false}
         ],
@@ -32,7 +32,8 @@ export const doFilter = (props) => {
         .then(
             resp => {
                 props.dispatch.changeDataJournal(resp.data);
-                props.dispatch.changeSelectRowJournal(null);
+                if (isUnSelect === true)
+                    props.dispatch.changeSelectRowJournal(null);
             },
             err => {
                 messages(err.response.data);
@@ -90,6 +91,44 @@ export const getRephotoReasons = (props) => {
             },
             err => {
                 props.dispatch.changeIsShowRePhotographedModal(false);
+                messages(err.response.data);
+            }
+        )
+
+}
+
+export const operationRephoto = (props) => {
+
+    let body = {
+        apiName: "orderPhoto",
+        apiPath: "/operationRephoto",
+        field: "request",
+        value: props.state.journalReducer.selectRowCode,
+        fields: [
+            {
+                field: "reason_code",
+                values: props.state.journalReducer.selectReasonCode
+            },
+            {
+                field: "other_reason",
+                value: props.state.journalReducer.otherReason
+            }
+        ],
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+    }
+
+    axios.post('/api/preback',
+        {...body},
+        {headers: {PWT: props.state.loginReducer.pwt}}
+    )
+        .then(
+            resp => {
+                messages(resp.data);
+                props.dispatch.changeIsShowRePhotographedModal(false);
+                doFilter(props, false);
+            },
+            err => {
                 messages(err.response.data);
             }
         )

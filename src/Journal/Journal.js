@@ -20,7 +20,7 @@ import Sticky from 'react-sticky-el';
 import RequestTable from "./RequestTable";
 import RequestFilter from "./RequestFilter";
 import RequestImage from "./RequestImage";
-import {getRephotoReasons} from "./serviceJournal";
+import {getRephotoReasons, operationRephoto} from "./serviceJournal";
 
 const STATUS_NOT_WORK = 'Не обработано';
 
@@ -70,6 +70,7 @@ const Journal = ({state, dispatch}) =>
                                                         onClick={
                                                             () => {
                                                                 dispatch.changeIsShowRePhotographedModal(true);
+                                                                dispatch.changeCleanRephotoReasons(true);
                                                                 getRephotoReasons({state, dispatch});
                                                             }
                                                         }
@@ -106,7 +107,10 @@ const Journal = ({state, dispatch}) =>
                                             <ListGroupItem key={item.code}>
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input type="checkbox"/> {item.name}
+                                                        <Input checked={ state.journalReducer.selectReasonCode.filter( a => a === item.code ).length > 0 }
+                                                               value={item.code}
+                                                               onChange={ (e) => dispatch.changeReasonsItem(e.target.value) }
+                                                               type="checkbox"/> {item.name}
                                                     </Label>
                                                 </FormGroup>
                                             </ListGroupItem>
@@ -116,14 +120,21 @@ const Journal = ({state, dispatch}) =>
                                 <ListGroupItem>
                                     <Label style={ {width: '100%'} }>
                                         Другая:
-                                        <Input type="textarea" />
+                                        <Input type="textarea"
+                                               value={state.journalReducer.otherReason}
+                                               onChange={ (e) => dispatch.changeOtherReason(e.target.value) }
+                                        />
                                     </Label>
                                 </ListGroupItem>
                             </ListGroup>
 
+                            <br/>
+
                             <div style={{float: 'right'}}>
                                 <Button color="success"
+                                        disabled={ state.journalReducer.selectReasonCode.length === 0 && !state.journalReducer.otherReason }
                                         onClick={() => {
+                                            operationRephoto({state, dispatch});
                                         }}>
                                     Отправить
                                 </Button>
