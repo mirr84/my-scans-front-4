@@ -1,13 +1,12 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-
 import {Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink} from 'reactstrap';
+
 import {checkLogin} from "../Login/serviceLogin";
 
 const Menu = ({state, dispatch}) =>
     (
-
             <Navbar color="light" light expand="md">
                 <NavbarToggler onClick={ () => dispatch.changeMenuCollapse(!state.menuReducer.collapse) } />
                 <Collapse isOpen={state.menuReducer.collapse} navbar>
@@ -39,7 +38,6 @@ const Menu = ({state, dispatch}) =>
                     </Nav>
                 </Collapse>
             </Navbar>
-
     )
 
 export default connector(Menu)

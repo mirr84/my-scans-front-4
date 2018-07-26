@@ -2,9 +2,13 @@ import React from 'react';
 
 import {connector} from "../store/utils/connector";
 import {Collapse, Card, CardBody, CardTitle, Container, Row, Col} from "reactstrap";
+import Sticky from 'react-sticky-el';
+
 import RequestTable from "./RequestTable";
 import RequestFilter from "./RequestFilter";
 import RequestImage from "./RequestImage";
+
+
 
 const Journal = ({state, dispatch}) =>
     (
@@ -33,11 +37,13 @@ const Journal = ({state, dispatch}) =>
                 </Col>
                 {
                     state.journalReducer.selectRowCode ? <Col xl={4}>
-                        <Card>
-                            <CardBody>
-                                <RequestImage/>
-                            </CardBody>
-                        </Card>
+                        <Sticky>
+                            <Card>
+                                <CardBody>
+                                    <RequestImage/>
+                                </CardBody>
+                            </Card>
+                        </Sticky>
                     </Col> : <div/>
                 }
 
