@@ -38,3 +38,28 @@ export const doFilter = (props) => {
         )
 
 }
+
+export const getImage = (props) => {
+
+    let body = {
+        apiName: "orderPhoto",
+        apiPath: "/getPhoto",
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login},
+        value: props.state.journalReducer.selectRowCode
+    }
+
+    axios.post('/api/preback',
+        {...body},
+        {headers: {PWT: props.state.loginReducer.pwt}}
+    )
+        .then(
+            resp => {
+                props.dispatch.changeJournalImage(resp.data);
+            },
+            err => {
+                messages(err.response.data);
+            }
+        )
+
+}

@@ -1,4 +1,7 @@
-import {ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL, ACTION_CHANGE_SELECT_ROW_JOURNAL} from "../actions/actionConst";
+import {
+    ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL,
+    ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE
+} from "../actions/actionConst";
 import {getLocalStorage} from "../utils/getLocalStorage";
 
 const initState = {
@@ -6,7 +9,8 @@ const initState = {
     data: {
         items: []
     },
-    selectRowCode: null
+    selectRowCode: null,
+    imageData: null
 }
 
 export const journalReducer = (state = getLocalStorage('journalReducer', initState), action) => {
@@ -27,6 +31,10 @@ export const journalReducer = (state = getLocalStorage('journalReducer', initSta
 
     if (action.type === ACTION_CHANGE_SELECT_ROW_JOURNAL) {
         newState.selectRowCode = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_JOURNAL_IMAGE) {
+        newState.imageData = action.payload;
     }
 
     return newState;

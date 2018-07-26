@@ -2,12 +2,13 @@ import React from 'react';
 
 import {connector} from "../store/utils/connector";
 import {Table} from "reactstrap";
+import {getImage} from "./serviceJournal";
 
 const RequestTable = ({state, dispatch}) =>
     (
         <div>
 
-            <span> Заявок найдено: { state.journalReducer.data.foundCount | 0 } </span>
+            <span> Заявок найдено: {state.journalReducer.data.foundCount | 0} </span>
 
             <Table size="sm" hover striped>
                 <thead>
@@ -27,9 +28,14 @@ const RequestTable = ({state, dispatch}) =>
                     state.journalReducer.data.items.map(
                         item => (
                             <tr key={item.code}
-                                style={ { cursor: 'pointer' } }
-                                className={ item.code === state.journalReducer.selectRowCode?'table-info':'' }
-                                onClick={ () => { dispatch.changeSelectRowJournal(item.code) } }
+                                style={{cursor: 'pointer'}}
+                                className={item.code === state.journalReducer.selectRowCode ? 'table-info' : ''}
+                                onClick={
+                                    () => {
+                                        dispatch.changeSelectRowJournal(item.code);
+                                        getImage({state, dispatch});
+                                    }
+                                }
                             >
                                 <td>{item.number}</td>
                                 <td>{item.recipient}</td>
@@ -46,7 +52,7 @@ const RequestTable = ({state, dispatch}) =>
                 </tbody>
             </Table>
 
-            { state.journalReducer.selectRowCode }
+            {state.journalReducer.selectRowCode}
 
         </div>
     )

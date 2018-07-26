@@ -1,7 +1,7 @@
 import {
     ACTION_MENU_COLLAPSE, ACTION_MENU_ITEM, ACTION_IS_AUTH, ACTION_IS_SHOW_MODAL, ACTION_CHANGE_LOGIN_INPUT,
     ACTION_CHANGE_PASSWORD_INPUT, ACTION_CHANGE_PWT, ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL,
-    ACTION_CHANGE_SELECT_ROW_JOURNAL
+    ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE
 } from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
@@ -75,6 +75,13 @@ export const actionChangeDataJournal = (payload) => (
 export const actionChangeSelectRowJournal = (payload) => (
     {
         type: ACTION_CHANGE_SELECT_ROW_JOURNAL,
+        payload
+    }
+)
+
+export const actionChangeJournalImage = (payload) => (
+    {
+        type: ACTION_CHANGE_JOURNAL_IMAGE,
         payload
     }
 )
