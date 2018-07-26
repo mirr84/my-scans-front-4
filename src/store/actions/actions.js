@@ -1,7 +1,8 @@
 import {
     ACTION_MENU_COLLAPSE, ACTION_MENU_ITEM, ACTION_IS_AUTH, ACTION_IS_SHOW_MODAL, ACTION_CHANGE_LOGIN_INPUT,
     ACTION_CHANGE_PASSWORD_INPUT, ACTION_CHANGE_PWT, ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL,
-    ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE, ACTION_CHANGE_ZOOM_IMAGE_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS
+    ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE, ACTION_CHANGE_ZOOM_IMAGE_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS,
+    ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST
 } from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
@@ -30,7 +31,7 @@ export const actionChangeIsAuth = (payload) => (
     }
 )
 
-export const actionChangeIsShowModal = (payload) => (
+export const actionChangeIsShowLoginModal = (payload) => (
     {
         type: ACTION_IS_SHOW_MODAL,
         payload
@@ -96,6 +97,20 @@ export const actionChangeZoomImageJournal = (payload) => (
 export const actionChangeJournalImageProgress = (payload) => (
     {
         type: ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS,
+        payload
+    }
+)
+
+export const actionChangeIsShowRePhotographedModal = (payload) => (
+    {
+        type: ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL,
+        payload
+    }
+)
+
+export const actionChangeRephotoReasonsList = (payload) => (
+    {
+        type: ACTION_CHANGE_REPHOTO_REASONS_LIST,
         payload
     }
 )

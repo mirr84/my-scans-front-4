@@ -1,8 +1,8 @@
 import {
     actionChangeMenuCollapse, actionChangeMenuItem, actionChangeLogOut,
-    actionChangeIsAuth, actionChangeIsShowModal, actionChangeLoginInput, actionChangePasswordInput, actionChangePwt,
+    actionChangeIsAuth, actionChangeIsShowLoginModal, actionChangeLoginInput, actionChangePasswordInput, actionChangePwt,
     actionChangeJournalFilterCollapse, actionChangeDataJournal, actionChangeSelectRowJournal, actionChangeJournalImage,
-    actionChangeZoomImageJournal, actionChangeJournalImageProgress
+    actionChangeZoomImageJournal, actionChangeJournalImageProgress, actionChangeIsShowRePhotographedModal, actionChangeRephotoReasonsList
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -16,7 +16,7 @@ export const dispatchs = (dispatch) =>
                     changeLogOut: () => dispatch(actionChangeLogOut()),
 
                     changeIsAuth: (v) => dispatch(actionChangeIsAuth(v)),
-                    changeIsShowModal: (v) => dispatch(actionChangeIsShowModal(v)),
+                    changeIsShowLoginModal: (v) => dispatch(actionChangeIsShowLoginModal(v)),
                     changeLoginInput: (v) => dispatch(actionChangeLoginInput(v)),
                     changePasswordInput: (v) => dispatch(actionChangePasswordInput(v)),
                     changePwt: (v) => dispatch(actionChangePwt(v)),
@@ -27,6 +27,8 @@ export const dispatchs = (dispatch) =>
                     changeJournalImage: (v) => dispatch(actionChangeJournalImage(v)),
                     changeZoomImageJournal: (v) => dispatch(actionChangeZoomImageJournal(v)),
                     changeJournalImageProgress: (v) => dispatch(actionChangeJournalImageProgress(v)),
+                    changeIsShowRePhotographedModal: (v) => dispatch(actionChangeIsShowRePhotographedModal(v)),
+                    changeRephotoReasonsList: (v) => dispatch(actionChangeRephotoReasonsList(v)),
 
                 }
         }

@@ -9,14 +9,15 @@ const RequestTable = ({state, dispatch}) =>
     (
         <div>
 
-            <div>
-                <span> Заявок найдено: {state.journalReducer.data.foundCount | 0} </span>
-                <div style={{float: 'right'}}>
-                    {
-                        state.journalReducer.data.foundCount ? <TablePagination/> : <div/>
-                    }
-                </div>
-            </div>
+            {
+                state.journalReducer.data.foundCount ?
+                    <div>
+                        <span> Заявок найдено: {state.journalReducer.data.foundCount} </span>
+                        <div style={{float: 'right'}}>
+                            <TablePagination/>
+                        </div>
+                    </div> : <div/>
+            }
 
             <Table size="sm" hover striped>
                 <thead>
@@ -60,13 +61,14 @@ const RequestTable = ({state, dispatch}) =>
                 </tbody>
             </Table>
 
-            <div>
-                <div style={{float: 'right'}}>
-                    {
-                        state.journalReducer.data.foundCount ? <TablePagination/> : <div/>
-                    }
-                </div>
-            </div>
+            {
+                state.journalReducer.data.foundCount ?
+                    <div>
+                        <div style={{float: 'right'}}>
+                            <TablePagination/>
+                        </div>
+                    </div> : <div/>
+            }
 
         </div>
     )

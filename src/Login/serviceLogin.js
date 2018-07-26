@@ -8,12 +8,12 @@ export const checkLogin = (props) => {
     )
         .then(
             resp => {
-                props.dispatch.changeIsShowModal(false);
+                props.dispatch.changeIsShowLoginModal(false);
                 props.dispatch.changeIsAuth(true);
             },
             err => {
                 messages(err.response.data);
-                props.dispatch.changeIsShowModal(true);
+                props.dispatch.changeIsShowLoginModal(true);
                 props.dispatch.changeIsAuth(false);
             }
         )
@@ -31,7 +31,7 @@ export const doLogin = (props) => {
             resp => {
                 props.dispatch.changePwt(resp.headers.pwt);
                 props.dispatch.changeIsAuth(true);
-                props.dispatch.changeIsShowModal(false);
+                props.dispatch.changeIsShowLoginModal(false);
                 props.dispatch.changePasswordInput('');
             },
             err => {

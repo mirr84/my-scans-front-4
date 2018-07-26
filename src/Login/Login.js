@@ -45,9 +45,11 @@ const Login = ({state, dispatch}) =>
                                        }}
                                 />
                             </FormGroup>
-                            <Button disabled={!state.loginReducer.login || !state.loginReducer.password}>
-                                Войти
-                            </Button>
+                            <div style={{float: 'right'}}>
+                                <Button disabled={!state.loginReducer.login || !state.loginReducer.password}>
+                                    Войти
+                                </Button>
+                            </div>
                         </Form>
                     </CardBody>
 

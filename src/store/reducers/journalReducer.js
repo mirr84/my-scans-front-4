@@ -1,7 +1,7 @@
 import {
     ACTION_LOGOUT, ACTION_CHANGE_JOURNAL_FILTER_COLLAPSE, ACTION_CHANGE_DATA_JOURNAL,
     ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE, ACTION_CHANGE_ZOOM_IMAGE_JOURNAL,
-    ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS
+    ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS, ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST
 } from "../actions/actionConst";
 import {getLocalStorage} from "../utils/getLocalStorage";
 
@@ -13,7 +13,9 @@ const initState = {
     selectRowCode: null,
     imageData: null,
     imageZoom: false,
-    imageProgress: false
+    imageProgress: false,
+    isShowModal: false,
+    reasonsList: []
 }
 
 export const journalReducer = (state = getLocalStorage('journalReducer', initState), action) => {
@@ -46,6 +48,14 @@ export const journalReducer = (state = getLocalStorage('journalReducer', initSta
 
     if (action.type === ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS) {
         newState.imageProgress = action.payload;
+    }
+
+    if (action.type === ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL) {
+        newState.isShowModal = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_REPHOTO_REASONS_LIST) {
+        newState.reasonsList = action.payload;
     }
 
     return newState;
