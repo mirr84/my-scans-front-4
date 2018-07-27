@@ -17,8 +17,6 @@ import {
 
 const Menu = ({state, dispatch}) =>
     (
-        <div>
-
             <Navbar color="light" light expand="md">
                 <NavbarToggler onClick={() => dispatch.changeMenuCollapse(!state.menuReducer.collapse)}/>
                 <Collapse isOpen={state.menuReducer.collapse} navbar>
@@ -60,39 +58,6 @@ const Menu = ({state, dispatch}) =>
                     </Nav>
                 </Collapse>
             </Navbar>
-
-            <Modal isOpen={state.scanReducer.isStopGetOrderFromWorkModal}>
-                <ModalBody>
-                    <Card>
-                        <CardBody>
-                            <CardTitle>Остановать текущий внос и перейти в журнал?</CardTitle>
-                            <div style={{float: 'right'}}>
-                                <Button color="warning"
-                                        onClick={
-                                            () => {
-                                                dispatch.changeIsStopGetOrderFromWorkModal(false);
-                                                dispatch.changeIsGetOrderFromWork(false);
-                                                dispatch.changeSetOrderData(null);
-                                                dispatch.changeMenuItem('journal');
-                                            }
-                                        }
-                                >
-                                    Да
-                                </Button>
-                                {' '}
-                                <Button color="success"
-                                        onClick={() => dispatch.changeIsStopGetOrderFromWorkModal(false)}
-                                >
-                                    Нет
-                                </Button>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </ModalBody>
-            </Modal>
-
-        </div>
-
     )
 
 export default connector(Menu)

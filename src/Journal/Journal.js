@@ -9,18 +9,14 @@ import {
     Container,
     Row,
     Col,
-    Button,
-    Modal,
-    ModalBody,
-    ListGroup,
-    ListGroupItem, FormGroup, Label, Input, FormText, Progress
+    Button
 } from "reactstrap";
 import Sticky from 'react-sticky-el';
 
 import RequestTable from "./RequestTable";
 import RequestFilter from "./RequestFilter";
 import RequestImage from "./RequestImage";
-import {getRephotoReasons, operationRephoto} from "./serviceJournal";
+import {getRephotoReasons} from "./serviceJournal";
 import {getTaskByKey} from "../Scan/serviceScan";
 
 const STATUS_NOT_WORK = 'Не обработано';
@@ -75,7 +71,7 @@ const Journal = ({state, dispatch}) =>
                                                             () => {
                                                                 dispatch.changeIsShowRePhotographedModal(true);
                                                                 dispatch.changeCleanRephotoReasons(true);
-                                                                getRephotoReasons();
+                                                                getRephotoReasons({state, dispatch});
                                                             }
                                                         }
                                                 >
@@ -97,76 +93,6 @@ const Journal = ({state, dispatch}) =>
                 }
 
             </Row>
-
-            <Modal isOpen={state.journalReducer.isShowModal}>
-                <ModalBody>
-                    <Card>
-                        <CardBody>
-                            <CardTitle>Причина возврата на перефото</CardTitle>
-
-                            <ListGroup>
-                                {
-                                    state.journalReducer.reasonsList.map(
-                                        item => (
-                                            <ListGroupItem key={item.code}>
-                                                <FormGroup check>
-                                                    <Label check>
-                                                        <Input checked={ state.journalReducer.selectReasonCode.filter( a => a === item.code ).length > 0 }
-                                                               value={item.code}
-                                                               onChange={ (e) => dispatch.changeReasonsItem(e.target.value) }
-                                                               type="checkbox"/> {item.name}
-                                                    </Label>
-                                                </FormGroup>
-                                            </ListGroupItem>
-                                        )
-                                    )
-                                }
-                                <ListGroupItem>
-                                    <Label style={ {width: '100%'} }>
-                                        Другая:
-                                        <Input type="textarea"
-                                               value={state.journalReducer.otherReason}
-                                               onChange={ (e) => dispatch.changeOtherReason(e.target.value) }
-                                        />
-                                    </Label>
-                                </ListGroupItem>
-                            </ListGroup>
-
-                            <br/>
-
-                            <div style={{float: 'right'}}>
-                                <Button color="success"
-                                        disabled={ state.journalReducer.selectReasonCode.length === 0 && !state.journalReducer.otherReason }
-                                        onClick={() => {
-                                            operationRephoto({state, dispatch});
-                                        }}>
-                                    Отправить
-                                </Button>
-                                {' '}
-                                <Button color="warning"
-                                        onClick={() => dispatch.changeIsShowRePhotographedModal(false)}>
-                                    Отмена
-                                </Button>
-                            </div>
-
-                        </CardBody>
-                    </Card>
-                </ModalBody>
-            </Modal>
-            <Modal isOpen={state.journalReducer.isProgressFilter}>
-                <ModalBody>
-                    <Card>
-                        <Progress animated color="success" value="100"> Получение данных </Progress>
-                    </Card>
-                </ModalBody>
-            </Modal>
-            <Modal isOpen={state.scanReducer.isProgressGetTaskByKey}>
-                <ModalBody>
-                    <Card>
-                        <Progress animated color="success" value="100"> Получение данных задания </Progress>
-                    </Card>
-                </ModalBody>
-            </Modal>
 
         </Container>
     )
