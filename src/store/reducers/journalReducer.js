@@ -3,9 +3,10 @@ import {
     ACTION_CHANGE_SELECT_ROW_JOURNAL, ACTION_CHANGE_JOURNAL_IMAGE, ACTION_CHANGE_ZOOM_IMAGE_JOURNAL,
     ACTION_CHANGE_JOURNAL_IMAGE_PROGRESS, ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST,
     ACTION_CHANGE_REASONS_ITEM, ACTION_CHANGE_CLEAN_REASONS_ITEM, ACTION_CHANGE_OTHER_REASONS, ACTION_CHANGE_STATUS_LIST,
-    ACTION_CHANGE_SELECT_STATUS
+    ACTION_CHANGE_SELECT_STATUS, ACTION_CHANGE_DATE_FROM_FILTER, ACTION_CHANGE_DATE_TO_FILTER
 } from "../actions/actionConst";
 import {getLocalStorage} from "../utils/getLocalStorage";
+import moment from 'moment';
 
 const initState = {
 
@@ -13,6 +14,9 @@ const initState = {
     collapse: true,
     statusList: [],
     selectStatus: [],
+
+    dateFrom: moment(new Date()).format('DD.MM.YYYY'),
+    dateTo: moment(new Date()).format('DD.MM.YYYY'),
 
     // journal
     data: {
@@ -97,6 +101,14 @@ export const journalReducer = (state = getLocalStorage('journalReducer', initSta
 
     if (action.type === ACTION_CHANGE_SELECT_STATUS) {
         newState.selectStatus = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_DATE_FROM_FILTER) {
+        newState.dateFrom = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_DATE_TO_FILTER) {
+        newState.dateTo = action.payload;
     }
 
     return newState;

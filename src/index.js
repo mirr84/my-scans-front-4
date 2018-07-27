@@ -11,6 +11,7 @@ import Main from "./Main/Main";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-viewer/dist/index.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import './index.css';
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));

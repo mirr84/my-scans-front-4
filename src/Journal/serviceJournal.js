@@ -15,8 +15,8 @@ export const doFilter = (props, isUnSelect = true) => {
             {field: "courierCity", value: null},
             {field: "courier", value: null},
             {field: "number", value: null},
-            {field: "dateFrom", value: "25.04.2018"},
-            {field: "dateTo", value: "25.07.2018"},
+            {field: "dateFrom", value: props.state.journalReducer.dateFrom},
+            {field: "dateTo", value: props.state.journalReducer.dateTo},
             {field: "onlyUrgent", value: false}
         ],
         columns: ["code", "number", "recipient", "courier", "status", "courierCity", "date"],
