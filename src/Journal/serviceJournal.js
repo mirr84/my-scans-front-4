@@ -131,6 +131,9 @@ export const operationRephoto = (props) => {
             resp => {
                 messages(resp.data);
                 props.dispatch.changeIsShowRePhotographedModal(false);
+                props.dispatch.changeMenuItem(props.state.scanReducer.movedFrom);
+                props.dispatch.changeIsGetOrderFromWork(false);
+                props.dispatch.changeSetOrderData(null);
                 doFilter(props, false);
             },
             err => {

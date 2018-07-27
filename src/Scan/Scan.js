@@ -17,48 +17,56 @@ const Scan = ({state, dispatch}) =>
         <Container fluid={true}>
             <Row>
                 <Col>
-                    <RequestMain />
-                    <RequestPaymentInformation />
-                    <RequestTotal />
+                    <RequestMain/>
+                    <RequestPaymentInformation/>
+                    <RequestTotal/>
                 </Col>
                 <Col>
-                    <RequestSender />
-                    <RequestReceiver />
-                    <RequestInformationAboutCargo />
+                    <RequestSender/>
+                    <RequestReceiver/>
+                    <RequestInformationAboutCargo/>
                 </Col>
                 <Col>
                     <div>
                         <div>
                             <Card>
                                 <CardBody>
-                                    <Button color="success"
-                                            onClick={() => {}}
-                                    >
-                                        Автоматический внос
-                                    </Button>
-                                    {' '}
-                                    <Button color="warning"
-                                            disabled={state.journalReducer.imageProgress}
-                                            onClick={
-                                                () => {
-                                                    dispatch.changeIsShowRePhotographedModal(true);
-                                                    dispatch.changeCleanRephotoReasons(true);
-                                                    getRephotoReasons({state, dispatch});
-                                                }
-                                            }
-                                    >
-                                        Возврат на перефото
-                                    </Button>
-                                    {' '}
-                                    <Button color="warning"
-                                            onClick={() => {}}
-                                    >
-                                        Стоп
-                                    </Button>
+                                    {
+                                        !state.scanReducer.isGetOrderFromWork ? (
+                                            <Button color="success"
+                                                    onClick={() => {
+                                                    }}
+                                            >
+                                                Автоматический внос
+                                            </Button>
+                                        ) : (
+                                            <div>
+                                                <Button color="warning"
+                                                        disabled={state.journalReducer.imageProgress}
+                                                        onClick={
+                                                            () => {
+                                                                dispatch.changeIsShowRePhotographedModal(true);
+                                                                dispatch.changeCleanRephotoReasons(true);
+                                                                getRephotoReasons({state, dispatch});
+                                                            }
+                                                        }
+                                                >
+                                                    Возврат на перефото
+                                                </Button>
+                                                {' '}
+                                                <Button color="warning"
+                                                        onClick={() => {
+                                                        }}
+                                                >
+                                                    Стоп
+                                                </Button>
+                                            </div>
+                                        )
+                                    }
                                 </CardBody>
                             </Card>
                         </div>
-                        <RequestImage />
+                        <RequestImage/>
                     </div>
                 </Col>
             </Row>

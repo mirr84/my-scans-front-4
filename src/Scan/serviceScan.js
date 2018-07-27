@@ -1,7 +1,7 @@
 import {messages} from "../resources/js/utils";
 import axios from "axios";
 
-export const getTaskByKey = (props) => {
+export const getTaskByKey = (props, movedFrom = 'journal') => {
 
     const body = {
         apiName:"orderPhoto",
@@ -22,6 +22,7 @@ export const getTaskByKey = (props) => {
             resp => {
                 props.dispatch.changeSetOrderData(resp.data.order);
                 props.dispatch.changeMenuItem('scan');
+                props.dispatch.changeMovedFrom(movedFrom);
                 props.dispatch.changeIsGetOrderFromWork(true);
             },
             err => {

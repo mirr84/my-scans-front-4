@@ -5,7 +5,7 @@ import {
     ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST, ACTION_CHANGE_REASONS_ITEM, ACTION_CHANGE_CLEAN_REASONS_ITEM,
     ACTION_CHANGE_OTHER_REASONS, ACTION_CHANGE_STATUS_LIST, ACTION_CHANGE_SELECT_STATUS, ACTION_CHANGE_DATE_FROM_FILTER, ACTION_CHANGE_DATE_TO_FILTER,
     ACTION_CHANGE_IS_JOURNAL_PROGRESS, ACTION_CHANGE_IS_GET_TASK_BY_KEY_PROGRESS, ACTION_CHANGE_SER_ORDER_DATA, ACTION_IS_GET_ORDER_FROM_WORK,
-    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL
+    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL, ACTION_CHANGE_MOVED_FROM
 } from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
@@ -197,6 +197,14 @@ export const actionChangeIsGetOrderFromWork = (payload) => (
 export const actionChangeIsStopGetOrderFromWorkModal = (payload) => (
     {
         type: ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL,
+        payload
+    }
+)
+
+
+export const actionChangeMovedFrom = (payload) => (
+    {
+        type: ACTION_CHANGE_MOVED_FROM,
         payload
     }
 )
