@@ -6,12 +6,12 @@ const RequestReceiver = ({state, dispatch}) =>
     (
         <div>
             RequestReceiver
-            <br/>
-            {
-                JSON.stringify(
-                    state.scanReducer.order.receiver
-                )
-            }
+            {/*<br/>*/}
+            {/*{*/}
+                {/*JSON.stringify(*/}
+                    {/*state.scanReducer.order.receiver*/}
+                {/*)*/}
+            {/*}*/}
         </div>
     )
 

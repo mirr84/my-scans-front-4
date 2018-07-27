@@ -34,7 +34,10 @@ const Main = ({state, dispatch}) =>
                             { state.menuReducer.item === 'journal'? (<Journal />) : <div/> }
                         </div>
                     )
-                    : <div />
+                    :
+                    (
+                        <div />
+                    )
             }
 
         </div>

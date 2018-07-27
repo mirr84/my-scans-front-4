@@ -1,14 +1,16 @@
 import {
-    ACTION_CHANGE_IS_GET_TASK_BY_KEY_PROGRESS,
-    ACTION_CHANGE_SER_ORDER_DATA,
-    ACTION_LOGOUT
+    ACTION_LOGOUT, ACTION_CHANGE_IS_GET_TASK_BY_KEY_PROGRESS, ACTION_CHANGE_SER_ORDER_DATA, ACTION_IS_GET_ORDER_FROM_WORK,
+    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL
+
 } from "../actions/actionConst";
 
 import {getLocalStorage} from "../utils/getLocalStorage";
 
 const initState = {
     isProgressGetTaskByKey: false,
-    order: null
+    order: null,
+    isGetOrderFromWork: false,
+    isStopGetOrderFromWorkModal: false
 }
 
 export const scanReducer = (state = getLocalStorage('scanReducer', initState), action) => {
@@ -25,6 +27,14 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SER_ORDER_DATA) {
         newState.order = action.payload;
+    }
+
+    if (action.type === ACTION_IS_GET_ORDER_FROM_WORK) {
+        newState.isGetOrderFromWork = action.payload;
+    }
+
+    if (action.type === ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL) {
+        newState.isStopGetOrderFromWorkModal = action.payload;
     }
 
     return newState;

@@ -6,12 +6,12 @@ const RequestSender = ({state, dispatch}) =>
     (
         <div>
             RequestSender
-            <br/>
-            {
-                JSON.stringify(
-                    state.scanReducer.order.sender
-                )
-            }
+            {/*<br/>*/}
+            {/*{*/}
+                {/*JSON.stringify(*/}
+                    {/*state.scanReducer.order.sender*/}
+                {/*)*/}
+            {/*}*/}
         </div>
     )
 

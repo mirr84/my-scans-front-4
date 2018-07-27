@@ -22,6 +22,7 @@ export const getTaskByKey = (props) => {
             resp => {
                 props.dispatch.changeSetOrderData(resp.data.order);
                 props.dispatch.changeMenuItem('scan');
+                props.dispatch.changeIsGetOrderFromWork(true);
             },
             err => {
                 messages(err.response.data);

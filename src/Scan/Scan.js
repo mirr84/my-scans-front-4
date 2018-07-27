@@ -26,7 +26,9 @@ const Scan = ({state, dispatch}) =>
                     <RequestInformationAboutCargo />
                 </Col>
                 <Col>
-                    <RequestImage />
+                    <div>
+                        <RequestImage />
+                    </div>
                 </Col>
             </Row>
         </Container>

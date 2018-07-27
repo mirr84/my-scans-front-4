@@ -6,12 +6,12 @@ const RequestTotal = ({state, dispatch}) =>
     (
         <div>
             RequestTotal
-            <br/>
-            {
-                JSON.stringify(
-                    state.scanReducer.order.calculator
-                )
-            }
+            {/*<br/>*/}
+            {/*{*/}
+                {/*JSON.stringify(*/}
+                    {/*state.scanReducer.order.calculator*/}
+                {/*)*/}
+            {/*}*/}
         </div>
     )
 

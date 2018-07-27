@@ -6,12 +6,12 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
     (
         <div>
             RequestInformationAboutCargo
-            <br/>
-            {
-                JSON.stringify(
-                    state.scanReducer.order.cargo
-                )
-            }
+            {/*<br/>*/}
+            {/*{*/}
+                {/*JSON.stringify(*/}
+                    {/*state.scanReducer.order.cargo*/}
+                {/*)*/}
+            {/*}*/}
         </div>
     )
 

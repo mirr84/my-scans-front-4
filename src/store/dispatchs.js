@@ -5,7 +5,7 @@ import {
     actionChangeZoomImageJournal, actionChangeJournalImageProgress, actionChangeIsShowRePhotographedModal, actionChangeRephotoReasonsList,
     actionChangeReasonsItem, actionChangeCleanRephotoReasons, actionChangeOtherReason, actionChangeGetStatusList,
     actionChangeSelectStatus, actionChangeDateFromFilter, actionChangeDateToFilter, actionChangeIsJournalProgress,
-    actionChangeIsGetTaskByKeyProgress, actionChangeSetOrderData
+    actionChangeIsGetTaskByKeyProgress, actionChangeSetOrderData, actionChangeIsGetOrderFromWork, actionChangeIsStopGetOrderFromWorkModal
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -43,6 +43,8 @@ export const dispatchs = (dispatch) =>
 
                     changeIsGetTaskByKeyProgress: (v) => dispatch(actionChangeIsGetTaskByKeyProgress(v)),
                     changeSetOrderData: (v) => dispatch(actionChangeSetOrderData(v)),
+                    changeIsGetOrderFromWork: (v) => dispatch(actionChangeIsGetOrderFromWork(v)),
+                    changeIsStopGetOrderFromWorkModal: (v) => dispatch(actionChangeIsStopGetOrderFromWorkModal(v)),
 
                 }
         }
