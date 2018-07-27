@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Table} from "reactstrap";
-import {getImage} from "./serviceJournal";
-import TablePagination from "./TablePagination";
+import {Button, Table} from "reactstrap";
+import {doFilter, getImage, LIMIT_ROW_PAGE} from "./serviceJournal";
 
 const RequestTable = ({state, dispatch}) =>
     (
@@ -11,12 +10,7 @@ const RequestTable = ({state, dispatch}) =>
 
             {
                 state.journalReducer.data.foundCount ?
-                    <div>
-                        <span> Заявок найдено: {state.journalReducer.data.foundCount} </span>
-                        <div style={{float: 'right'}}>
-                            <TablePagination/>
-                        </div>
-                    </div> : <div/>
+                    <div><span> Заявок найдено: {state.journalReducer.data.foundCount} </span></div> : <div/>
             }
 
             <Table size="sm" hover striped>
@@ -58,17 +52,27 @@ const RequestTable = ({state, dispatch}) =>
                     )
                 }
 
+                {
+                    state.journalReducer.data.items.length < state.journalReducer.data.foundCount ?
+                        <tr>
+                            <td colSpan={7}>
+                                <Button style={{width: '100%'}}
+                                        size={'sm'}
+                                        onClick={() =>
+                                            doFilter({
+                                                state,
+                                                dispatch
+                                            }, false, state.journalReducer.data.items.length + LIMIT_ROW_PAGE > state.journalReducer.data.foundCount ? state.journalReducer.data.foundCount : state.journalReducer.data.items.length + LIMIT_ROW_PAGE)}
+                                >
+                                    Получить данные
+                                    ({state.journalReducer.data.items.length}-{state.journalReducer.data.items.length + LIMIT_ROW_PAGE > state.journalReducer.data.foundCount ? state.journalReducer.data.foundCount : state.journalReducer.data.items.length + LIMIT_ROW_PAGE})
+                                </Button>
+                            </td>
+                        </tr> : <tr></tr>
+                }
+
                 </tbody>
             </Table>
-
-            {
-                state.journalReducer.data.foundCount ?
-                    <div>
-                        <div style={{float: 'right'}}>
-                            <TablePagination/>
-                        </div>
-                    </div> : <div/>
-            }
 
         </div>
     )

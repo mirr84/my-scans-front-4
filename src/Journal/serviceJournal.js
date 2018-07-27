@@ -1,14 +1,14 @@
 import {messages} from "../resources/js/utils";
 import axios from "axios";
 
-export const LIMIT_ROW_PAGE = 100;
+export const LIMIT_ROW_PAGE = 50;
 
-export const doFilter = (props, isUnSelect = true) => {
+export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
 
     let body = {
         apiName: "orderPhoto",
         apiPath: "/getJournal",
-        limit: LIMIT_ROW_PAGE,
+        limit: size,
         offset: 0,
         fields: [
             {field: "status", values: props.state.journalReducer.selectStatus.map(item => item.value)},

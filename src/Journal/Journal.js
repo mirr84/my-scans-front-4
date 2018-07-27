@@ -61,12 +61,14 @@ const Journal = ({state, dispatch}) =>
                                         <Card>
                                             <CardBody>
                                                 <Button color="success"
+                                                        disabled={state.journalReducer.imageProgress}
                                                         onClick={() => {
                                                         }}
                                                 >
                                                     Взять в обработку
                                                 </Button>{' '}
                                                 <Button color="warning"
+                                                        disabled={state.journalReducer.imageProgress}
                                                         onClick={
                                                             () => {
                                                                 dispatch.changeIsShowRePhotographedModal(true);
