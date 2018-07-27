@@ -4,7 +4,8 @@ import {
     actionChangeJournalFilterCollapse, actionChangeDataJournal, actionChangeSelectRowJournal, actionChangeJournalImage,
     actionChangeZoomImageJournal, actionChangeJournalImageProgress, actionChangeIsShowRePhotographedModal, actionChangeRephotoReasonsList,
     actionChangeReasonsItem, actionChangeCleanRephotoReasons, actionChangeOtherReason, actionChangeGetStatusList,
-    actionChangeSelectStatus, actionChangeDateFromFilter, actionChangeDateToFilter
+    actionChangeSelectStatus, actionChangeDateFromFilter, actionChangeDateToFilter, actionChangeIsJournalProgress,
+    actionChangeIsGetTaskByKeyProgress, actionChangeSetOrderData
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -38,6 +39,10 @@ export const dispatchs = (dispatch) =>
                     changeSelectStatus: (v) => dispatch(actionChangeSelectStatus(v)),
                     changeDateFromFilter: (v) => dispatch(actionChangeDateFromFilter(v)),
                     changeDateToFilter: (v) => dispatch(actionChangeDateToFilter(v)),
+                    changeIsJournalProgress: (v) => dispatch(actionChangeIsJournalProgress(v)),
+
+                    changeIsGetTaskByKeyProgress: (v) => dispatch(actionChangeIsGetTaskByKeyProgress(v)),
+                    changeSetOrderData: (v) => dispatch(actionChangeSetOrderData(v)),
 
                 }
         }

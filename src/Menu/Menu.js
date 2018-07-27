@@ -3,8 +3,6 @@ import React from 'react';
 import {connector} from "../store/utils/connector";
 import {Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink} from 'reactstrap';
 
-import {checkLogin} from "../Login/serviceLogin";
-
 const Menu = ({state, dispatch}) =>
     (
             <Navbar color="light" light expand="md">
@@ -14,7 +12,7 @@ const Menu = ({state, dispatch}) =>
                         <NavItem active={state.menuReducer.item === 'scan'}>
                             <NavLink href="#"
                                      onClick={
-                                         () => { dispatch.changeMenuItem('scan'); checkLogin({state, dispatch}); }
+                                         () => { dispatch.changeMenuItem('scan'); }
                                      } >
                                 Заказ
                             </NavLink>
@@ -22,7 +20,7 @@ const Menu = ({state, dispatch}) =>
                         <NavItem active={state.menuReducer.item === 'journal'}>
                             <NavLink href="#"
                                      onClick={
-                                         () => { dispatch.changeMenuItem('journal'); checkLogin({state, dispatch}); }
+                                         () => { dispatch.changeMenuItem('journal'); }
                                      } >
                                 Требует вноса
                             </NavLink>

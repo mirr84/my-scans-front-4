@@ -58,6 +58,7 @@ const RequestTable = ({state, dispatch}) =>
                             <td colSpan={7}>
                                 <Button style={{width: '100%'}}
                                         size={'sm'}
+                                        disabled={ state.journalReducer.isProgressFilter }
                                         onClick={() =>
                                             doFilter({
                                                 state,

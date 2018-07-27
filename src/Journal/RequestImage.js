@@ -9,9 +9,11 @@ const RequestImage = ({state, dispatch}) =>
 
             <Viewer
                 visible={state.journalReducer.imageZoom}
+                noNavbar={true}
                 onClose={() => {
                     dispatch.changeZoomImageJournal(false);
                 }}
+                container={document.getElementById('imageContainer')}
                 images={[{
                     src: 'data:image/jpeg;base64;charset=utf-8,' + state.journalReducer.imageData
                 }]}

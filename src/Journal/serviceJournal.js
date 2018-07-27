@@ -25,6 +25,8 @@ export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
         user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
     }
 
+    props.dispatch.changeIsJournalProgress(true);
+
     axios.post('/api/preback',
         {...body},
         {headers: {PWT: props.state.loginReducer.pwt}}
@@ -38,6 +40,9 @@ export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
             err => {
                 messages(err.response.data);
             }
+        )
+        .then(
+            () => props.dispatch.changeIsJournalProgress(false)
         )
 
 }

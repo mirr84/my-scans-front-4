@@ -13,7 +13,7 @@ import {
     Modal,
     ModalBody,
     ListGroup,
-    ListGroupItem, FormGroup, Label, Input, FormText
+    ListGroupItem, FormGroup, Label, Input, FormText, Progress
 } from "reactstrap";
 import Sticky from 'react-sticky-el';
 
@@ -21,6 +21,7 @@ import RequestTable from "./RequestTable";
 import RequestFilter from "./RequestFilter";
 import RequestImage from "./RequestImage";
 import {getRephotoReasons, operationRephoto} from "./serviceJournal";
+import {getTaskByKey} from "../Scan/serviceScan";
 
 const STATUS_NOT_WORK = 'Не обработано';
 
@@ -63,6 +64,7 @@ const Journal = ({state, dispatch}) =>
                                                 <Button color="success"
                                                         disabled={state.journalReducer.imageProgress}
                                                         onClick={() => {
+                                                            getTaskByKey({state, dispatch});
                                                         }}
                                                 >
                                                     Взять в обработку
@@ -73,7 +75,7 @@ const Journal = ({state, dispatch}) =>
                                                             () => {
                                                                 dispatch.changeIsShowRePhotographedModal(true);
                                                                 dispatch.changeCleanRephotoReasons(true);
-                                                                getRephotoReasons({state, dispatch});
+                                                                getRephotoReasons();
                                                             }
                                                         }
                                                 >
@@ -148,6 +150,20 @@ const Journal = ({state, dispatch}) =>
                             </div>
 
                         </CardBody>
+                    </Card>
+                </ModalBody>
+            </Modal>
+            <Modal isOpen={state.journalReducer.isProgressFilter}>
+                <ModalBody>
+                    <Card>
+                        <Progress animated color="success" value="100"> Получение данных </Progress>
+                    </Card>
+                </ModalBody>
+            </Modal>
+            <Modal isOpen={state.scanReducer.isProgressGetTaskByKey}>
+                <ModalBody>
+                    <Card>
+                        <Progress animated color="success" value="100"> Получение данных задания </Progress>
                     </Card>
                 </ModalBody>
             </Modal>

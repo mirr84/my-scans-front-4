@@ -73,6 +73,7 @@ const RequestFilter = ({state, dispatch}) =>
                 </Col>
                 <Col>
                     <Button color="success"
+                            disabled={ state.journalReducer.isProgressFilter }
                             onClick={
                                 () => {
                                     // очищаем журнал
