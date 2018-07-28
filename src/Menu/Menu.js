@@ -7,12 +7,7 @@ import {
     NavbarToggler,
     Nav,
     NavItem,
-    NavLink,
-    Modal,
-    ModalBody,
-    Card,
-    Button,
-    CardTitle, CardBody
+    NavLink
 } from 'reactstrap';
 
 const Menu = ({state, dispatch}) =>

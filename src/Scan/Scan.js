@@ -138,14 +138,7 @@ const Scan = ({state, dispatch}) =>
                                                 </Button>
                                                 {' '}
                                                 <Button color="warning"
-                                                        onClick={() => {
-                                                            if (state.scanReducer.movedFrom === 'journal') {
-                                                                dispatch.changeIsStopGetOrderFromWorkModal(true);
-                                                            } else {
-                                                                dispatch.changeIsGetOrderFromWork(false);
-                                                                dispatch.changeSetOrderData(null);
-                                                            }
-                                                        }}
+                                                        onClick={() => dispatch.changeIsStopGetOrderFromWorkModal(true) }
                                                 >
                                                     Стоп
                                                 </Button>
