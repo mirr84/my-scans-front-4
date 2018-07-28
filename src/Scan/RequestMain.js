@@ -6,12 +6,13 @@ const RequestMain = ({state, dispatch}) =>
     (
         <div>
             RequestMain
-            {/*<br/>*/}
-            {/*{*/}
-                {/*JSON.stringify(*/}
-                    {/*state.scanReducer.order.main*/}
-                {/*)*/}
-            {/*}*/}
+            <br/>
+            {
+                state && state.scanReducer && state.scanReducer.order && state.scanReducer.order.main?
+                JSON.stringify(
+                    state.scanReducer.order.main
+                ): ''
+            }
         </div>
     )
 
