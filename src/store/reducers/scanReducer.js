@@ -19,11 +19,12 @@ import {
 } from "../actions/actionConst";
 
 import {getLocalStorage} from "../utils/getLocalStorage";
+import moment from 'moment';
 
 const order = {
     main: {
         orderNumber: '',
-        date: '01.01.2018',
+        date: moment(new Date()).format('DD.MM.YYYY'),
         orderType: 1,
         modeDelivery: 1
     }
