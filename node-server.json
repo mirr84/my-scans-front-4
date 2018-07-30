@@ -10,7 +10,8 @@
     "auth": "http://172.16.100.27:8095",
     "loginAutocomplete": "http://172.16.100.27:8095",
 
-    "orderPhoto": "http://172.16.100.27:8050/ordersPhoto"
+    "orderPhoto": "http://172.16.100.27:8050/ordersPhoto",
+    "order": "http://172.16.100.27:8022"
 
   },
   "help_url": "help-url.json",

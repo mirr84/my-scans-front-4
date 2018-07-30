@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-viewer/dist/index.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 import './index.css';
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));

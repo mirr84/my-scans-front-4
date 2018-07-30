@@ -10,6 +10,7 @@
     "history": "^4.7.2",
     "preback": "1.0.8",
     "react": "^16.4.1",
+    "react-bootstrap-typeahead": "^3.2.0",
     "react-datepicker": "^1.5.0",
     "react-dom": "^16.4.1",
     "react-pure-lifecycle": "^3.0.0",
