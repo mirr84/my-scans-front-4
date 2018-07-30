@@ -6,7 +6,9 @@ import {
     actionChangeReasonsItem, actionChangeCleanRephotoReasons, actionChangeOtherReason, actionChangeGetStatusList,
     actionChangeSelectStatus, actionChangeDateFromFilter, actionChangeDateToFilter, actionChangeIsJournalProgress,
     actionChangeIsGetTaskByKeyProgress, actionChangeSetOrderData, actionChangeIsGetOrderFromWork, actionChangeIsStopGetOrderFromWorkModal,
-    actionChangeMovedFrom
+    actionChangeMovedFrom, actionСhangeScanMainCollapse, actionChangePaymentInformationCollapse, actionСhangeTotalCollapse,
+    actionChangeSenderCollapse, actionChangeReceiverCollapse, actionChangeInformationAboutCargoCollapse
+
 } from "./actions/actions";
 
 export const dispatchs = (dispatch) =>
@@ -47,6 +49,13 @@ export const dispatchs = (dispatch) =>
                     changeIsGetOrderFromWork: (v) => dispatch(actionChangeIsGetOrderFromWork(v)),
                     changeIsStopGetOrderFromWorkModal: (v) => dispatch(actionChangeIsStopGetOrderFromWorkModal(v)),
                     changeMovedFrom: (v) => dispatch(actionChangeMovedFrom(v)),
+                    changeScanMainCollapse: (v) => dispatch(actionСhangeScanMainCollapse(v)),
+                    changePaymentInformationCollapse: (v) => dispatch(actionChangePaymentInformationCollapse(v)),
+                    changeTotalCollapse: (v) => dispatch(actionСhangeTotalCollapse(v)),
+                    changeSenderCollapse: (v) => dispatch(actionChangeSenderCollapse(v)),
+                    changeReceiverCollapse: (v) => dispatch(actionChangeReceiverCollapse(v)),
+                    changeInformationAboutCargoCollapse: (v) => dispatch(actionChangeInformationAboutCargoCollapse(v)),
+
 
                 }
         }

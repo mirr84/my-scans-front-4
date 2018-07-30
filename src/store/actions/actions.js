@@ -5,7 +5,8 @@ import {
     ACTION_IS_SHOW_RE_PHOTOGRAPHED_MODAL, ACTION_CHANGE_REPHOTO_REASONS_LIST, ACTION_CHANGE_REASONS_ITEM, ACTION_CHANGE_CLEAN_REASONS_ITEM,
     ACTION_CHANGE_OTHER_REASONS, ACTION_CHANGE_STATUS_LIST, ACTION_CHANGE_SELECT_STATUS, ACTION_CHANGE_DATE_FROM_FILTER, ACTION_CHANGE_DATE_TO_FILTER,
     ACTION_CHANGE_IS_JOURNAL_PROGRESS, ACTION_CHANGE_IS_GET_TASK_BY_KEY_PROGRESS, ACTION_CHANGE_SET_ORDER_DATA, ACTION_IS_GET_ORDER_FROM_WORK,
-    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL, ACTION_CHANGE_MOVED_FROM
+    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL, ACTION_CHANGE_MOVED_FROM, ACTION_CHANGE_SCAN_MAIN_COLLAPSE, ACTION_CHANGE_SCAN_PAYMENT_INFORMATION_COLLAPSE,
+    ACTION_CHANGE_SCAN_TOTAL_COLLAPSE, ACTION_CHANGE_SCAN_SENDER_COLLAPSE, ACTION_CHANGE_SCAN_RECEIVER_COLLAPSE, ACTION_CHANGE_SCAN_INFORMATION_ABOUT_CARGO_COLLAPSE
 } from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
@@ -201,10 +202,51 @@ export const actionChangeIsStopGetOrderFromWorkModal = (payload) => (
     }
 )
 
-
 export const actionChangeMovedFrom = (payload) => (
     {
         type: ACTION_CHANGE_MOVED_FROM,
+        payload
+    }
+)
+
+export const actionСhangeScanMainCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_MAIN_COLLAPSE,
+        payload
+    }
+)
+
+export const actionChangePaymentInformationCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_PAYMENT_INFORMATION_COLLAPSE,
+        payload
+    }
+)
+
+export const actionСhangeTotalCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_TOTAL_COLLAPSE,
+        payload
+    }
+)
+
+export const actionChangeSenderCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_SENDER_COLLAPSE,
+        payload
+    }
+)
+
+export const actionChangeReceiverCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_RECEIVER_COLLAPSE,
+        payload
+    }
+)
+
+export const actionChangeInformationAboutCargoCollapse = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_INFORMATION_ABOUT_CARGO_COLLAPSE,
         payload
     }
 )

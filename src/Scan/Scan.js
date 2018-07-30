@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Container, Row, Col, Card, CardBody, Button} from "reactstrap";
+import {Container, Row, Col, Card, CardBody, Button, Collapse, CardTitle} from "reactstrap";
 
 import RequestMain from "./RequestMain";
 import RequestSender from "./RequestSender";
@@ -12,21 +12,100 @@ import RequestTotal from "./RequestTotal";
 import RequestImage from "./RequestImage";
 import {getRephotoReasons} from "../Journal/serviceJournal";
 import Sticky from 'react-sticky-el';
-import {getTaskAndLock, getTaskByKey} from "./serviceScan";
+import {getTaskAndLock} from "./serviceScan";
 
 const Scan = ({state, dispatch}) =>
     (
         <Container fluid={true}>
+
+            {
+                JSON.stringify( state.scanReducer.order )
+            }
+
             <Row>
                 <Col>
-                    <RequestMain/>
-                    <RequestPaymentInformation/>
-                    <RequestTotal/>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeScanMainCollapse(!state.scanReducer.mainCollapse)}>
+                                Главная
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.mainCollapse}>
+                                <RequestMain/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changePaymentInformationCollapse(!state.scanReducer.paymentInformationCollapse)}>
+                                Информация об оплате
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.paymentInformationCollapse}>
+                                <RequestPaymentInformation/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeTotalCollapse(!state.scanReducer.totalCollapse)}>
+                                Итого
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.totalCollapse}>
+                                <RequestTotal/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
                 </Col>
                 <Col>
-                    <RequestSender/>
-                    <RequestReceiver/>
-                    <RequestInformationAboutCargo/>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeSenderCollapse(!state.scanReducer.senderCollapse)}>
+                                Отправитель
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.senderCollapse}>
+                                <RequestSender/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeReceiverCollapse(!state.scanReducer.receiverCollapse)}>
+                                Получатель
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.receiverCollapse}>
+                                <RequestReceiver/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeInformationAboutCargoCollapse(!state.scanReducer.informationAboutCargoCollapse)}>
+                                Информация о грузе
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.informationAboutCargoCollapse}>
+                                <RequestInformationAboutCargo/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
                 </Col>
                 <Col>
                     <Sticky>
