@@ -7,7 +7,8 @@ import {
     actionChangeSelectStatus, actionChangeDateFromFilter, actionChangeDateToFilter, actionChangeIsJournalProgress,
     actionChangeIsGetTaskByKeyProgress, actionChangeSetOrderData, actionChangeIsGetOrderFromWork, actionChangeIsStopGetOrderFromWorkModal,
     actionChangeMovedFrom, actionСhangeScanMainCollapse, actionChangePaymentInformationCollapse, actionСhangeTotalCollapse,
-    actionChangeSenderCollapse, actionChangeReceiverCollapse, actionChangeInformationAboutCargoCollapse
+    actionChangeSenderCollapse, actionChangeReceiverCollapse, actionChangeInformationAboutCargoCollapse, actionChangeScanOrderNumberInput,
+    actionChangeScanDateInput, actionChangeScanOrderTypeInput, actionChangeScanOrderModeDeliveryInput
 
 } from "./actions/actions";
 
@@ -55,6 +56,10 @@ export const dispatchs = (dispatch) =>
                     changeSenderCollapse: (v) => dispatch(actionChangeSenderCollapse(v)),
                     changeReceiverCollapse: (v) => dispatch(actionChangeReceiverCollapse(v)),
                     changeInformationAboutCargoCollapse: (v) => dispatch(actionChangeInformationAboutCargoCollapse(v)),
+                    changeScanOrderNumberInput: (v) => dispatch(actionChangeScanOrderNumberInput(v)),
+                    changeScanDateInput: (v) => dispatch(actionChangeScanDateInput(v)),
+                    changeScanOrderTypeInput: (v) => dispatch(actionChangeScanOrderTypeInput(v)),
+                    changeScanOrderModeDeliveryInput: (v) => dispatch(actionChangeScanOrderModeDeliveryInput(v)),
 
 
                 }

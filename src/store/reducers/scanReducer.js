@@ -1,7 +1,20 @@
 import {
-    ACTION_LOGOUT, ACTION_CHANGE_IS_GET_TASK_BY_KEY_PROGRESS, ACTION_CHANGE_SET_ORDER_DATA, ACTION_IS_GET_ORDER_FROM_WORK,
-    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL, ACTION_CHANGE_MOVED_FROM, ACTION_CHANGE_SCAN_MAIN_COLLAPSE, ACTION_CHANGE_SCAN_PAYMENT_INFORMATION_COLLAPSE,
-    ACTION_CHANGE_SCAN_TOTAL_COLLAPSE, ACTION_CHANGE_SCAN_SENDER_COLLAPSE, ACTION_CHANGE_SCAN_RECEIVER_COLLAPSE, ACTION_CHANGE_SCAN_INFORMATION_ABOUT_CARGO_COLLAPSE
+    ACTION_LOGOUT,
+    ACTION_CHANGE_IS_GET_TASK_BY_KEY_PROGRESS,
+    ACTION_CHANGE_SET_ORDER_DATA,
+    ACTION_IS_GET_ORDER_FROM_WORK,
+    ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL,
+    ACTION_CHANGE_MOVED_FROM,
+    ACTION_CHANGE_SCAN_MAIN_COLLAPSE,
+    ACTION_CHANGE_SCAN_PAYMENT_INFORMATION_COLLAPSE,
+    ACTION_CHANGE_SCAN_TOTAL_COLLAPSE,
+    ACTION_CHANGE_SCAN_SENDER_COLLAPSE,
+    ACTION_CHANGE_SCAN_RECEIVER_COLLAPSE,
+    ACTION_CHANGE_SCAN_INFORMATION_ABOUT_CARGO_COLLAPSE,
+    ACTION_CHANGE_SCAN_ORDER_NUMBER_INPUT,
+    ACTION_CHANGE_SCAN_DATE_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_TYPE_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_MODE_DELIVERY_INPUT
 
 } from "../actions/actionConst";
 
@@ -44,7 +57,11 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
     }
 
     if (action.type === ACTION_CHANGE_SET_ORDER_DATA) {
-        newState.order = action.payload;
+        if (!action.payload) {
+            newState.order = order;
+        } else {
+            newState.order = action.payload;
+        }
     }
 
     if (action.type === ACTION_IS_GET_ORDER_FROM_WORK) {
@@ -83,6 +100,21 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
         newState.informationAboutCargoCollapse = action.payload;
     }
 
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_NUMBER_INPUT) {
+        newState.order.main.orderNumber = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_DATE_INPUT) {
+        newState.order.main.date = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_TYPE_INPUT) {
+        newState.order.main.orderType = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_MODE_DELIVERY_INPUT) {
+        newState.order.main.modeDelivery = action.payload;
+    }
 
     return newState;
 

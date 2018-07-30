@@ -18,7 +18,9 @@ const RequestMain = ({state, dispatch}) =>
                                id="orderNumber"
                                placeholder="Номер заказа"
                                value={state.scanReducer.order.main.orderNumber}
-                               onChange={(e) => {}}
+                               onChange={(e) => {
+                                   dispatch.changeScanOrderNumberInput(e.target.value);
+                               }}
                         />
                     </FormGroup>
                 </Col>
@@ -31,7 +33,7 @@ const RequestMain = ({state, dispatch}) =>
                             dateFormat="DD.MM.YYYY"
                             readOnly={true}
                             selected={moment(state.scanReducer.order.main.date, 'DD.MM.YYYY')}
-                            // onChange={(e) => dispatch.changeDateFromFilter(e.format('DD.MM.YYYY'))}
+                            onChange={(e) => dispatch.changeScanDateInput(e.format('DD.MM.YYYY'))}
                         />
                     </FormGroup>
                 </Col>
@@ -40,25 +42,35 @@ const RequestMain = ({state, dispatch}) =>
                 <Col>
                     <FormGroup>
                         <Label for="orderType">Тип заказа:</Label>
-                        <Input type="text"
-                               bsSize={'sm'}
+                        <Input bsSize={'sm'}
+                               type="select"
                                id="orderType"
-                               placeholder="Тип заказа"
                                value={state.scanReducer.order.main.orderType}
-                               onChange={(e) => {}}
-                        />
+                               onChange={(e) => {
+                                   dispatch.changeScanOrderTypeInput(e.target.value)
+                               }}
+                        >
+                            <option value={1}>Доставка</option>
+                            <option value={5}>Интернет-магазин</option>
+                        </Input>
                     </FormGroup>
                 </Col>
                 <Col>
                     <FormGroup>
                         <Label for="modeDelivery">Режим:</Label>
-                        <Input type="text"
-                               bsSize={'sm'}
+                        <Input bsSize={'sm'}
+                               type="select"
                                id="modeDelivery"
-                               placeholder="Режим"
                                value={state.scanReducer.order.main.modeDelivery}
-                               onChange={(e) => {}}
-                        />
+                               onChange={(e) => {
+                                   dispatch.changeScanOrderModeDeliveryInput(e.target.value)
+                               }}
+                        >
+                            <option value={1}>дверь-дверь</option>
+                            <option value={2}>дверь-склад</option>
+                            <option value={3}>склад-дверь</option>
+                            <option value={4}>склад-склад</option>
+                        </Input>
                     </FormGroup>
                 </Col>
             </Row>
