@@ -12,6 +12,7 @@ import RequestTotal from "./RequestTotal";
 import RequestImage from "./RequestImage";
 import {getRephotoReasons} from "../Journal/serviceJournal";
 import Sticky from 'react-sticky-el';
+import {getTaskAndLock, getTaskByKey} from "./serviceScan";
 
 const Scan = ({state, dispatch}) =>
     (
@@ -30,45 +31,46 @@ const Scan = ({state, dispatch}) =>
                 <Col>
                     <Sticky>
                         <div>
-                        <div>
-                            <Card>
-                                <CardBody>
-                                    {
-                                        !state.scanReducer.isGetOrderFromWork ? (
-                                            <Button color="success"
-                                                    onClick={() => {
-                                                    }}
-                                            >
-                                                Автоматический внос
-                                            </Button>
-                                        ) : (
-                                            <div>
-                                                <Button color="warning"
-                                                        disabled={state.journalReducer.imageProgress}
-                                                        onClick={
-                                                            () => {
-                                                                dispatch.changeIsShowRePhotographedModal(true);
-                                                                dispatch.changeCleanRephotoReasons(true);
-                                                                getRephotoReasons({state, dispatch});
+                            <div>
+                                <Card>
+                                    <CardBody>
+                                        {
+                                            !state.scanReducer.isGetOrderFromWork ? (
+                                                <Button color="success"
+                                                        onClick={() => getTaskAndLock({state, dispatch})}
+                                                >
+                                                    Автоматический внос
+                                                </Button>
+                                            ) : (
+                                                <div>
+                                                    <Button color="warning"
+                                                            disabled={state.journalReducer.imageProgress}
+                                                            onClick={
+                                                                () => {
+                                                                    dispatch.changeIsShowRePhotographedModal(true);
+                                                                    dispatch.changeCleanRephotoReasons(true);
+                                                                    getRephotoReasons({state, dispatch});
+                                                                }
                                                             }
-                                                        }
-                                                >
-                                                    Возврат на перефото
-                                                </Button>
-                                                {' '}
-                                                <Button color="warning"
-                                                        onClick={() => dispatch.changeIsStopGetOrderFromWorkModal(true) }
-                                                >
-                                                    Стоп
-                                                </Button>
-                                            </div>
-                                        )
-                                    }
-                                </CardBody>
-                            </Card>
+                                                    >
+                                                        Возврат на перефото
+                                                    </Button>
+                                                    {' '}
+                                                    <Button color="warning"
+                                                            onClick={() => dispatch.changeIsStopGetOrderFromWorkModal(true)}
+                                                    >
+                                                        Стоп
+                                                    </Button>
+                                                </div>
+                                            )
+                                        }
+                                    </CardBody>
+                                </Card>
+                            </div>
+                            <div>
+                                <RequestImage/>
+                            </div>
                         </div>
-                        <RequestImage/>
-                    </div>
                     </Sticky>
                 </Col>
             </Row>

@@ -50,6 +50,7 @@ export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
 export const getImage = (value, props) => {
 
     props.dispatch.changeJournalImageProgress(true);
+
     let body = {
         apiName: "orderPhoto",
         apiPath: "/getPhoto",
@@ -104,11 +105,15 @@ export const getRephotoReasons = (props) => {
 
 export const operationRephoto = (props) => {
 
+    let value = null;
+    if (props.state.menuReducer.item === 'scan') value = props.state.scanReducer.order.main.request;
+    if (props.state.menuReducer.item === 'journal') value = props.state.journalReducer.selectRowCode;
+
     let body = {
         apiName: "orderPhoto",
         apiPath: "/operationRephoto",
         field: "request",
-        value: props.state.journalReducer.selectRowCode,
+        value,
         fields: [
             {
                 field: "reason_code",
