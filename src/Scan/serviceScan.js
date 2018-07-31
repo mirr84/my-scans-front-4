@@ -6,9 +6,9 @@ import {getImage} from "../Journal/serviceJournal";
 export const getTaskByKey = (props, movedFrom = 'journal') => {
 
     const body = {
-        apiName:"orderPhoto",
-        apiPath:"/getTaskByKey",
-        field:"request",
+        apiName: "orderPhoto",
+        apiPath: "/getTaskByKey",
+        field: "request",
         value: props.state.journalReducer.selectRowCode,
         lang: props.state.loginReducer.lang,
         user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
@@ -40,9 +40,9 @@ export const getTaskByKey = (props, movedFrom = 'journal') => {
 export const getTaskAndLock = (props, movedFrom = 'journal') => {
 
     const body = {
-        apiName:"orderPhoto",
-        apiPath:"/getTaskAndLock",
-        field:"request",
+        apiName: "orderPhoto",
+        apiPath: "/getTaskAndLock",
+        field: "request",
         lang: props.state.loginReducer.lang,
         user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
     }
@@ -103,7 +103,29 @@ export const operationStop = (props) => {
             }
         )
         .then(
-            () => {}
+            () => {
+            }
         )
 
 }
+
+export const getPhoneTypes = (props) =>
+    new Promise(
+        (resolve, reject) => resolve([
+            {
+                code: 'mob',
+                name: 'Мобильный'
+            },
+            {
+                code: 'tel',
+                name: 'Городской'
+            },
+            {
+                code: 'fax',
+                name: 'Факс'
+            }
+        ])
+    )
+        .then(
+            r => props.dispatch.changeGetPhoneTypes(r)
+        )

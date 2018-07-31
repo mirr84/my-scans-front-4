@@ -25,12 +25,12 @@ import {
     Modal,
     ModalBody, Progress
 } from "reactstrap";
-import {operationStop} from "../Scan/serviceScan";
+import {getPhoneTypes, operationStop} from "../Scan/serviceScan";
 
 const methods = {
     componentDidMount(props) {
         checkLogin(props);
-
+        getPhoneTypes(props);
     }
 }
 

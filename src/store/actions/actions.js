@@ -11,7 +11,9 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CITY_SENDER_INPUT, ACTION_CHANGE_SCAN_ORDER_CITY_RECEIVER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT, ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO, ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO,
-    ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT, ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT
+    ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT, ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT, ACTION_CHANGE_GET_PHONE_TYPES,
+    ACTION_CHANGE_SET_PHONES
+
 } from "./actionConst";
 
 export const actionChangeMenuCollapse = (payload) => (
@@ -336,6 +338,20 @@ export const actionChangeSenderFioInput = (payload) => (
 export const actionChangeReceiverFioInput = (payload) => (
     {
         type: ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT,
+        payload
+    }
+)
+
+export const actionChangeGetPhoneTypes = (payload) => (
+    {
+        type: ACTION_CHANGE_GET_PHONE_TYPES,
+        payload
+    }
+)
+
+export const actionChangeSetPhones = (payload) => (
+    {
+        type: ACTION_CHANGE_SET_PHONES,
         payload
     }
 )

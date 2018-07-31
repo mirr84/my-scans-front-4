@@ -1,12 +1,14 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Col, Container, FormGroup, Label, Row, DropdownItem,
+import {
+    Col, Container, FormGroup, Label, Row, DropdownItem,
     DropdownMenu,
     DropdownToggle,
     Input,
     InputGroup,
-    InputGroupButtonDropdown} from "reactstrap";
+    InputGroupButtonDropdown, Alert
+} from "reactstrap";
 import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
@@ -58,8 +60,9 @@ const RequestReceiver = ({state, dispatch}) =>
                         <FormGroup>
                             <Label for="receiverFio">ФИО:</Label>
                             <InputGroup size={'sm'}>
-                                <InputGroupButtonDropdown addonType="prepend" isOpen={state.scanReducer.isOpenDropdownReceiverFio}
-                                                          toggle={()=>dispatch.changeIsOpenDropdownReceiverFio(!state.scanReducer.isOpenDropdownReceiverFio)}>
+                                <InputGroupButtonDropdown addonType="prepend"
+                                                          isOpen={state.scanReducer.isOpenDropdownReceiverFio}
+                                                          toggle={() => dispatch.changeIsOpenDropdownReceiverFio(!state.scanReducer.isOpenDropdownReceiverFio)}>
                                     <DropdownToggle split outline
                                                     disabled={
                                                         !(
@@ -117,28 +120,71 @@ const RequestReceiver = ({state, dispatch}) =>
                     <Col>
                         <FormGroup>
                             <Label for="receiverPhones">Телефоны:</Label>
-                            <TablePhones />
+                            <TablePhones phones={state.scanReducer.order.receiver.phones}/>
                         </FormGroup>
                     </Col>
                 </Row>
+
+                {
+                    state.scanReducer.order.main.modeDelivery === '1' || state.scanReducer.order.main.modeDelivery === '3' ? (
+                            <Row>
+                                <Col xl={3}>
+                                    <FormGroup>
+                                        <Label for="receiverZipCode">Индекс:</Label>
+
+                                    </FormGroup>
+                                </Col>
+                                <Col xl={9}>
+                                    <FormGroup>
+                                        <Label for="receiverAddress">Адрес:</Label>
+
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        )
+                        :
+                        (<div></div>)
+                }
+
+                {
+                    state.scanReducer.order.main.modeDelivery === '2' || state.scanReducer.order.main.modeDelivery === '4' ? (
+                            <Row>
+                                <Col>
+                                    <FormGroup>
+                                        <Label for="receiverPvz">ПВЗ:</Label>
+
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        )
+                        :
+                        (<div></div>)
+                }
+
+                {
+                    state.scanReducer.order.main.modeDelivery !== '1' ||
+                    state.scanReducer.order.main.modeDelivery !== '2' ||
+                    state.scanReducer.order.main.modeDelivery !== '3' ||
+                    state.scanReducer.order.main.modeDelivery !== '4'
+                        ? (
+                            <div></div>
+                        )
+                        :
+                        (
+                            <Row>
+                                <Col>
+                                    <Alert color="warning">
+                                        Не определен Режим для отпределения вида адреса
+                                    </Alert>
+                                </Col>
+                            </Row>
+                        )
+                }
+
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label for="receiverZipCode">Индекс:</Label>
-
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="receiverAddress">Адрес:</Label>
-
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                        <Label for="receiverEmail">Email:</Label>
+                            <Label for="receiverEmail">Email:</Label>
 
                         </FormGroup>
                     </Col>

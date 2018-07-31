@@ -22,7 +22,9 @@ import {
     ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO,
     ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO,
     ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT,
-    ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT
+    ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT,
+    ACTION_CHANGE_GET_PHONE_TYPES,
+    ACTION_CHANGE_SET_PHONES
 
 } from "../actions/actionConst";
 
@@ -41,14 +43,16 @@ const order = {
         contragent: null,
         contactPerson: {
             name:''
-        }
+        },
+        phones: []
     },
     receiver: {
         city: null,
-        contragent: null,
+        contragent:  null,
         contactPerson: {
             name:''
-        }
+        },
+        phones: []
     }
 }
 
@@ -58,6 +62,7 @@ const initState = {
     isGetOrderFromWork: false,
     isStopGetOrderFromWorkModal: false,
     movedFrom: 'journal',
+    phoneTypes: [],
 
     mainCollapse: true,
     paymentInformationCollapse: true,
@@ -172,6 +177,14 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT) {
         newState.order.receiver.contactPerson.name = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_GET_PHONE_TYPES) {
+        newState.phoneTypes = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SET_PHONES) {
+        // ничего не делаем
     }
 
     return newState;
