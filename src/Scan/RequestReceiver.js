@@ -12,6 +12,7 @@ import {
 import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
+import Passport from "./Passport";
 
 const RequestReceiver = ({state, dispatch}) =>
     (
@@ -100,20 +101,7 @@ const RequestReceiver = ({state, dispatch}) =>
                         </FormGroup>
                     </Col>
                     <Col>
-                        <Row>
-                            <Col>
-                                <FormGroup>
-                                    <Label for="receiverPassportSeries">Серия:</Label>
-
-                                </FormGroup>
-                            </Col>
-                            <Col>
-                                <FormGroup>
-                                    <Label for="receiverPassportNumber">Номер:</Label>
-
-                                </FormGroup>
-                            </Col>
-                        </Row>
+                        <Passport passport={state.scanReducer.order.receiver.contactPerson.passport} />
                     </Col>
                 </Row>
                 <Row>

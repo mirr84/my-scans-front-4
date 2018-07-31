@@ -24,7 +24,8 @@ import {
     ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT,
     ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT,
     ACTION_CHANGE_GET_PHONE_TYPES,
-    ACTION_CHANGE_SET_PHONES
+    ACTION_CHANGE_SET_PHONES,
+    ACTION_CHANGE_SET_PASSPORT
 
 } from "../actions/actionConst";
 
@@ -42,15 +43,49 @@ const order = {
         city: null,
         contragent: null,
         contactPerson: {
-            name:''
+            name: '',
+            passport: {
+                type: '1',
+                fields: [
+                    {
+                        alias: 'series',
+                        mask: null,
+                        value: '',
+                        title: null
+                    },
+                    {
+                        alias: 'number',
+                        mask: null,
+                        value: '',
+                        title: null
+                    }
+                ]
+            }
         },
         phones: []
     },
     receiver: {
         city: null,
-        contragent:  null,
+        contragent: null,
         contactPerson: {
-            name:''
+            name: '',
+            passport: {
+                type: '1',
+                fields: [
+                    {
+                        alias: 'series',
+                        mask: null,
+                        value: '',
+                        title: null
+                    },
+                    {
+                        alias: 'number',
+                        mask: null,
+                        value: '',
+                        title: null
+                    }
+                ]
+            }
         },
         phones: []
     }
@@ -184,6 +219,10 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
     }
 
     if (action.type === ACTION_CHANGE_SET_PHONES) {
+        // ничего не делаем
+    }
+
+    if (action.type === ACTION_CHANGE_SET_PASSPORT) {
         // ничего не делаем
     }
 

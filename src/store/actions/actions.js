@@ -12,7 +12,7 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT, ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO, ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO,
     ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT, ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT, ACTION_CHANGE_GET_PHONE_TYPES,
-    ACTION_CHANGE_SET_PHONES
+    ACTION_CHANGE_SET_PHONES, ACTION_CHANGE_SET_PASSPORT
 
 } from "./actionConst";
 
@@ -352,6 +352,13 @@ export const actionChangeGetPhoneTypes = (payload) => (
 export const actionChangeSetPhones = (payload) => (
     {
         type: ACTION_CHANGE_SET_PHONES,
+        payload
+    }
+)
+
+export const actionChangeSetPassport = (payload) => (
+    {
+        type: ACTION_CHANGE_SET_PASSPORT,
         payload
     }
 )
