@@ -63,6 +63,7 @@ export class AsyncContragent extends React.Component {
                     {...this.props}
                     {...this.state}
                     {...localization}
+                    align={'left'}
                     selected={ this.props.value && this.props.value.name ? [ this.props.value ]:[]}
                     labelKey={(option) => `${option.name}`}
                     minLength={1}

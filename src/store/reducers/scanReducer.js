@@ -18,7 +18,9 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CITY_SENDER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_CITY_RECEIVER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT,
-    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT
+    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO,
+    ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO
 
 } from "../actions/actionConst";
 
@@ -54,7 +56,10 @@ const initState = {
     totalCollapse: true,
     senderCollapse: true,
     receiverCollapse: true,
-    informationAboutCargoCollapse: true
+    informationAboutCargoCollapse: true,
+
+    isOpenDropdownSenderFio: false,
+    isOpenDropdownReceiverFio: false
 }
 
 export const scanReducer = (state = getLocalStorage('scanReducer', initState), action) => {
@@ -143,6 +148,14 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT) {
         newState.order.receiver.contragent = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO) {
+        newState.isOpenDropdownSenderFio = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO) {
+        newState.isOpenDropdownReceiverFio = action.payload;
     }
 
     return newState;

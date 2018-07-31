@@ -1,7 +1,17 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Col, Container, FormGroup, Label, Row} from "reactstrap";
+import {
+    Col,
+    Container, DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    FormGroup, Input,
+    InputGroup,
+    InputGroupButtonDropdown,
+    Label,
+    Row
+} from "reactstrap";
 
 import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
@@ -27,8 +37,6 @@ const RequestSender = ({state, dispatch}) =>
                             />
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
                     <Col>
                         <FormGroup>
                             <Label for="senderContragent">Контрагент отправителя:</Label>
@@ -48,6 +56,88 @@ const RequestSender = ({state, dispatch}) =>
                                              placeholder={'Контрагент отправителя'}
                             />
                         </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label for="senderFio">ФИО:</Label>
+                            <InputGroup size={'sm'}>
+                                <InputGroupButtonDropdown addonType="prepend" isOpen={state.scanReducer.isOpenDropdownSenderFio}
+                                                          toggle={()=>dispatch.changeIsOpenDropdownSenderFio(!state.scanReducer.isOpenDropdownSenderFio)}>
+                                    <DropdownToggle split outline
+                                                    disabled={
+                                                        !(
+                                                            state.scanReducer.order &&
+                                                            state.scanReducer.order.sender &&
+                                                            state.scanReducer.order.sender.contragent &&
+                                                            Array.isArray(state.scanReducer.order.sender.contragent.contactPersons) &&
+                                                            state.scanReducer.order.sender.contragent.contactPersons.length > 0
+                                                        )
+                                                    }
+                                    />
+                                    <DropdownMenu>
+                                        {
+                                            state.scanReducer.order &&
+                                            state.scanReducer.order.sender &&
+                                            state.scanReducer.order.sender.contragent &&
+                                            Array.isArray(state.scanReducer.order.sender.contragent.contactPersons) &&
+                                            state.scanReducer.order.sender.contragent.contactPersons.length > 0 &&
+                                            state.scanReducer.order.sender.contragent.contactPersons.map(
+                                                (item, idx) => (
+                                                    <DropdownItem key={idx}>{item.name}</DropdownItem>
+                                                )
+                                            )
+                                        }
+                                    </DropdownMenu>
+                                </InputGroupButtonDropdown>
+                                <Input placeholder="ФИО отправителя" />
+                            </InputGroup>
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup>
+                            <Label for="senderPhones">Телефоны:</Label>
+
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label for="senderAddress">Адрес:</Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <Row>
+                            <Col>
+                                <FormGroup>
+                                    <Label for="senderPassportSeries">Серия:</Label>
+
+                                </FormGroup>
+                            </Col>
+                            <Col>
+                                <FormGroup>
+                                    <Label for="senderPassportNumber">Номер:</Label>
+
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label for="senderZipCode">Индекс:</Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        {/*<FormGroup>*/}
+                            {/*<Label for="senderEmail">Email:</Label>*/}
+
+                        {/*</FormGroup>*/}
                     </Col>
                 </Row>
             </Container>

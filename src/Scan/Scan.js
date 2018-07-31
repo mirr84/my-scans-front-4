@@ -18,9 +18,9 @@ const Scan = ({state, dispatch}) =>
     (
         <Container fluid={true}>
 
-            {
-                JSON.stringify( state.scanReducer.order )
-            }
+            {/*{*/}
+                {/*JSON.stringify( state.scanReducer.order )*/}
+            {/*}*/}
 
             <Row>
                 <Col>
@@ -153,6 +153,7 @@ const Scan = ({state, dispatch}) =>
                     </Sticky>
                 </Col>
             </Row>
+
         </Container>
     )
 
