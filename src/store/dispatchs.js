@@ -8,7 +8,8 @@ import {
     actionChangeIsGetTaskByKeyProgress, actionChangeSetOrderData, actionChangeIsGetOrderFromWork, actionChangeIsStopGetOrderFromWorkModal,
     actionChangeMovedFrom, actionСhangeScanMainCollapse, actionChangePaymentInformationCollapse, actionСhangeTotalCollapse,
     actionChangeSenderCollapse, actionChangeReceiverCollapse, actionChangeInformationAboutCargoCollapse, actionChangeScanOrderNumberInput,
-    actionChangeScanDateInput, actionChangeScanOrderTypeInput, actionChangeScanOrderModeDeliveryInput
+    actionChangeScanDateInput, actionChangeScanOrderTypeInput, actionChangeScanOrderModeDeliveryInput, actionChangeOrderCitySenderInput,
+    actionChangeOrderCityReceiverInput, actionChangeOrderContragentSenderInput, actionChangeOrderContragentReceiverInput
 
 } from "./actions/actions";
 
@@ -60,6 +61,10 @@ export const dispatchs = (dispatch) =>
                     changeScanDateInput: (v) => dispatch(actionChangeScanDateInput(v)),
                     changeScanOrderTypeInput: (v) => dispatch(actionChangeScanOrderTypeInput(v)),
                     changeScanOrderModeDeliveryInput: (v) => dispatch(actionChangeScanOrderModeDeliveryInput(v)),
+                    changeOrderCitySenderInput: (v) => dispatch(actionChangeOrderCitySenderInput(v)),
+                    changeOrderCityReceiverInput: (v) => dispatch(actionChangeOrderCityReceiverInput(v)),
+                    changeOrderContragentSenderInput: (v) => dispatch(actionChangeOrderContragentSenderInput(v)),
+                    changeOrderContragentReceiverInput: (v) => dispatch(actionChangeOrderContragentReceiverInput(v)),
 
 
                 }

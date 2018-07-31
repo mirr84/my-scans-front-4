@@ -3,14 +3,16 @@ import {AsyncTypeahead} from "react-bootstrap-typeahead";
 import {messages} from "../resources/js/utils";
 import axios from "axios/index";
 import {Button} from "reactstrap";
+import {AsyncCity} from "./City";
 
-const makeAndHandleRequest = (value, props) => {
+const makeAndHandleRequest = (value, dependency, props) => {
 
     const body = {
-        apiName: "order",
-        apiPath: "/catalog/cityAutocompleteGluedName",
-        limit: 10,
-        field: "term",
+        apiName:"orderPhoto",
+        apiPath:"/getContractorList",
+        limit:10,
+        fields:[dependency].map(item => ({ field: 'city', value: item.code})),
+        field:"name",
         value,
         lang: props.state.loginReducer.lang,
         user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
@@ -36,16 +38,16 @@ const localization = {
     searchText: 'Обработка запроса'
 }
 
-export class AsyncCity extends React.Component {
+export class AsyncContragent extends React.Component {
 
     state = {
         isLoading: false,
         options: [],
     }
 
-    _handleSearch = (query, props) => {
+    _handleSearch = (query, dependency, props) => {
         this.setState({isLoading: true});
-        makeAndHandleRequest(query, props)
+        makeAndHandleRequest(query, dependency, props)
             .then(
                 (items) =>
                     this.setState({
@@ -64,7 +66,7 @@ export class AsyncCity extends React.Component {
                     selected={ this.props.value && this.props.value.name ? [ this.props.value ]:[]}
                     labelKey={(option) => `${option.name}`}
                     minLength={1}
-                    onSearch={(query) => this._handleSearch(query, this.props.props)}
+                    onSearch={(query) => this._handleSearch(query, this.props.dependency, this.props.props)}
                     placeholder={this.props.placeholder}
                     renderMenuItemChildren={
                         (option) => (

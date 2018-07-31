@@ -14,7 +14,11 @@ import {
     ACTION_CHANGE_SCAN_ORDER_NUMBER_INPUT,
     ACTION_CHANGE_SCAN_DATE_INPUT,
     ACTION_CHANGE_SCAN_ORDER_TYPE_INPUT,
-    ACTION_CHANGE_SCAN_ORDER_MODE_DELIVERY_INPUT
+    ACTION_CHANGE_SCAN_ORDER_MODE_DELIVERY_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_CITY_SENDER_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_CITY_RECEIVER_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT
 
 } from "../actions/actionConst";
 
@@ -27,6 +31,14 @@ const order = {
         date: moment(new Date()).format('DD.MM.YYYY'),
         orderType: 1,
         modeDelivery: 1
+    },
+    sender: {
+        city: null,
+        contragent: null
+    },
+    receiver: {
+        city: null,
+        contragent: null
     }
 }
 
@@ -115,6 +127,22 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_MODE_DELIVERY_INPUT) {
         newState.order.main.modeDelivery = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_CITY_SENDER_INPUT) {
+        newState.order.sender.city = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_CITY_RECEIVER_INPUT) {
+        newState.order.receiver.city = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT) {
+        newState.order.sender.contragent = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT) {
+        newState.order.receiver.contragent = action.payload;
     }
 
     return newState;
