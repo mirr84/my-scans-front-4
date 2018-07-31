@@ -20,7 +20,9 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO,
-    ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO
+    ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO,
+    ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT
 
 } from "../actions/actionConst";
 
@@ -36,11 +38,17 @@ const order = {
     },
     sender: {
         city: null,
-        contragent: null
+        contragent: null,
+        contactPerson: {
+            name:''
+        }
     },
     receiver: {
         city: null,
-        contragent: null
+        contragent: null,
+        contactPerson: {
+            name:''
+        }
     }
 }
 
@@ -156,6 +164,14 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO) {
         newState.isOpenDropdownReceiverFio = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT) {
+        newState.order.sender.contactPerson.name = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT) {
+        newState.order.receiver.contactPerson.name = action.payload;
     }
 
     return newState;

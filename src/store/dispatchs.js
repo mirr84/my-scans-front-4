@@ -10,7 +10,7 @@ import {
     actionChangeSenderCollapse, actionChangeReceiverCollapse, actionChangeInformationAboutCargoCollapse, actionChangeScanOrderNumberInput,
     actionChangeScanDateInput, actionChangeScanOrderTypeInput, actionChangeScanOrderModeDeliveryInput, actionChangeOrderCitySenderInput,
     actionChangeOrderCityReceiverInput, actionChangeOrderContragentSenderInput, actionChangeOrderContragentReceiverInput,
-    actionChangeIsOpenDropdownSenderFio, actionChangeIsOpenDropdownReceiverFio
+    actionChangeIsOpenDropdownSenderFio, actionChangeIsOpenDropdownReceiverFio, actionChangeSenderFioInput, actionChangeReceiverFioInput
 
 } from "./actions/actions";
 
@@ -68,6 +68,8 @@ export const dispatchs = (dispatch) =>
                     changeOrderContragentReceiverInput: (v) => dispatch(actionChangeOrderContragentReceiverInput(v)),
                     changeIsOpenDropdownSenderFio: (v) => dispatch(actionChangeIsOpenDropdownSenderFio(v)),
                     changeIsOpenDropdownReceiverFio: (v) => dispatch(actionChangeIsOpenDropdownReceiverFio(v)),
+                    changeSenderFioInput: (v) => dispatch(actionChangeSenderFioInput(v)),
+                    changeReceiverFioInput: (v) => dispatch(actionChangeReceiverFioInput(v)),
 
 
                 }

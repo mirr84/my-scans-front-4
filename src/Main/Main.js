@@ -30,6 +30,7 @@ import {operationStop} from "../Scan/serviceScan";
 const methods = {
     componentDidMount(props) {
         checkLogin(props);
+
     }
 }
 

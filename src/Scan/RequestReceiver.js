@@ -9,6 +9,7 @@ import {Col, Container, FormGroup, Label, Row, DropdownItem,
     InputGroupButtonDropdown} from "reactstrap";
 import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
+import TablePhones from "./TablePhones";
 
 const RequestReceiver = ({state, dispatch}) =>
     (
@@ -79,28 +80,20 @@ const RequestReceiver = ({state, dispatch}) =>
                                             state.scanReducer.order.receiver.contragent.contactPersons.length > 0 &&
                                             state.scanReducer.order.receiver.contragent.contactPersons.map(
                                                 (item, idx) => (
-                                                    <DropdownItem key={idx}>{item.name}</DropdownItem>
+                                                    <DropdownItem key={idx}
+                                                                  onClick={() => dispatch.changeReceiverFioInput(item.name)}>
+                                                        {item.name}
+                                                    </DropdownItem>
                                                 )
                                             )
                                         }
                                     </DropdownMenu>
                                 </InputGroupButtonDropdown>
-                                <Input placeholder="ФИО получателя" />
+                                <Input placeholder="ФИО получателя"
+                                       value={state.scanReducer.order.receiver.contactPerson.name}
+                                       onChange={(e) => dispatch.changeReceiverFioInput(e.target.value)}
+                                />
                             </InputGroup>
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="receiverPhones">Телефоны:</Label>
-
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label for="receiverAddress">Адрес:</Label>
-
                         </FormGroup>
                     </Col>
                     <Col>
@@ -123,10 +116,26 @@ const RequestReceiver = ({state, dispatch}) =>
                 <Row>
                     <Col>
                         <FormGroup>
+                            <Label for="receiverPhones">Телефоны:</Label>
+                            <TablePhones />
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
                             <Label for="receiverZipCode">Индекс:</Label>
 
                         </FormGroup>
                     </Col>
+                    <Col>
+                        <FormGroup>
+                            <Label for="receiverAddress">Адрес:</Label>
+
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
                     <Col>
                         <FormGroup>
                         <Label for="receiverEmail">Email:</Label>

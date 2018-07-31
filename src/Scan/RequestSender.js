@@ -15,6 +15,7 @@ import {
 
 import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
+import TablePhones from "./TablePhones";
 
 const RequestSender = ({state, dispatch}) =>
     (
@@ -85,28 +86,20 @@ const RequestSender = ({state, dispatch}) =>
                                             state.scanReducer.order.sender.contragent.contactPersons.length > 0 &&
                                             state.scanReducer.order.sender.contragent.contactPersons.map(
                                                 (item, idx) => (
-                                                    <DropdownItem key={idx}>{item.name}</DropdownItem>
+                                                    <DropdownItem key={idx}
+                                                                  onClick={() => dispatch.changeSenderFioInput(item.name)}>
+                                                        {item.name}
+                                                    </DropdownItem>
                                                 )
                                             )
                                         }
                                     </DropdownMenu>
                                 </InputGroupButtonDropdown>
-                                <Input placeholder="ФИО отправителя" />
+                                <Input placeholder="ФИО отправителя"
+                                       value={state.scanReducer.order.sender.contactPerson.name}
+                                       onChange={(e) => dispatch.changeSenderFioInput(e.target.value)}
+                                />
                             </InputGroup>
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="senderPhones">Телефоны:</Label>
-
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label for="senderAddress">Адрес:</Label>
-
                         </FormGroup>
                     </Col>
                     <Col>
@@ -129,17 +122,33 @@ const RequestSender = ({state, dispatch}) =>
                 <Row>
                     <Col>
                         <FormGroup>
+                            <Label for="senderPhones">Телефоны:</Label>
+                            <TablePhones />
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
                             <Label for="senderZipCode">Индекс:</Label>
 
                         </FormGroup>
                     </Col>
                     <Col>
-                        {/*<FormGroup>*/}
-                            {/*<Label for="senderEmail">Email:</Label>*/}
+                        <FormGroup>
+                            <Label for="senderAddress">Адрес:</Label>
 
-                        {/*</FormGroup>*/}
+                        </FormGroup>
                     </Col>
                 </Row>
+                {/*<Row>*/}
+                    {/*<Col>*/}
+                        {/*<FormGroup>*/}
+                        {/*<Label for="senderEmail">Email:</Label>*/}
+
+                        {/*</FormGroup>*/}
+                    {/*</Col>*/}
+                {/*</Row>*/}
             </Container>
         </div>
     )
