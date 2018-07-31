@@ -75,7 +75,6 @@ export const dispatchs = (dispatch) =>
                     changeSetPhones: (v) => dispatch(actionChangeSetPhones(v)),
                     changeSetPassport: (v) => dispatch(actionChangeSetPassport(v)),
 
-
                 }
         }
     )

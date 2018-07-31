@@ -27,8 +27,8 @@ const RequestReceiver = ({state, dispatch}) =>
                                        value={state.scanReducer.order.receiver.city}
                                        onChange={
                                            (e) => {
-                                               console.log(e);
                                                dispatch.changeOrderCityReceiverInput(e)
+                                               dispatch.changeOrderContragentReceiverInput(null);
                                            }
                                        }
                                        placeholder={'Город получателя'}
@@ -85,7 +85,12 @@ const RequestReceiver = ({state, dispatch}) =>
                                             state.scanReducer.order.receiver.contragent.contactPersons.map(
                                                 (item, idx) => (
                                                     <DropdownItem key={idx}
-                                                                  onClick={() => dispatch.changeReceiverFioInput(item.name)}>
+                                                                  onClick={
+                                                                      () => {
+                                                                          dispatch.changeReceiverFioInput(item.name);
+                                                                          dispatch.changeSetPassport(state.scanReducer.order.receiver.contactPerson.passport = item.passport);
+                                                                      }
+                                                                  }>
                                                         {item.name}
                                                     </DropdownItem>
                                                 )

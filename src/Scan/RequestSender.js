@@ -88,7 +88,12 @@ const RequestSender = ({state, dispatch}) =>
                                             state.scanReducer.order.sender.contragent.contactPersons.map(
                                                 (item, idx) => (
                                                     <DropdownItem key={idx}
-                                                                  onClick={() => dispatch.changeSenderFioInput(item.name)}>
+                                                                  onClick={
+                                                                      () => {
+                                                                          dispatch.changeSenderFioInput(item.name);
+                                                                          dispatch.changeSetPassport(state.scanReducer.order.sender.contactPerson.passport = item.passport);
+                                                                      }
+                                                                  }>
                                                         {item.name}
                                                     </DropdownItem>
                                                 )
