@@ -139,7 +139,10 @@ const RequestFilter = ({state, dispatch}) =>
                     </Row>
                 </Col>
                 <Col xl={2}>
+                    <br/>
+
                     <Button color="success"
+                            style= { { width: '100%' } }
                             disabled={state.journalReducer.isProgressFilter}
                             onClick={
                                 () => {
@@ -153,6 +156,23 @@ const RequestFilter = ({state, dispatch}) =>
                             }
                     >
                         Поиск
+                    </Button>
+                    <Button color="warning"
+                            style= { { width: '100%', marginTop: '5px' } }
+                            disabled={state.journalReducer.isProgressFilter}
+                            onClick={
+                                () => {
+                                    getStatusList({state, dispatch});
+                                    dispatch.changeJournalCourierCityInput(null);
+                                    dispatch.changeDateFromFilter( moment(new Date()).format('DD.MM.YYYY') );
+                                    dispatch.changeDateToFilter( moment(new Date()).format('DD.MM.YYYY') );
+                                    dispatch.changeJournalOrderNumberInput('');
+                                    dispatch.changeJournalCourierInput(null);
+                                    dispatch.changeJournalOnlyUrgentInput(false);
+                                }
+                            }
+                    >
+                        Очистить
                     </Button>
                 </Col>
             </Row>
