@@ -36,6 +36,7 @@ export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
                 props.dispatch.changeDataJournal(resp.data);
                 if (isUnSelect === true)
                     props.dispatch.changeSelectRowJournal(null);
+                messages(resp.data);
             },
             err => {
                 messages(err.response.data);
