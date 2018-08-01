@@ -12,12 +12,12 @@ export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
         offset: 0,
         fields: [
             {field: "status", values: props.state.journalReducer.selectStatus.map(item => item.value)},
-            {field: "courierCity", value: null},
-            {field: "courier", value: null},
-            {field: "number", value: null},
+            {field: "courierCity", value: props.state.journalReducer.courierCity ? props.state.journalReducer.courierCity.code : null},
+            {field: "courier", value: props.state.journalReducer.courier ? props.state.journalReducer.courier.code: null},
+            {field: "number", value: props.state.journalReducer.number},
             {field: "dateFrom", value: props.state.journalReducer.dateFrom},
             {field: "dateTo", value: props.state.journalReducer.dateTo},
-            {field: "onlyUrgent", value: false}
+            {field: "onlyUrgent", value: props.state.journalReducer.onlyUrgent}
         ],
         columns: ["code", "number", "recipient", "courier", "status", "courierCity", "date"],
         sort: [],

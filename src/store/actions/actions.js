@@ -12,7 +12,8 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_SENDER_INPUT, ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT,
     ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO, ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_RECEIVER_FIO,
     ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT, ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT, ACTION_CHANGE_GET_PHONE_TYPES,
-    ACTION_CHANGE_SET_PHONES, ACTION_CHANGE_SET_PASSPORT, ACTION_CHANGE_SET_PLACES
+    ACTION_CHANGE_SET_PHONES, ACTION_CHANGE_SET_PASSPORT, ACTION_CHANGE_SET_PLACES, ACTION_CHANGE_JOURNAL_COURIER_CITY_INPUT,
+    ACTION_CHANGE_JOURNAL_ORDER_NUMBER_INPUT, ACTION_CHANGE_JOURNAL_COURIER_INPUT, ACTION_CHANGE_JOURNAL_ONLY_UNGENT_INPUT
 
 } from "./actionConst";
 
@@ -366,6 +367,34 @@ export const actionChangeSetPassport = (payload) => (
 export const actionChangeSetPlaces = (payload) => (
     {
         type: ACTION_CHANGE_SET_PLACES,
+        payload
+    }
+)
+
+export const actionChangeJournalCourierCityInput = (payload) => (
+    {
+        type: ACTION_CHANGE_JOURNAL_COURIER_CITY_INPUT,
+        payload
+    }
+)
+
+export const actionChangeJournalOrderNumberInput = (payload) => (
+    {
+        type: ACTION_CHANGE_JOURNAL_ORDER_NUMBER_INPUT,
+        payload
+    }
+)
+
+export const actionСhangeJournalCourierInput = (payload) => (
+    {
+        type: ACTION_CHANGE_JOURNAL_COURIER_INPUT,
+        payload
+    }
+)
+
+export const actionChangeJournalOnlyUrgentInput = (payload) => (
+    {
+        type: ACTION_CHANGE_JOURNAL_ONLY_UNGENT_INPUT,
         payload
     }
 )

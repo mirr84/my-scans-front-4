@@ -15,7 +15,12 @@ import {
     ACTION_CHANGE_SELECT_STATUS,
     ACTION_CHANGE_DATE_FROM_FILTER,
     ACTION_CHANGE_DATE_TO_FILTER,
-    ACTION_CHANGE_IS_JOURNAL_PROGRESS
+    ACTION_CHANGE_IS_JOURNAL_PROGRESS,
+    ACTION_CHANGE_JOURNAL_COURIER_CITY_INPUT,
+    ACTION_CHANGE_JOURNAL_ORDER_NUMBER_INPUT,
+    ACTION_CHANGE_JOURNAL_COURIER_INPUT,
+    ACTION_CHANGE_JOURNAL_ONLY_UNGENT_INPUT
+
 } from "../actions/actionConst";
 import {getLocalStorage} from "../utils/getLocalStorage";
 import moment from 'moment';
@@ -29,6 +34,11 @@ const initState = {
 
     dateFrom: moment(new Date()).format('DD.MM.YYYY'),
     dateTo: moment(new Date()).format('DD.MM.YYYY'),
+
+    courierCity: null,
+    courier: null,
+    number: '',
+    onlyUrgent: false,
 
     // journal
     isProgressFilter: false,
@@ -126,6 +136,22 @@ export const journalReducer = (state = getLocalStorage('journalReducer', initSta
 
     if (action.type === ACTION_CHANGE_IS_JOURNAL_PROGRESS) {
         newState.isProgressFilter = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_JOURNAL_COURIER_CITY_INPUT) {
+        newState.courierCity = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_JOURNAL_ORDER_NUMBER_INPUT) {
+        newState.number = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_JOURNAL_COURIER_INPUT) {
+        newState.courier = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_JOURNAL_ONLY_UNGENT_INPUT) {
+        newState.onlyUrgent = action.payload;
     }
 
     return newState;

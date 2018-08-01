@@ -3,8 +3,8 @@ import {getLocalStorage} from "../utils/getLocalStorage";
 
 const initState = {
     lang: 'rus',
-    login: '',
-    password: '',
+    login: 'tester_nsk',
+    password: '123',
     pwt: null,
     isAuth: false,
     isShowModal: true

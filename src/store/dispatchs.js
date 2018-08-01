@@ -11,7 +11,8 @@ import {
     actionChangeScanDateInput, actionChangeScanOrderTypeInput, actionChangeScanOrderModeDeliveryInput, actionChangeOrderCitySenderInput,
     actionChangeOrderCityReceiverInput, actionChangeOrderContragentSenderInput, actionChangeOrderContragentReceiverInput,
     actionChangeIsOpenDropdownSenderFio, actionChangeIsOpenDropdownReceiverFio, actionChangeSenderFioInput, actionChangeReceiverFioInput,
-    actionChangeGetPhoneTypes, actionChangeSetPhones, actionChangeSetPassport, actionChangeSetPlaces
+    actionChangeGetPhoneTypes, actionChangeSetPhones, actionChangeSetPassport, actionChangeSetPlaces, actionChangeJournalCourierCityInput,
+    actionChangeJournalOrderNumberInput, actionСhangeJournalCourierInput, actionChangeJournalOnlyUrgentInput
 
 } from "./actions/actions";
 
@@ -47,6 +48,10 @@ export const dispatchs = (dispatch) =>
                     changeDateFromFilter: (v) => dispatch(actionChangeDateFromFilter(v)),
                     changeDateToFilter: (v) => dispatch(actionChangeDateToFilter(v)),
                     changeIsJournalProgress: (v) => dispatch(actionChangeIsJournalProgress(v)),
+                    changeJournalCourierCityInput: (v) => dispatch(actionChangeJournalCourierCityInput(v)),
+                    changeJournalOrderNumberInput: (v) => dispatch(actionChangeJournalOrderNumberInput(v)),
+                    changeJournalCourierInput: (v) => dispatch(actionСhangeJournalCourierInput(v)),
+                    changeJournalOnlyUrgentInput: (v) => dispatch(actionChangeJournalOnlyUrgentInput(v)),
 
                     changeIsGetTaskByKeyProgress: (v) => dispatch(actionChangeIsGetTaskByKeyProgress(v)),
                     changeSetOrderData: (v) => dispatch(actionChangeSetOrderData(v)),
