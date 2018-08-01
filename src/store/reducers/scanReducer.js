@@ -96,6 +96,8 @@ const order = {
 }
 
 const initState = {
+    timeout: 10*60,
+
     isProgressGetTaskByKey: false,
     order,
     isGetOrderFromWork: false,

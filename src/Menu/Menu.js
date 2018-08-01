@@ -12,7 +12,9 @@ import {
 
 const Menu = ({state, dispatch}) =>
     (
-            <Navbar color="light" light expand="md" style={ {'margin-top': '0px'} } sticky={true}>
+            <Navbar color="light" light expand="md" style={ {'margin-top': '0px'} }
+                    // sticky={'top'}
+            >
                 <NavbarToggler onClick={() => dispatch.changeMenuCollapse(!state.menuReducer.collapse)}/>
                 <Collapse isOpen={state.menuReducer.collapse} navbar>
                     <Nav navbar>
