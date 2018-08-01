@@ -59,7 +59,7 @@ const Main = ({state, dispatch}) =>
             {/*возврат на перефото*/}
             <Modal isOpen={state.journalReducer.isShowModal}>
                 <ModalBody>
-                    <Card>
+                    <Card className={'margin-0'}>
                         <CardBody>
                             <CardTitle>Причина возврата на перефото</CardTitle>
 
@@ -116,7 +116,7 @@ const Main = ({state, dispatch}) =>
             {/*получение данных журнала*/}
             <Modal isOpen={state.journalReducer.isProgressFilter}>
                 <ModalBody>
-                    <Card>
+                    <Card className={'margin-0'}>
                         <Progress animated color="success" value="100"> Получение данных </Progress>
                     </Card>
                 </ModalBody>
@@ -125,7 +125,7 @@ const Main = ({state, dispatch}) =>
             {/*получение заявки*/}
             <Modal isOpen={state.scanReducer.isProgressGetTaskByKey}>
                 <ModalBody>
-                    <Card>
+                    <Card className={'margin-0'}>
                         <Progress animated color="success" value="100"> Получение данных задания </Progress>
                     </Card>
                 </ModalBody>
@@ -134,7 +134,7 @@ const Main = ({state, dispatch}) =>
             {/*остановка вноса*/}
             <Modal isOpen={state.scanReducer.isStopGetOrderFromWorkModal}>
                 <ModalBody>
-                    <Card>
+                    <Card className={'margin-0'}>
                         <CardBody>
                             <CardTitle>Остановать текущий внос{ state.scanReducer.movedFrom === 'journal'? ' и перейти в журнал':'' }?</CardTitle>
                             <div style={{float: 'right'}}>

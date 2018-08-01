@@ -16,7 +16,7 @@ const RequestImage = ({state, dispatch}) =>
                         <div/>
                     )
             }
-            <div id='imageContainer' style={{height: '500px'}}>
+            <div id='imageContainer' style={{height: '500px', display: !state.scanReducer.isGetOrderFromWork?'none':''}}>
                 <Viewer
                     visible={state.scanReducer.isGetOrderFromWork}
                     noClose={true}

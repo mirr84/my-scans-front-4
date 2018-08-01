@@ -58,6 +58,7 @@ const Journal = ({state, dispatch}) =>
                                         <Card>
                                             <CardBody>
                                                 <Button color="success"
+                                                        size={'sm'}
                                                         disabled={state.journalReducer.imageProgress}
                                                         onClick={() => {
                                                             getTaskByKey({state, dispatch});
@@ -66,6 +67,7 @@ const Journal = ({state, dispatch}) =>
                                                     Взять в обработку
                                                 </Button>{' '}
                                                 <Button color="warning"
+                                                        size={'sm'}
                                                         disabled={state.journalReducer.imageProgress}
                                                         onClick={
                                                             () => {
@@ -82,11 +84,7 @@ const Journal = ({state, dispatch}) =>
                                         <div></div>
                                 }
 
-                                <Card>
-                                    <CardBody>
-                                        <RequestImage/>
-                                    </CardBody>
-                                </Card>
+                                <RequestImage/>
                             </div>
                         </Sticky>
                     </Col> : <div/>

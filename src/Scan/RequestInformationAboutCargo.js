@@ -123,7 +123,9 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                            }
                                     />
                                 </td>
-                                <td></td>
+                                <td>
+
+                                </td>
                                 <td>
                                     <Button size={'sm'}
                                             color='primary'

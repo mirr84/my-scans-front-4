@@ -17,7 +17,7 @@ const Login = ({state, dispatch}) =>
     (
         <Modal isOpen={state.loginReducer.isShowModal}>
             <ModalBody>
-                <Card>
+                <Card className={'margin-0'}>
                     {/*<CardImg top src="resources/img/logo.png"  />*/}
 
                     <CardBody>
