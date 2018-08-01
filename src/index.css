@@ -11,3 +11,7 @@
 {
     border-radius: 0px;
 }
+
+.table thead th {
+    font-size: 12px;
+}

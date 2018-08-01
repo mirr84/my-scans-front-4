@@ -9,7 +9,6 @@ const DEF_PHONE = {select: true, type: 'mob', number: '', extNumber: ''};
 const TablePhones = ({state, dispatch, phones}) =>
     (
         <div>
-
             <Table size="sm" hover striped>
                 <thead>
                 <tr>

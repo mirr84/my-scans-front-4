@@ -44,6 +44,19 @@ const Scan = ({state, dispatch}) =>
                         <CardBody>
                             <CardTitle
                                 style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeInformationAboutCargoCollapse(!state.scanReducer.informationAboutCargoCollapse)}>
+                                Информация о грузе
+                            </CardTitle>
+                            <Collapse isOpen={state.scanReducer.informationAboutCargoCollapse}>
+                                <RequestInformationAboutCargo/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
                                 onClick={() => dispatch.changePaymentInformationCollapse(!state.scanReducer.paymentInformationCollapse)}>
                                 Информация об оплате
                             </CardTitle>
@@ -95,19 +108,6 @@ const Scan = ({state, dispatch}) =>
                         </CardBody>
                     </Card>
 
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                style={{margin: 0, cursor: 'pointer'}}
-                                onClick={() => dispatch.changeInformationAboutCargoCollapse(!state.scanReducer.informationAboutCargoCollapse)}>
-                                Информация о грузе
-                            </CardTitle>
-                            <Collapse isOpen={state.scanReducer.informationAboutCargoCollapse}>
-                                <RequestInformationAboutCargo/>
-                            </Collapse>
-                        </CardBody>
-                    </Card>
-
                 </Col>
                 <Col>
                     <Sticky>
@@ -118,6 +118,7 @@ const Scan = ({state, dispatch}) =>
                                         {
                                             !state.scanReducer.isGetOrderFromWork ? (
                                                 <Button color="success"
+                                                        size={'sm'}
                                                         onClick={() => getTaskAndLock({state, dispatch})}
                                                 >
                                                     Автоматический внос
@@ -125,6 +126,7 @@ const Scan = ({state, dispatch}) =>
                                             ) : (
                                                 <div>
                                                     <Button color="warning"
+                                                            size={'sm'}
                                                             disabled={state.journalReducer.imageProgress}
                                                             onClick={
                                                                 () => {
@@ -138,6 +140,7 @@ const Scan = ({state, dispatch}) =>
                                                     </Button>
                                                     {' '}
                                                     <Button color="warning"
+                                                            size={'sm'}
                                                             onClick={() => dispatch.changeIsStopGetOrderFromWorkModal(true)}
                                                     >
                                                         Стоп
