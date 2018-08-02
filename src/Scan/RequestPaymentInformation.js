@@ -62,6 +62,16 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                     </FormGroup>
                 </Col>
             </Row>
+            <Row>
+                <Col>
+                    Tariffs
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    addServ
+                </Col>
+            </Row>
         </div>
     )
 

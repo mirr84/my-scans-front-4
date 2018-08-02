@@ -18,12 +18,6 @@ const Scan = ({state, dispatch}) =>
     (
         <Container fluid={true}>
 
-            {/*<div>*/}
-            {/*{*/}
-                {/*JSON.stringify( state.scanReducer.order )*/}
-            {/*}*/}
-            {/*</div>*/}
-
             <Row>
                 <Col>
 
@@ -62,19 +56,6 @@ const Scan = ({state, dispatch}) =>
                             </CardTitle>
                             <Collapse isOpen={state.scanReducer.paymentInformationCollapse}>
                                 <RequestPaymentInformation/>
-                            </Collapse>
-                        </CardBody>
-                    </Card>
-
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                style={{margin: 0, cursor: 'pointer'}}
-                                onClick={() => dispatch.changeTotalCollapse(!state.scanReducer.totalCollapse)}>
-                                Итого
-                            </CardTitle>
-                            <Collapse isOpen={state.scanReducer.totalCollapse}>
-                                <RequestTotal/>
                             </Collapse>
                         </CardBody>
                     </Card>
@@ -161,6 +142,18 @@ const Scan = ({state, dispatch}) =>
                             </div>
                             <div>
                                 <RequestImage/>
+                                <Card>
+                                    <CardBody>
+                                        <CardTitle
+                                            style={{margin: 0, cursor: 'pointer'}}
+                                            onClick={() => dispatch.changeTotalCollapse(!state.scanReducer.totalCollapse)}>
+                                            Итого
+                                        </CardTitle>
+                                        <Collapse isOpen={state.scanReducer.totalCollapse}>
+                                            <RequestTotal/>
+                                        </Collapse>
+                                    </CardBody>
+                                </Card>
                             </div>
                         </div>
                     </Sticky>
