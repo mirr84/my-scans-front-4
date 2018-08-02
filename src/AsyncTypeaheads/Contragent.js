@@ -1,9 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {AsyncTypeahead} from "react-bootstrap-typeahead";
 import {messages} from "../resources/js/utils";
 import axios from "axios/index";
-import {Button} from "reactstrap";
-import {AsyncCity} from "./City";
 
 const makeAndHandleRequest = (value, dependency, props) => {
 
@@ -11,7 +9,7 @@ const makeAndHandleRequest = (value, dependency, props) => {
         apiName:"orderPhoto",
         apiPath:"/getContractorList",
         limit:10,
-        fields:[dependency].map(item => ({ field: 'city', value: item.code})),
+        fields: dependency? [dependency].map(item => ({ field: 'city', value: item.code})): [],
         field:"name",
         value,
         lang: props.state.loginReducer.lang,

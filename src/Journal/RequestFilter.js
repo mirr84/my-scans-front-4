@@ -12,15 +12,12 @@ import moment from 'moment';
 import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncCourier} from "../AsyncTypeaheads/Courier";
 
-let a = [{label: '111', value: 'in_progress'}, {label: '222', value: 'not_treated'}];
-
 const methods = {
     componentDidMount(props) {
         if (props.state.journalReducer.statusList.length === 0)
             getStatusList(props);
     }
 }
-
 
 const RequestFilter = ({state, dispatch}) =>
     (
@@ -52,7 +49,7 @@ const RequestFilter = ({state, dispatch}) =>
                                 <Label for="courierCity">Город курьера:</Label>
                                 <AsyncCity props={{state, dispatch}}
                                            value={state.journalReducer.courierCity}
-                                           disabled={state.journalReducer.number.trim()}
+                                           disabled={!!state.journalReducer.number.trim()}
                                            onChange={
                                                (e) => {
                                                    dispatch.changeJournalCourierCityInput(e);
@@ -71,7 +68,7 @@ const RequestFilter = ({state, dispatch}) =>
                                     className="form-control"
                                     dateFormat="DD.MM.YYYY"
                                     readOnly={true}
-                                    disabled={state.journalReducer.number.trim()}
+                                    disabled={!!state.journalReducer.number.trim()}
                                     maxDate={moment(state.journalReducer.dateTo, 'DD.MM.YYYY')}
                                     selected={moment(state.journalReducer.dateFrom, 'DD.MM.YYYY')}
                                     onChange={(e) => dispatch.changeDateFromFilter(e.format('DD.MM.YYYY'))}
@@ -86,7 +83,7 @@ const RequestFilter = ({state, dispatch}) =>
                                     className="form-control"
                                     dateFormat="DD.MM.YYYY"
                                     readOnly={true}
-                                    disabled={state.journalReducer.number.trim()}
+                                    disabled={!!state.journalReducer.number.trim()}
                                     minDate={moment(state.journalReducer.dateFrom, 'DD.MM.YYYY')}
                                     selected={moment(state.journalReducer.dateTo, 'DD.MM.YYYY')}
                                     onChange={(e) => dispatch.changeDateToFilter(e.format('DD.MM.YYYY'))}

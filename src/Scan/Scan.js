@@ -14,9 +14,6 @@ import {getRephotoReasons} from "../Journal/serviceJournal";
 import Sticky from 'react-sticky-el';
 import {getTaskAndLock} from "./serviceScan";
 
-const iterator = () => {
-}
-
 const Scan = ({state, dispatch}) =>
     (
         <Container fluid={true}>
@@ -155,10 +152,6 @@ const Scan = ({state, dispatch}) =>
                                                     >
                                                         Время на внос: { state.scanReducer.timeout }
                                                     </Button>
-
-                                                    {
-                                                        iterator()
-                                                    }
 
                                                 </div>
                                             )

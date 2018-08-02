@@ -19,7 +19,7 @@ const validateGab = (place) => {
     place.height = place.height.trim();
     place.width = place.width.trim();
     if (place.length == null && place.height == null && place.width == null) return true;
-    if (place.length === '' && place.height ==='' && place.width === '') return true;
+    if (place.length === '' && place.height === '' && place.width === '') return true;
     if (place.length === '0' && place.height === '0' && place.width === '0') return true;
     if (place.length > 0 && place.height > 0 && place.width > 0) return true;
     return false;
@@ -46,8 +46,8 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
 
                 {
                     state.scanReducer.order.cargo.places.map(
-                        item => (
-                            <tr>
+                        (item, idx) => (
+                            <tr key={idx}>
                                 <td>
                                     <Input bsSize={'sm'}
                                            type="text"
@@ -127,19 +127,23 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
 
                                 </td>
                                 <td>
-                                    <Button size={'sm'}
-                                            color='primary'
-                                            onClick={
-                                                ()=>{}
-                                            }
-                                    >
-                                        <FaCopy/>
-                                    </Button>
+                                    {/*<Button size={'sm'}*/}
+                                    {/*color='primary'*/}
+                                    {/*onClick={*/}
+                                    {/*()=>{}*/}
+                                    {/*}*/}
+                                    {/*>*/}
+                                    {/*<FaCopy/>*/}
+                                    {/*</Button>*/}
                                 </td>
                                 <td>
                                     <Button size={'sm'}
                                             color='danger'
-                                            onClick={()=>dispatch.changeSetPlaces(state.scanReducer.order.cargo.places = state.scanReducer.order.cargo.places.filter( item1 => item1 !== item ))}
+                                            onClick={
+                                                () => {
+                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places = state.scanReducer.order.cargo.places.filter(item1 => item1 !== item))
+                                                }
+                                            }
                                     >
                                         <FaMinus/>
                                     </Button>

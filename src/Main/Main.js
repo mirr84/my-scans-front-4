@@ -34,25 +34,26 @@ const methods = {
     }
 }
 
-const Main = ({state, dispatch}) =>
-    (
+const Main = ({state, dispatch}) => {
+
+    return  (
         <div>
 
             <ToastContainer autoClose={8000} position={toast.POSITION.TOP_RIGHT}/>
-            <Login />
+            <Login/>
 
             {
                 state.loginReducer.isAuth ?
                     (
                         <div>
-                            <Menu />
-                            { state.menuReducer.item === 'scan'? (<Scan />) : <div/> }
-                            { state.menuReducer.item === 'journal'? (<Journal />) : <div/> }
+                            <Menu/>
+                            {state.menuReducer.item === 'scan' ? (<Scan/>) : <div/>}
+                            {state.menuReducer.item === 'journal' ? (<Journal/>) : <div/>}
                         </div>
                     )
                     :
                     (
-                        <div />
+                        <div/>
                     )
             }
 
@@ -70,10 +71,11 @@ const Main = ({state, dispatch}) =>
                                             <ListGroupItem key={item.code}>
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input checked={ state.journalReducer.selectReasonCode.filter( a => a === item.code ).length > 0 }
-                                                               value={item.code}
-                                                               onChange={ (e) => dispatch.changeReasonsItem(e.target.value) }
-                                                               type="checkbox"/> {item.name}
+                                                        <Input
+                                                            checked={state.journalReducer.selectReasonCode.filter(a => a === item.code).length > 0}
+                                                            value={item.code}
+                                                            onChange={(e) => dispatch.changeReasonsItem(e.target.value)}
+                                                            type="checkbox"/> {item.name}
                                                     </Label>
                                                 </FormGroup>
                                             </ListGroupItem>
@@ -81,11 +83,11 @@ const Main = ({state, dispatch}) =>
                                     )
                                 }
                                 <ListGroupItem>
-                                    <Label style={ {width: '100%'} }>
+                                    <Label style={{width: '100%'}}>
                                         Другая:
                                         <Input type="textarea"
                                                value={state.journalReducer.otherReason}
-                                               onChange={ (e) => dispatch.changeOtherReason(e.target.value) }
+                                               onChange={(e) => dispatch.changeOtherReason(e.target.value)}
                                         />
                                     </Label>
                                 </ListGroupItem>
@@ -95,7 +97,7 @@ const Main = ({state, dispatch}) =>
 
                             <div style={{float: 'right'}}>
                                 <Button color="success"
-                                        disabled={ state.journalReducer.selectReasonCode.length === 0 && !state.journalReducer.otherReason }
+                                        disabled={state.journalReducer.selectReasonCode.length === 0 && !state.journalReducer.otherReason}
                                         onClick={() => {
                                             operationRephoto({state, dispatch});
                                         }}>
@@ -136,7 +138,8 @@ const Main = ({state, dispatch}) =>
                 <ModalBody>
                     <Card className={'margin-0'}>
                         <CardBody>
-                            <CardTitle>Остановать текущий внос{ state.scanReducer.movedFrom === 'journal'? ' и перейти в журнал':'' }?</CardTitle>
+                            <CardTitle>Остановать текущий
+                                внос{state.scanReducer.movedFrom === 'journal' ? ' и перейти в журнал' : ''}?</CardTitle>
                             <div style={{float: 'right'}}>
                                 <Button color="warning"
                                         onClick={
@@ -159,5 +162,5 @@ const Main = ({state, dispatch}) =>
 
         </div>
     )
-
+}
 export default connector(lifecycle(methods)(Main));

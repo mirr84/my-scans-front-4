@@ -22,6 +22,7 @@ const RequestImage = ({state, dispatch}) =>
             {
                 state.journalReducer.imageProgress ?
                     <img className="img-thumbnail"
+                         alt={''}
                          style={{width: '100%'}}
                          src={'resources/img/loaadimage.gif'}/> : (<div/>)
             }
@@ -29,6 +30,7 @@ const RequestImage = ({state, dispatch}) =>
             {
                 !state.journalReducer.imageProgress && state.journalReducer.imageData ?
                     <img className="img-thumbnail"
+                         alt={''}
                          style={{width: '100%', cursor: 'pointer'}}
                          onClick={() => {
                              dispatch.changeZoomImageJournal(true);
@@ -39,6 +41,7 @@ const RequestImage = ({state, dispatch}) =>
             {
                 !state.journalReducer.imageProgress && !state.journalReducer.imageData ?
                     <img className="img-thumbnail"
+                         alt={''}
                          style={{width: '100%'}}
                          src={'resources/img/noimage.jpg'}/> : (<div/>)
             }

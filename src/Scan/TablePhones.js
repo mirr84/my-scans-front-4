@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Button, FormGroup, Input, Label, Table} from "reactstrap";
-import {FaPlus, FaMinus} from 'react-icons/fa';
+import {Button, FormGroup, Input, Table} from "reactstrap";
 
 const DEF_PHONE = {select: true, type: 'mob', number: '', extNumber: ''};
 
@@ -21,11 +20,10 @@ const TablePhones = ({state, dispatch, phones}) =>
                 <tbody>
 
                 {
-
                     phones
                         .map(
-                            item => (
-                                <tr>
+                            (item, idx) => (
+                                <tr key={idx}>
                                     <td>
                                         <FormGroup check>
                                             <div check>

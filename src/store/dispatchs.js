@@ -12,7 +12,8 @@ import {
     actionChangeOrderCityReceiverInput, actionChangeOrderContragentSenderInput, actionChangeOrderContragentReceiverInput,
     actionChangeIsOpenDropdownSenderFio, actionChangeIsOpenDropdownReceiverFio, actionChangeSenderFioInput, actionChangeReceiverFioInput,
     actionChangeGetPhoneTypes, actionChangeSetPhones, actionChangeSetPassport, actionChangeSetPlaces, actionChangeJournalCourierCityInput,
-    actionChangeJournalOrderNumberInput, actionСhangeJournalCourierInput, actionChangeJournalOnlyUrgentInput,
+    actionChangeJournalOrderNumberInput, actionСhangeJournalCourierInput, actionChangeJournalOnlyUrgentInput, actionChangeSetTimeOut,
+    actionChangeOrderContragentOtherInput
 
 } from "./actions/actions";
 
@@ -80,6 +81,7 @@ export const dispatchs = (dispatch) =>
                     changeSetPhones: (v) => dispatch(actionChangeSetPhones(v)),
                     changeSetPassport: (v) => dispatch(actionChangeSetPassport(v)),
                     changeSetPlaces: (v) => dispatch(actionChangeSetPlaces(v)),
+                    changeOrderContragentOtherInput: (v) => dispatch(actionChangeOrderContragentOtherInput(v)),
 
                 }
         }

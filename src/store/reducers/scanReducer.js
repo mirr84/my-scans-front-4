@@ -26,7 +26,9 @@ import {
     ACTION_CHANGE_GET_PHONE_TYPES,
     ACTION_CHANGE_SET_PHONES,
     ACTION_CHANGE_SET_PASSPORT,
-    ACTION_CHANGE_SET_PLACES
+    ACTION_CHANGE_SET_PLACES,
+    ACTION_IS_SET_TIMEOUT_WORK,
+    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT
 
 } from "../actions/actionConst";
 
@@ -92,11 +94,14 @@ const order = {
     },
     cargo: {
         places: []
+    },
+    other: {
+        contragent: null
     }
 }
 
 const initState = {
-    timeout: 10*60,
+    timeout: 0,
 
     isProgressGetTaskByKey: false,
     order,
@@ -224,6 +229,10 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
         newState.phoneTypes = action.payload;
     }
 
+    if (action.type === ACTION_IS_SET_TIMEOUT_WORK) {
+        newState.timeout = action.payload;
+    }
+
     if (action.type === ACTION_CHANGE_SET_PHONES) {
         // ничего не делаем
     }
@@ -234,6 +243,10 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SET_PLACES) {
         // ничего не делаем
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT) {
+        newState.order.other.contragent = action.payload;
     }
 
     return newState;
