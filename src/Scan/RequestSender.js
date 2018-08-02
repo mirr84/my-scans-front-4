@@ -17,6 +17,7 @@ import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
 import Passport from "./Passport";
+import {getServiceList} from "./serviceScan";
 
 const RequestSender = ({state, dispatch}) =>
     (
@@ -33,6 +34,7 @@ const RequestSender = ({state, dispatch}) =>
                                            (e) => {
                                                dispatch.changeOrderCitySenderInput(e);
                                                dispatch.changeOrderContragentSenderInput(null);
+                                               getServiceList({state, dispatch});
                                            }
                                        }
                                        placeholder={'Город отправителя'}
@@ -53,7 +55,10 @@ const RequestSender = ({state, dispatch}) =>
                                              dependency={state.scanReducer.order.sender.city}
                                              value={state.scanReducer.order.sender.contragent}
                                              onChange={
-                                                 (e) => dispatch.changeOrderContragentSenderInput(e)
+                                                 (e) => {
+                                                     dispatch.changeOrderContragentSenderInput(e);
+                                                     getServiceList({state, dispatch});
+                                                 }
                                              }
                                              placeholder={'Контрагент отправителя'}
                             />

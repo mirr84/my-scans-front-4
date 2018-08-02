@@ -14,7 +14,8 @@ import {
     ACTION_CHANGE_SCAN_ORDER_SENDER_FIO_INPUT, ACTION_CHANGE_SCAN_ORDER_RECEIVER_FIO_INPUT, ACTION_CHANGE_GET_PHONE_TYPES,
     ACTION_CHANGE_SET_PHONES, ACTION_CHANGE_SET_PASSPORT, ACTION_CHANGE_SET_PLACES, ACTION_CHANGE_JOURNAL_COURIER_CITY_INPUT,
     ACTION_CHANGE_JOURNAL_ORDER_NUMBER_INPUT, ACTION_CHANGE_JOURNAL_COURIER_INPUT, ACTION_CHANGE_JOURNAL_ONLY_UNGENT_INPUT, ACTION_IS_SET_TIMEOUT_WORK,
-    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT
+    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT, ACTION_CHANGE_SCAN_ORDER_PAYER_PAY_TYPE, ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE,
+    ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA
 
 } from "./actionConst";
 
@@ -410,6 +411,27 @@ export const actionChangeJournalOnlyUrgentInput = (payload) => (
 export const actionChangeOrderContragentOtherInput = (payload) => (
     {
         type: ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT,
+        payload
+    }
+)
+
+export const actionChangePayerPayType = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_ORDER_PAYER_PAY_TYPE,
+        payload
+    }
+)
+
+export const actionChangePayerType = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE,
+        payload
+    }
+)
+
+export const actionChangeSetOrderTariffsData = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA,
         payload
     }
 )

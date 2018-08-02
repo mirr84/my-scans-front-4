@@ -28,7 +28,10 @@ import {
     ACTION_CHANGE_SET_PASSPORT,
     ACTION_CHANGE_SET_PLACES,
     ACTION_IS_SET_TIMEOUT_WORK,
-    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT
+    ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT,
+    ACTION_CHANGE_SCAN_ORDER_PAYER_PAY_TYPE,
+    ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE,
+    ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA
 
 } from "../actions/actionConst";
 
@@ -97,6 +100,13 @@ const order = {
     },
     other: {
         contragent: null
+    },
+    payer:{
+        payType: '', // cash, avans, by_contract
+        type: '' // sender, receiver, other
+    },
+    services: {
+        tariffs: []
     }
 }
 
@@ -247,6 +257,18 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT) {
         newState.order.other.contragent = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_PAYER_PAY_TYPE) {
+        newState.order.payer.payType = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE) {
+        newState.order.payer.type = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA) {
+        newState.order.services.tariffs = action.payload;
     }
 
     return newState;

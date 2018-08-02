@@ -3,6 +3,16 @@ import React from 'react';
 import {connector} from "../store/utils/connector";
 import {Col, FormGroup, Input, Label, Row} from "reactstrap";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
+import TableTariffs from "./TableTariffs";
+import TableAdditionalServices from "./TableAdditionalServices";
+import {getServiceList} from "./serviceScan";
+
+const CASH = 'cash',
+    AVANS = 'avans',
+    SENDER = 'sender',
+    RECEIVER = 'receiver',
+    BT_CONTRACT = 'by_contract',
+    OTHER = 'other';
 
 const RequestPaymentInformation = ({state, dispatch}) =>
     (
@@ -13,7 +23,12 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                         <Label check>
                             <Input type="radio"
                                    name="radio1"
-
+                                   checked={state.scanReducer.order.payer.payType === CASH && state.scanReducer.order.payer.type === SENDER}
+                                   onChange={() => {
+                                       dispatch.changePayerPayType(CASH);
+                                       dispatch.changePayerType(SENDER);
+                                       getServiceList({state, dispatch});
+                                   }}
                             />{' '}Отправитель нал
                         </Label>
                     </FormGroup>
@@ -21,14 +36,28 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                 <Col>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="radio1" />{' '}Отправитель аванс
+                            <Input type="radio" name="radio1"
+                                   checked={state.scanReducer.order.payer.payType === AVANS && state.scanReducer.order.payer.type === SENDER}
+                                   onChange={() => {
+                                       dispatch.changePayerPayType(AVANS);
+                                       dispatch.changePayerType(SENDER);
+                                       getServiceList({state, dispatch});
+                                   }}
+                            />{' '}Отправитель аванс
                         </Label>
                     </FormGroup>
                 </Col>
                 <Col>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="radio1" />{' '}По договору
+                            <Input type="radio" name="radio1"
+                                   checked={state.scanReducer.order.payer.payType === BT_CONTRACT && state.scanReducer.order.payer.type === OTHER}
+                                   onChange={() => {
+                                       dispatch.changePayerPayType(BT_CONTRACT);
+                                       dispatch.changePayerType(OTHER);
+                                       getServiceList({state, dispatch});
+                                   }}
+                            />{' '}По договору
                         </Label>
                     </FormGroup>
                 </Col>
@@ -37,14 +66,28 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                 <Col>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="radio1" />{' '}Получатель нал
+                            <Input type="radio" name="radio1"
+                                   checked={state.scanReducer.order.payer.payType === CASH && state.scanReducer.order.payer.type === RECEIVER}
+                                   onChange={() => {
+                                       dispatch.changePayerPayType(CASH);
+                                       dispatch.changePayerType(RECEIVER);
+                                       getServiceList({state, dispatch});
+                                   }}
+                            />{' '}Получатель нал
                         </Label>
                     </FormGroup>
                 </Col>
                 <Col>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="radio1" />{' '}Получатель аванс
+                            <Input type="radio" name="radio1"
+                                   checked={state.scanReducer.order.payer.payType === AVANS && state.scanReducer.order.payer.type === RECEIVER}
+                                   onChange={() => {
+                                       dispatch.changePayerPayType(AVANS);
+                                       dispatch.changePayerType(RECEIVER);
+                                       getServiceList({state, dispatch});
+                                   }}
+                            />{' '}Получатель аванс
                         </Label>
                     </FormGroup>
                 </Col>
@@ -52,10 +95,13 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                     <FormGroup>
                         <AsyncContragent props={{state, dispatch}}
                                          bsSize={'sm'}
-                                         disabled={false}
+                                         disabled={!(state.scanReducer.order.payer.payType === BT_CONTRACT && state.scanReducer.order.payer.type === OTHER)}
                                          value={state.scanReducer.order.other.contragent}
                                          onChange={
-                                             (e) => dispatch.changeOrderContragentOtherInput(e)
+                                             (e) => {
+                                                 dispatch.changeOrderContragentOtherInput(e);
+                                                 getServiceList({state, dispatch});
+                                             }
                                          }
                                          placeholder={'Контрагент'}
                         />
@@ -64,12 +110,12 @@ const RequestPaymentInformation = ({state, dispatch}) =>
             </Row>
             <Row>
                 <Col>
-                    Tariffs
+                    <TableTariffs/>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    addServ
+                    <TableAdditionalServices/>
                 </Col>
             </Row>
         </div>

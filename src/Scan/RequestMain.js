@@ -5,6 +5,7 @@ import {Col, Container, FormGroup, Input, Label, Row} from "reactstrap";
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import {getServiceList} from "./serviceScan";
 
 const RequestMain = ({state, dispatch}) =>
     (
@@ -33,7 +34,12 @@ const RequestMain = ({state, dispatch}) =>
                             dateFormat="DD.MM.YYYY"
                             readOnly={true}
                             selected={moment(state.scanReducer.order.main.date, 'DD.MM.YYYY')}
-                            onChange={(e) => dispatch.changeScanDateInput(e.format('DD.MM.YYYY'))}
+                            onChange={
+                                (e) => {
+                                    dispatch.changeScanDateInput(e.format('DD.MM.YYYY'));
+                                    getServiceList({state, dispatch});
+                                }
+                            }
                         />
                     </FormGroup>
                 </Col>
@@ -47,7 +53,8 @@ const RequestMain = ({state, dispatch}) =>
                                id="orderType"
                                value={state.scanReducer.order.main.orderType}
                                onChange={(e) => {
-                                   dispatch.changeScanOrderTypeInput(e.target.value)
+                                   dispatch.changeScanOrderTypeInput(e.target.value);
+                                   getServiceList({state, dispatch});
                                }}
                         >
                             <option value={1}>Доставка</option>
@@ -63,7 +70,8 @@ const RequestMain = ({state, dispatch}) =>
                                id="modeDelivery"
                                value={state.scanReducer.order.main.modeDelivery}
                                onChange={(e) => {
-                                   dispatch.changeScanOrderModeDeliveryInput(e.target.value)
+                                   dispatch.changeScanOrderModeDeliveryInput(e.target.value);
+                                   getServiceList({state, dispatch});
                                }}
                         >
                             <option value={1}>дверь-дверь</option>

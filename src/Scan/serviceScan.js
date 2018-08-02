@@ -129,3 +129,35 @@ export const getPhoneTypes = (props) =>
         .then(
             r => props.dispatch.changeGetPhoneTypes(r)
         )
+
+
+export const getServiceList = (props) => {
+
+    const body = {
+        apiName: "orderPhoto",
+        apiPath: "/getServiceList",
+        order: props.state.scanReducer.order,
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+    }
+
+    axios.post('/api/preback',
+        {...body},
+        {headers: {PWT: props.state.loginReducer.pwt}}
+    )
+        .then(
+            resp => {
+                props.dispatch.changeSetOrderTariffsData(resp.data.order.services.tariffs);
+                messages(resp.data);
+            },
+            err => {
+                props.dispatch.changeSetOrderTariffsData(err.response.data.order.services.tariffs);
+                messages(err.response.data);
+            }
+        )
+        .then(
+            () => {
+            }
+        )
+
+}

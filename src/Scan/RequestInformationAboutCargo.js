@@ -3,6 +3,7 @@ import React from 'react';
 import {connector} from "../store/utils/connector";
 import {Button, Input, Table} from "reactstrap";
 import {FaCopy, FaMinus} from 'react-icons/fa';
+import {getServiceList} from "./serviceScan";
 
 const DEF_PLACE = {
     description: '',
@@ -15,9 +16,9 @@ const DEF_PLACE = {
 
 const validateGab = (place) => {
     place = Object.assign({}, place);
-    place.length = place.length.trim();
-    place.height = place.height.trim();
-    place.width = place.width.trim();
+    place.length = (''+place.length).trim();
+    place.height = (''+place.height).trim();
+    place.width = (''+place.width).trim();
     if (place.length == null && place.height == null && place.width == null) return true;
     if (place.length === '' && place.height === '' && place.width === '') return true;
     if (place.length === '0' && place.height === '0' && place.width === '0') return true;
@@ -81,6 +82,7 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                                (e) => {
                                                    item.length = e.target.value;
                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
+                                                   getServiceList({state, dispatch});
                                                }
                                            }
                                     />
@@ -94,6 +96,7 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                                (e) => {
                                                    item.height = e.target.value;
                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
+                                                   getServiceList({state, dispatch});
                                                }
                                            }
                                     />
@@ -107,6 +110,7 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                                (e) => {
                                                    item.width = e.target.value;
                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
+                                                   getServiceList({state, dispatch});
                                                }
                                            }
                                     />
@@ -118,7 +122,7 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                            onChange={
                                                (e) => {
                                                    item.weight = e.target.value;
-
+                                                   getServiceList({state, dispatch});
                                                }
                                            }
                                     />
@@ -141,7 +145,8 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                             color='danger'
                                             onClick={
                                                 () => {
-                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places = state.scanReducer.order.cargo.places.filter(item1 => item1 !== item))
+                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places = state.scanReducer.order.cargo.places.filter(item1 => item1 !== item));
+                                                    getServiceList({state, dispatch});
                                                 }
                                             }
                                     >
@@ -157,7 +162,12 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                     <td colSpan={9}>
                         <Button size={'sm'}
                                 style={{width: '100%'}}
-                                onClick={() => dispatch.changeSetPlaces(state.scanReducer.order.cargo.places.push(Object.assign({}, DEF_PLACE)))}
+                                onClick={
+                                    () => {
+                                        dispatch.changeSetPlaces(state.scanReducer.order.cargo.places.push(Object.assign({}, DEF_PLACE)));
+                                        getServiceList({state, dispatch});
+                                    }
+                                }
                         >Добавить место</Button>
                     </td>
                 </tr>
