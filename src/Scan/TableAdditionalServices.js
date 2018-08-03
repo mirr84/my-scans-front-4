@@ -47,13 +47,31 @@ const TableAdditionalServices = ({state, dispatch}) =>
                                         item.params && Array.isArray(item.params) && item.params.length > 0 ?
                                             (
                                                 item.params.map(
-                                                    item1 => (
-                                                        <FormGroup row style={ {'margin-bottom': '0px'} }>
+                                                    (item1, idx1) => (
+                                                        <FormGroup key={idx1} row style={ {'margin-bottom': '0px'} }>
                                                             <Label sm={5}>{item1.description}:</Label>
                                                             <Col sm={7}>
-                                                                <Input type="text" style={ {'margin-top': '5px'} }
+                                                                { item1.type }
+                                                                <Input type="text"
                                                                        bsSize={'sm'}
                                                                        placeholder={item1.description}
+                                                                       value={item1.value || ''}
+                                                                       onChange={
+                                                                           (e) => {
+                                                                               item1.value = e.target.value? +e.target.value : null;
+                                                                               dispatch.changeParamsAdditionalServicesInput(state.scanReducer.order.services.additionalServices);
+                                                                           }
+                                                                       }
+                                                                       onBlur={
+                                                                           () => {
+                                                                               if ( item1.value && ('' + item1.value).trim() ) {
+                                                                                   item.select = true;
+                                                                               } else {
+                                                                                   item.select = false;
+                                                                               }
+                                                                               getCalculationAndAdditionalServices({state, dispatch}, true);
+                                                                           }
+                                                                       }
                                                                 />
                                                             </Col>
                                                         </FormGroup>

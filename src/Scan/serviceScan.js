@@ -154,7 +154,6 @@ export const getCurrency = (props) => {
             resp => {
                 props.dispatch.changeIsProgressCurrency(false);
                 props.dispatch.changeSetOrderCurrencyData(resp);
-                console.log(resp);
             },
         )
 }
@@ -182,9 +181,10 @@ export const getCalculationAndAdditionalServices = (props, onlyCalc = false) => 
         )
         .then(
             resp => {
-                props.dispatch.changeSetOrderCalculationAndAdditionalServicesData({additionalServices: resp.order.services.additionalServices, calculator: resp.order.calculator });
+                props.dispatch.changeSetOrderCalculationAndAdditionalServicesData({additionalServices: !onlyCalc?resp.order.services.additionalServices: null, calculator: resp.order.calculator});
                 if (!onlyCalc) props.dispatch.changeIsProgressAdditionalServices(false);
                 props.dispatch.changeIsProgressCalculation(false);
+                // messages(resp);
             },
         )
 

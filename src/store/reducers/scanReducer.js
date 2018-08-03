@@ -36,7 +36,8 @@ import {
     ACTION_CHANGE_IS_PROGRESS_ADDITIONAL_SERVICE,
     ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE,
     ACTION_CHANGE_IS_PROGRESS_CURRENCY,
-    ACTION_CHANGE_CURRENCY, ACTION_CHANGE_IS_PROGRESS_CALCULATION
+    ACTION_CHANGE_CURRENCY, ACTION_CHANGE_IS_PROGRESS_CALCULATION,
+    ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT
 
 } from "../actions/actionConst";
 
@@ -297,7 +298,7 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
     }
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE) {
-        newState.order.services.additionalServices = action.payload.additionalServices;
+        if (action.payload.additionalServices) newState.order.services.additionalServices = action.payload.additionalServices;
         newState.order.calculator = action.payload.calculator;
     }
 
@@ -307,6 +308,10 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_CURRENCY) {
         newState.order.currency = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT) {
+        // ничего не делаем
     }
 
     return newState;
