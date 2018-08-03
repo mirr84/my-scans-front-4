@@ -17,7 +17,7 @@ import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
 import Passport from "./Passport";
-import {getServiceList} from "./serviceScan";
+import {getCurrency, getServiceList} from "./serviceScan";
 
 const RequestSender = ({state, dispatch}) =>
     (
@@ -34,7 +34,12 @@ const RequestSender = ({state, dispatch}) =>
                                            (e) => {
                                                dispatch.changeOrderCitySenderInput(e);
                                                dispatch.changeOrderContragentSenderInput(null);
+                                           }
+                                       }
+                                       onBlur={
+                                           () => {
                                                getServiceList({state, dispatch});
+                                               getCurrency({state, dispatch});
                                            }
                                        }
                                        placeholder={'Город отправителя'}
@@ -57,7 +62,12 @@ const RequestSender = ({state, dispatch}) =>
                                              onChange={
                                                  (e) => {
                                                      dispatch.changeOrderContragentSenderInput(e);
+                                                 }
+                                             }
+                                             onBlur={
+                                                 () => {
                                                      getServiceList({state, dispatch});
+                                                     getCurrency({state, dispatch});
                                                  }
                                              }
                                              placeholder={'Контрагент отправителя'}

@@ -32,3 +32,42 @@
 label {
     font-size: 14px;
 }
+
+/* ------------ */
+
+.div-load {
+    vertical-align: top;
+    border: none;
+    padding: 0px;
+    background: linear-gradient(
+            to right,
+            #79c975,
+            #5dc7cc,
+            #fad108,
+            #b9ce2b,
+            #79c975
+    )
+    160%
+    0
+    repeat-x,
+    linear-gradient(to top, #79c975, #5dc7cc, #fad108, #b9ce2b, #79c975)
+    100%
+    20%
+    repeat-y,
+    linear-gradient(to left, #79c975, #5dc7cc, #fad108, #b9ce2b, #79c975)
+    10%
+    100%
+    repeat-x,
+    linear-gradient(to bottom, #79c975, #5dc7cc, #fad108, #b9ce2b, #79c975)
+    0%
+    10%
+    repeat-y;
+
+    background-size: 300% 10px, 10px 300%;
+    animation: bd 3s infinite linear;
+}
+@keyframes bd {
+    50% {
+        background-position: 460% 0, 100% 320%, 310% 100%, 0% 310%;
+    }
+}

@@ -13,7 +13,9 @@ import {
     actionChangeIsOpenDropdownSenderFio, actionChangeIsOpenDropdownReceiverFio, actionChangeSenderFioInput, actionChangeReceiverFioInput,
     actionChangeGetPhoneTypes, actionChangeSetPhones, actionChangeSetPassport, actionChangeSetPlaces, actionChangeJournalCourierCityInput,
     actionChangeJournalOrderNumberInput, actionСhangeJournalCourierInput, actionChangeJournalOnlyUrgentInput, actionChangeSetTimeOut,
-    actionChangeOrderContragentOtherInput, actionChangePayerPayType, actionChangePayerType, actionChangeSetOrderTariffsData
+    actionChangeOrderContragentOtherInput, actionChangePayerPayType, actionChangePayerType, actionChangeSetOrderTariffsData, actionChangeIsProgressTariffs,
+    actionChangeIsProgressCalculationAndAdditionalServices, actionChangeSetOrderCalculationAndAdditionalServicesData, actionChangeIsProgressCurrency,
+    actionChangeSetOrderCurrencyData
 
 } from "./actions/actions";
 
@@ -85,6 +87,11 @@ export const dispatchs = (dispatch) =>
                     changePayerPayType: (v) => dispatch(actionChangePayerPayType(v)),
                     changePayerType: (v) => dispatch(actionChangePayerType(v)),
                     changeSetOrderTariffsData: (v) => dispatch(actionChangeSetOrderTariffsData(v)),
+                    changeIsProgressTariffs: (v) => dispatch(actionChangeIsProgressTariffs(v)),
+                    changeIsProgressCalculationAndAdditionalServices: (v) => dispatch(actionChangeIsProgressCalculationAndAdditionalServices(v)),
+                    changeSetOrderCalculationAndAdditionalServicesData: (v) => dispatch(actionChangeSetOrderCalculationAndAdditionalServicesData(v)),
+                    changeIsProgressCurrency: (v) => dispatch(actionChangeIsProgressCurrency(v)),
+                    changeSetOrderCurrencyData: (v) => dispatch(actionChangeSetOrderCurrencyData(v)),
 
                 }
         }

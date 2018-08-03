@@ -13,7 +13,7 @@ import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
 import Passport from "./Passport";
-import {getServiceList} from "./serviceScan";
+import {getCurrency, getServiceList} from "./serviceScan";
 
 const RequestReceiver = ({state, dispatch}) =>
     (
@@ -30,7 +30,12 @@ const RequestReceiver = ({state, dispatch}) =>
                                            (e) => {
                                                dispatch.changeOrderCityReceiverInput(e)
                                                dispatch.changeOrderContragentReceiverInput(null);
+                                           }
+                                       }
+                                       onBlur={
+                                           () => {
                                                getServiceList({state, dispatch});
+                                               getCurrency({state, dispatch});
                                            }
                                        }
                                        placeholder={'Город получателя'}
@@ -53,7 +58,12 @@ const RequestReceiver = ({state, dispatch}) =>
                                              onChange={
                                                  (e) => {
                                                      dispatch.changeOrderContragentReceiverInput(e);
+                                                 }
+                                             }
+                                             onBlur={
+                                                 () => {
                                                      getServiceList({state, dispatch});
+                                                     getCurrency({state, dispatch});
                                                  }
                                              }
                                              placeholder={'Контрагент получателя'}

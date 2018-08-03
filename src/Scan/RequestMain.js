@@ -54,7 +54,6 @@ const RequestMain = ({state, dispatch}) =>
                                value={state.scanReducer.order.main.orderType}
                                onChange={(e) => {
                                    dispatch.changeScanOrderTypeInput(e.target.value);
-                                   getServiceList({state, dispatch});
                                }}
                         >
                             <option value={1}>Доставка</option>
@@ -73,6 +72,11 @@ const RequestMain = ({state, dispatch}) =>
                                    dispatch.changeScanOrderModeDeliveryInput(e.target.value);
                                    getServiceList({state, dispatch});
                                }}
+                               // onBlur={
+                               //     () => {
+                               //         getServiceList({state, dispatch});
+                               //     }
+                               // }
                         >
                             <option value={1}>дверь-дверь</option>
                             <option value={2}>дверь-склад</option>

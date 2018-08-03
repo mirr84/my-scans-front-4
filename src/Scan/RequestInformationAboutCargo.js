@@ -82,6 +82,10 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                                (e) => {
                                                    item.length = e.target.value;
                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
+                                               }
+                                           }
+                                           onBlur={
+                                               () => {
                                                    getServiceList({state, dispatch});
                                                }
                                            }
@@ -96,6 +100,10 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                                (e) => {
                                                    item.height = e.target.value;
                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
+                                               }
+                                           }
+                                           onBlur={
+                                               () => {
                                                    getServiceList({state, dispatch});
                                                }
                                            }
@@ -110,6 +118,10 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                                (e) => {
                                                    item.width = e.target.value;
                                                    dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
+                                               }
+                                           }
+                                           onBlur={
+                                               () => {
                                                    getServiceList({state, dispatch});
                                                }
                                            }
@@ -122,6 +134,10 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                            onChange={
                                                (e) => {
                                                    item.weight = e.target.value;
+                                               }
+                                           }
+                                           onBlur={
+                                               () => {
                                                    getServiceList({state, dispatch});
                                                }
                                            }

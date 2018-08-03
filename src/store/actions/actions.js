@@ -15,7 +15,8 @@ import {
     ACTION_CHANGE_SET_PHONES, ACTION_CHANGE_SET_PASSPORT, ACTION_CHANGE_SET_PLACES, ACTION_CHANGE_JOURNAL_COURIER_CITY_INPUT,
     ACTION_CHANGE_JOURNAL_ORDER_NUMBER_INPUT, ACTION_CHANGE_JOURNAL_COURIER_INPUT, ACTION_CHANGE_JOURNAL_ONLY_UNGENT_INPUT, ACTION_IS_SET_TIMEOUT_WORK,
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT, ACTION_CHANGE_SCAN_ORDER_PAYER_PAY_TYPE, ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE,
-    ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA
+    ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA, ACTION_CHANGE_IS_PROGRESS_TARIFFS, ACTION_CHANGE_IS_PROGRESS_CALCULATION_AND_ADDITIONAL_SERVICE,
+    ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE, ACTION_CHANGE_IS_PROGRESS_CURRENCY, ACTION_CHANGE_CURRENCY
 
 } from "./actionConst";
 
@@ -432,6 +433,41 @@ export const actionChangePayerType = (payload) => (
 export const actionChangeSetOrderTariffsData = (payload) => (
     {
         type: ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA,
+        payload
+    }
+)
+
+export const actionChangeIsProgressTariffs = (payload) => (
+    {
+        type: ACTION_CHANGE_IS_PROGRESS_TARIFFS,
+        payload
+    }
+)
+
+export const actionChangeIsProgressCalculationAndAdditionalServices = (payload) => (
+    {
+        type: ACTION_CHANGE_IS_PROGRESS_CALCULATION_AND_ADDITIONAL_SERVICE,
+        payload
+    }
+)
+
+export const actionChangeSetOrderCalculationAndAdditionalServicesData = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE,
+        payload
+    }
+)
+
+export const actionChangeIsProgressCurrency = (payload) => (
+    {
+        type: ACTION_CHANGE_IS_PROGRESS_CURRENCY,
+        payload
+    }
+)
+
+export const actionChangeSetOrderCurrencyData = (payload) => (
+    {
+        type: ACTION_CHANGE_CURRENCY,
         payload
     }
 )

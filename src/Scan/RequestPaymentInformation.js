@@ -5,7 +5,7 @@ import {Col, FormGroup, Input, Label, Row} from "reactstrap";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TableTariffs from "./TableTariffs";
 import TableAdditionalServices from "./TableAdditionalServices";
-import {getServiceList} from "./serviceScan";
+import {getCurrency, getServiceList} from "./serviceScan";
 
 const CASH = 'cash',
     AVANS = 'avans',
@@ -28,6 +28,7 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                                        dispatch.changePayerPayType(CASH);
                                        dispatch.changePayerType(SENDER);
                                        getServiceList({state, dispatch});
+                                       getCurrency({state, dispatch});
                                    }}
                             />{' '}Отправитель нал
                         </Label>
@@ -42,6 +43,7 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                                        dispatch.changePayerPayType(AVANS);
                                        dispatch.changePayerType(SENDER);
                                        getServiceList({state, dispatch});
+                                       getCurrency({state, dispatch});
                                    }}
                             />{' '}Отправитель аванс
                         </Label>
@@ -56,6 +58,7 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                                        dispatch.changePayerPayType(BT_CONTRACT);
                                        dispatch.changePayerType(OTHER);
                                        getServiceList({state, dispatch});
+                                       getCurrency({state, dispatch});
                                    }}
                             />{' '}По договору
                         </Label>
@@ -72,6 +75,7 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                                        dispatch.changePayerPayType(CASH);
                                        dispatch.changePayerType(RECEIVER);
                                        getServiceList({state, dispatch});
+                                       getCurrency({state, dispatch});
                                    }}
                             />{' '}Получатель нал
                         </Label>
@@ -86,6 +90,7 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                                        dispatch.changePayerPayType(AVANS);
                                        dispatch.changePayerType(RECEIVER);
                                        getServiceList({state, dispatch});
+                                       getCurrency({state, dispatch});
                                    }}
                             />{' '}Получатель аванс
                         </Label>
@@ -100,7 +105,12 @@ const RequestPaymentInformation = ({state, dispatch}) =>
                                          onChange={
                                              (e) => {
                                                  dispatch.changeOrderContragentOtherInput(e);
+                                             }
+                                         }
+                                         onBlur={
+                                             () => {
                                                  getServiceList({state, dispatch});
+                                                 getCurrency({state, dispatch});
                                              }
                                          }
                                          placeholder={'Контрагент'}
