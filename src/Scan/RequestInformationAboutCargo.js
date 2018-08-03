@@ -134,6 +134,7 @@ const RequestInformationAboutCargo = ({state, dispatch}) =>
                                            onChange={
                                                (e) => {
                                                    item.weight = e.target.value;
+                                                   dispatch.changeSetPlaces(state.scanReducer.order.cargo.places);
                                                }
                                            }
                                            onBlur={
