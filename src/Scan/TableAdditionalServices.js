@@ -2,10 +2,11 @@ import React, {Fragment} from 'react';
 
 import {connector} from "../store/utils/connector";
 import {Button, Col, FormGroup, Input, Label, Table} from "reactstrap";
+import {getCalculationAndAdditionalServices} from "./serviceScan";
 
 const TableAdditionalServices = ({state, dispatch}) =>
     (
-        <div className={state.scanReducer.isProgressCalculationAndAdditionalServices ? 'div-load' : ''}>
+        <div className={state.scanReducer.isProgressAdditionalServices ? 'div-load' : ''}>
             <Label>Дополнительные услуги</Label>
             <Table size="sm" hover striped>
                 <thead>
@@ -19,11 +20,26 @@ const TableAdditionalServices = ({state, dispatch}) =>
                 {
                     state.scanReducer.order.services.additionalServices.map(
                         (item, idx) => (
-                            <tr key={idx} style={{cursor: 'pointer'}}>
+                            <tr key={idx}>
                                 <td>
-                                    <FormGroup check>
-                                        <Input type="checkbox" checked={item.select}/>
-                                    </FormGroup>
+                                    {
+                                        item.params && Array.isArray(item.params) && item.params.length > 0 ?
+                                            (
+                                                <div />
+                                            )
+                                            :
+                                            <FormGroup check>
+                                                <Input type="checkbox"
+                                                       checked={item.select}
+                                                       onChange={
+                                                           () => {
+                                                               item.select = !item.select;
+                                                               getCalculationAndAdditionalServices({state, dispatch}, true);
+                                                           }
+                                                       }
+                                                />
+                                            </FormGroup>
+                                    }
                                 </td>
                                 <td>{item.name}</td>
                                 <td>

@@ -33,10 +33,10 @@ import {
     ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE,
     ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA,
     ACTION_CHANGE_IS_PROGRESS_TARIFFS,
-    ACTION_CHANGE_IS_PROGRESS_CALCULATION_AND_ADDITIONAL_SERVICE,
+    ACTION_CHANGE_IS_PROGRESS_ADDITIONAL_SERVICE,
     ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE,
     ACTION_CHANGE_IS_PROGRESS_CURRENCY,
-    ACTION_CHANGE_CURRENCY
+    ACTION_CHANGE_CURRENCY, ACTION_CHANGE_IS_PROGRESS_CALCULATION
 
 } from "../actions/actionConst";
 
@@ -122,7 +122,8 @@ const initState = {
     timeout: 0,
 
     isProgressTariffs: false,
-    isProgressCalculationAndAdditionalServices: false,
+    isProgressAdditionalServices: false,
+    isProgressCalculation: false,
     isProgressCurrency: false,
 
     isProgressGetTaskByKey: false,
@@ -287,8 +288,12 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
         newState.isProgressTariffs = action.payload;
     }
 
-    if (action.type === ACTION_CHANGE_IS_PROGRESS_CALCULATION_AND_ADDITIONAL_SERVICE) {
-        newState.isProgressCalculationAndAdditionalServices = action.payload;
+    if (action.type === ACTION_CHANGE_IS_PROGRESS_ADDITIONAL_SERVICE) {
+        newState.isProgressAdditionalServices = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_IS_PROGRESS_CALCULATION) {
+        newState.isProgressCalculation = action.payload;
     }
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE) {

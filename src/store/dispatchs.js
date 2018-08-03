@@ -14,8 +14,8 @@ import {
     actionChangeGetPhoneTypes, actionChangeSetPhones, actionChangeSetPassport, actionChangeSetPlaces, actionChangeJournalCourierCityInput,
     actionChangeJournalOrderNumberInput, actionСhangeJournalCourierInput, actionChangeJournalOnlyUrgentInput, actionChangeSetTimeOut,
     actionChangeOrderContragentOtherInput, actionChangePayerPayType, actionChangePayerType, actionChangeSetOrderTariffsData, actionChangeIsProgressTariffs,
-    actionChangeIsProgressCalculationAndAdditionalServices, actionChangeSetOrderCalculationAndAdditionalServicesData, actionChangeIsProgressCurrency,
-    actionChangeSetOrderCurrencyData
+    actionChangeIsProgressAdditionalServices, actionChangeSetOrderCalculationAndAdditionalServicesData, actionChangeIsProgressCurrency,
+    actionChangeSetOrderCurrencyData, actionChangeIsProgressCalculation
 
 } from "./actions/actions";
 
@@ -88,7 +88,8 @@ export const dispatchs = (dispatch) =>
                     changePayerType: (v) => dispatch(actionChangePayerType(v)),
                     changeSetOrderTariffsData: (v) => dispatch(actionChangeSetOrderTariffsData(v)),
                     changeIsProgressTariffs: (v) => dispatch(actionChangeIsProgressTariffs(v)),
-                    changeIsProgressCalculationAndAdditionalServices: (v) => dispatch(actionChangeIsProgressCalculationAndAdditionalServices(v)),
+                    changeIsProgressAdditionalServices: (v) => dispatch(actionChangeIsProgressAdditionalServices(v)),
+                    changeIsProgressCalculation: (v) => dispatch(actionChangeIsProgressCalculation(v)),
                     changeSetOrderCalculationAndAdditionalServicesData: (v) => dispatch(actionChangeSetOrderCalculationAndAdditionalServicesData(v)),
                     changeIsProgressCurrency: (v) => dispatch(actionChangeIsProgressCurrency(v)),
                     changeSetOrderCurrencyData: (v) => dispatch(actionChangeSetOrderCurrencyData(v)),

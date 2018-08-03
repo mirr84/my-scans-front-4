@@ -5,7 +5,7 @@ import {Container} from "reactstrap";
 
 const RequestTotal = ({state, dispatch}) =>
     (
-        <div className={state.scanReducer.isProgressCalculationAndAdditionalServices ? 'div-load' : ''}>
+        <div className={state.scanReducer.isProgressCalculation ? 'div-load' : ''}>
                 {/*{*/}
                     {/*JSON.stringify(*/}
                         {/*state.scanReducer.order.currency*/}

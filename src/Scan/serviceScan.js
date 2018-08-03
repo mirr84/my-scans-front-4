@@ -159,7 +159,7 @@ export const getCurrency = (props) => {
         )
 }
 
-export const getCalculationAndAdditionalServices = (props) => {
+export const getCalculationAndAdditionalServices = (props, onlyCalc = false) => {
 
     const body = {
         apiName: "orderPhoto",
@@ -169,7 +169,8 @@ export const getCalculationAndAdditionalServices = (props) => {
         user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
     }
 
-    props.dispatch.changeIsProgressCalculationAndAdditionalServices(true);
+    if (!onlyCalc) props.dispatch.changeIsProgressAdditionalServices(true);
+    props.dispatch.changeIsProgressCalculation(true);
 
     axios.post('/api/preback',
         {...body},
@@ -182,7 +183,8 @@ export const getCalculationAndAdditionalServices = (props) => {
         .then(
             resp => {
                 props.dispatch.changeSetOrderCalculationAndAdditionalServicesData({additionalServices: resp.order.services.additionalServices, calculator: resp.order.calculator });
-                props.dispatch.changeIsProgressCalculationAndAdditionalServices(false);
+                if (!onlyCalc) props.dispatch.changeIsProgressAdditionalServices(false);
+                props.dispatch.changeIsProgressCalculation(false);
             },
         )
 
