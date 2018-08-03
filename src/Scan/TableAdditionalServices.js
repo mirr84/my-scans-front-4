@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Button, FormGroup, Input, Label, Table} from "reactstrap";
+import {Button, Col, FormGroup, Input, Label, Table} from "reactstrap";
 
 const TableAdditionalServices = ({state, dispatch}) =>
     (
-        <div className={state.scanReducer.isProgressCalculationAndAdditionalServices?'div-load':''}>
+        <div className={state.scanReducer.isProgressCalculationAndAdditionalServices ? 'div-load' : ''}>
             <Label>Дополнительные услуги</Label>
             <Table size="sm" hover striped>
                 <thead>
@@ -18,15 +18,38 @@ const TableAdditionalServices = ({state, dispatch}) =>
                 <tbody>
                 {
                     state.scanReducer.order.services.additionalServices.map(
-                        (item,idx) => (
-                            <tr key={idx} style={ {cursor: 'pointer'} }>
+                        (item, idx) => (
+                            <tr key={idx} style={{cursor: 'pointer'}}>
                                 <td>
                                     <FormGroup check>
-                                        <Input type="checkbox" checked={item.select} />
+                                        <Input type="checkbox" checked={item.select}/>
                                     </FormGroup>
                                 </td>
                                 <td>{item.name}</td>
-                                <td>{JSON.stringify(item.params)}</td>
+                                <td>
+                                    {
+                                        item.params && Array.isArray(item.params) && item.params.length > 0 ?
+                                            (
+                                                item.params.map(
+                                                    item1 => (
+                                                        <FormGroup row style={ {'margin-bottom': '0px'} }>
+                                                            <Label sm={5}>{item1.description}:</Label>
+                                                            <Col sm={7}>
+                                                                <Input type="text" style={ {'margin-top': '5px'} }
+                                                                       bsSize={'sm'}
+                                                                       placeholder={item1.description}
+                                                                />
+                                                            </Col>
+                                                        </FormGroup>
+                                                    )
+                                                )
+                                            )
+                                            :
+                                            (
+                                                <div/>
+                                            )
+                                    }
+                                </td>
                             </tr>
                         )
                     )
