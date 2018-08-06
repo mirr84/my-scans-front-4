@@ -25,18 +25,22 @@ const Journal = ({state, dispatch}) =>
     (
         <Container fluid={true}>
 
-            <Card>
-                <CardBody>
-                    <CardTitle
-                        style={{margin: 0, cursor: 'pointer'}}
-                        onClick={() => dispatch.changeJournalFilterCollapse(!state.journalReducer.collapse)}>
-                        Фильтр
-                    </CardTitle>
-                    <Collapse isOpen={state.journalReducer.collapse}>
-                        <RequestFilter/>
-                    </Collapse>
-                </CardBody>
-            </Card>
+            <Row>
+                <Col>
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                style={{margin: 0, cursor: 'pointer'}}
+                                onClick={() => dispatch.changeJournalFilterCollapse(!state.journalReducer.collapse)}>
+                                Фильтр
+                            </CardTitle>
+                            <Collapse isOpen={state.journalReducer.collapse}>
+                                <RequestFilter/>
+                            </Collapse>
+                        </CardBody>
+                    </Card>
+                </Col>
+            </Row>
 
             <Row>
                 <Col xl={state.journalReducer.selectRowCode ? 8 : 12}>

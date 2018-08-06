@@ -14,11 +14,16 @@
     font-size: 12px;
 }
 
+.col, .col-xl-8, .col-xl-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .card, .img-thumbnail, div[id='imageContainer'], .navbar {
-    margin-top: 5px;
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+    margin-top: 10px;
+    -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
 }
 
 .modal-body, .padding-0 {
