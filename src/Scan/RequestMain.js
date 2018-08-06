@@ -5,8 +5,8 @@ import {Button, Col, Container, FormGroup, Input, InputGroup, InputGroupAddon, L
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import {getServiceList} from "./serviceScan";
-import {FaHandPointer} from 'react-icons/fa';
+import {getServiceList, isExistsOrderNumber, operationLinkFirstWithOrder} from "./serviceScan";
+import {FaHandPointer, FaClock} from 'react-icons/fa';
 
 const RequestMain = ({state, dispatch}) =>
     (
@@ -16,25 +16,33 @@ const RequestMain = ({state, dispatch}) =>
                     <FormGroup>
                         <Label for="orderNumber">Номер заказа:</Label>
                         <InputGroup>
-                        <Input type="text"
-                               bsSize={'sm'}
-                               id="orderNumber"
-                               placeholder="Номер заказа"
-                               value={state.scanReducer.order.main.orderNumber}
-                               onChange={(e) => {
-                                   dispatch.changeScanOrderNumberInput(e.target.value);
-                               }}
-                        />
+
+                            <Input type="text"
+                                   bsSize={'sm'}
+                                   id="orderNumber"
+                                   placeholder="Номер заказа"
+                                   value={state.scanReducer.order.main.orderNumber}
+                                   onChange={(e) => {
+                                       dispatch.changeScanOrderNumberInput(e.target.value);
+                                       isExistsOrderNumber({state, dispatch})
+                                   }}
+                            />
                             {
                                 state.scanReducer.order.main.request ?
                                     <Button color="secondary"
                                             disabled={
                                                 !state.scanReducer.order.main.orderNumber ||
-                                                (''+state.scanReducer.order.main.orderNumber).length < 7 ||
-                                                (''+state.scanReducer.order.main.orderNumber).length > 11
+                                                ('' + state.scanReducer.order.main.orderNumber).length < 7 ||
+                                                ('' + state.scanReducer.order.main.orderNumber).length > 11 ||
+                                                !state.scanReducer.isExistsOrderNumber
+                                            }
+                                            onClick={
+                                                () => operationLinkFirstWithOrder({state, dispatch})
                                             }
                                             size={'sm'}>
-                                        <FaHandPointer />
+                                        {
+                                            state.scanReducer.isProgressIsExistsOrderNumber ? <FaClock/> : <FaHandPointer/>
+                                        }
                                     </Button>
                                     :
                                     <div></div>
@@ -51,7 +59,7 @@ const RequestMain = ({state, dispatch}) =>
                             className="form-control form-control-sm width-100"
                             dateFormat="DD.MM.YYYY"
                             readOnly={true}
-                            selected={moment(state.scanReducer.order.main.date, 'DD.MM.YYYY')}
+                            selected={moment(state.scanReducer.order.main.date , 'DD.MM.YYYY')}
                             onChange={
                                 (e) => {
                                     dispatch.changeScanDateInput(e.format('DD.MM.YYYY'));
@@ -90,11 +98,11 @@ const RequestMain = ({state, dispatch}) =>
                                    dispatch.changeScanOrderModeDeliveryInput(e.target.value);
                                    getServiceList({state, dispatch});
                                }}
-                               // onBlur={
-                               //     () => {
-                               //         getServiceList({state, dispatch});
-                               //     }
-                               // }
+                            // onBlur={
+                            //     () => {
+                            //         getServiceList({state, dispatch});
+                            //     }
+                            // }
                         >
                             <option value={1}>дверь-дверь</option>
                             <option value={2}>дверь-склад</option>

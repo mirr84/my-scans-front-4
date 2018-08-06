@@ -37,12 +37,14 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE,
     ACTION_CHANGE_IS_PROGRESS_CURRENCY,
     ACTION_CHANGE_CURRENCY, ACTION_CHANGE_IS_PROGRESS_CALCULATION,
-    ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT
+    ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT,
+    ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER, ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER,
 
 } from "../actions/actionConst";
 
 import {getLocalStorage} from "../utils/getLocalStorage";
 import moment from 'moment';
+import {actionChangeIsProgressIsExistsOrderNumber} from "../actions/actions";
 
 const order = {
     main: {
@@ -126,9 +128,12 @@ const initState = {
     isProgressAdditionalServices: false,
     isProgressCalculation: false,
     isProgressCurrency: false,
-
+    isProgressIsExistsOrderNumber: false,
     isProgressGetTaskByKey: false,
-    order,
+
+    isExistsOrderNumber: false,
+
+    order: Object.assign({}, order),
     isGetOrderFromWork: false,
     isStopGetOrderFromWorkModal: false,
     movedFrom: 'journal',
@@ -142,7 +147,8 @@ const initState = {
     informationAboutCargoCollapse: true,
 
     isOpenDropdownSenderFio: false,
-    isOpenDropdownReceiverFio: false
+    isOpenDropdownReceiverFio: false,
+
 }
 
 export const scanReducer = (state = getLocalStorage('scanReducer', initState), action) => {
@@ -158,10 +164,12 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
     }
 
     if (action.type === ACTION_CHANGE_SET_ORDER_DATA) {
-        if (!action.payload) {
-            newState.order = order;
-        } else {
+        newState.order = Object.assign({}, order);
+        if (action.payload) {
             newState.order = action.payload;
+        }
+        if (!newState.order.main.date) {
+            newState.order.main.date = moment(new Date()).format('DD.MM.YYYY');
         }
     }
 
@@ -312,6 +320,14 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT) {
         // ничего не делаем
+    }
+
+    if (action.type === ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER) {
+        newState.isProgressIsExistsOrderNumber = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER) {
+        newState.isExistsOrderNumber = action.payload;
     }
 
     return newState;

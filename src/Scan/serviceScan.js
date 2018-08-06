@@ -21,6 +21,7 @@ export const getTaskByKey = (props, movedFrom = 'journal') => {
     )
         .then(
             resp => {
+                props.dispatch.changeSetOrderData(null);
                 props.dispatch.changeSetOrderData(resp.data.order);
                 props.dispatch.changeMenuItem('scan');
                 props.dispatch.changeMovedFrom(props.state.menuReducer.item);
@@ -53,6 +54,7 @@ export const getTaskAndLock = (props, movedFrom = 'journal') => {
     )
         .then(
             resp => {
+                props.dispatch.changeSetOrderData(null);
                 props.dispatch.changeSetOrderData(resp.data.order);
                 props.dispatch.changeMenuItem('scan');
                 props.dispatch.changeMovedFrom(props.state.menuReducer.item);
@@ -176,7 +178,10 @@ export const getCalculationAndAdditionalServices = (props, onlyCalc = false) => 
         )
         .then(
             resp => {
-                props.dispatch.changeSetOrderCalculationAndAdditionalServicesData({additionalServices: !onlyCalc?resp.order.services.additionalServices: null, calculator: resp.order.calculator});
+                props.dispatch.changeSetOrderCalculationAndAdditionalServicesData({
+                    additionalServices: !onlyCalc ? resp.order.services.additionalServices : null,
+                    calculator: resp.order.calculator
+                });
                 if (!onlyCalc) props.dispatch.changeIsProgressAdditionalServices(false);
                 props.dispatch.changeIsProgressCalculation(false);
                 // messages(resp);
@@ -209,6 +214,76 @@ export const getServiceList = (props) => {
                 props.dispatch.changeSetOrderTariffsData(resp.order.services.tariffs);
                 props.dispatch.changeIsProgressTariffs(false);
                 getCalculationAndAdditionalServices(props);
+                messages(resp);
+            },
+        )
+
+}
+
+export const isExistsOrderNumber = (props) => {
+
+    if (props && props.state && props.state.scanReducer && props.state.scanReducer && props.state.scanReducer.order && props.state.scanReducer.order.main) {
+        if (props.state.scanReducer.order.main.orderNumber && props.state.scanReducer.order.main.request) {
+
+            const body = {
+                apiName: "orderPhoto",
+                apiPath: "/isExistsOrderNumber",
+                field: "orderNumber",
+                value: props.state.scanReducer.order.main.orderNumber,
+                lang: props.state.loginReducer.lang,
+                user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+            }
+
+            props.dispatch.changeIsProgressIsExistsOrderNumber(true);
+            props.dispatch.changeIsIsExistsOrderNumber(false);
+
+            axios.post('/api/preback',
+                {...body}
+            )
+                .then(
+                    resp => {
+                        props.dispatch.changeIsIsExistsOrderNumber(true);
+                    },
+                    err => {
+                        props.dispatch.changeIsIsExistsOrderNumber(false);
+                    }
+                )
+                .then(
+                    resp => {
+                        props.dispatch.changeIsProgressIsExistsOrderNumber(false);
+                    }
+                )
+
+        }
+    }
+
+}
+
+export const operationLinkFirstWithOrder = (props) => {
+
+    const body = {
+        apiName: "orderPhoto",
+        apiPath: "/operationLinkFirstWithOrder",
+        fields: [
+            {field: "orderNumber", value: props.state.scanReducer.order.main.orderNumber},
+            {field: "request", value: props.state.scanReducer.order.main.request}
+        ],
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+    }
+
+    axios.post('/api/preback',
+        {...body}
+    )
+        .then(
+            resp => {
+                getTaskAndLock(props, props.state.menuReducer.item);
+                return resp.data;
+            },
+            err => err.response.data
+        )
+        .then(
+            resp => {
                 messages(resp);
             },
         )

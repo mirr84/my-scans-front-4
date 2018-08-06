@@ -15,7 +15,8 @@ import {
     actionChangeJournalOrderNumberInput, actionСhangeJournalCourierInput, actionChangeJournalOnlyUrgentInput, actionChangeSetTimeOut,
     actionChangeOrderContragentOtherInput, actionChangePayerPayType, actionChangePayerType, actionChangeSetOrderTariffsData, actionChangeIsProgressTariffs,
     actionChangeIsProgressAdditionalServices, actionChangeSetOrderCalculationAndAdditionalServicesData, actionChangeIsProgressCurrency,
-    actionChangeSetOrderCurrencyData, actionChangeIsProgressCalculation, actionChangeParamsAdditionalServicesInput
+    actionChangeSetOrderCurrencyData, actionChangeIsProgressCalculation, actionChangeParamsAdditionalServicesInput, actionChangeIsProgressIsExistsOrderNumber,
+    actionChangeIsIsExistsOrderNumber
 
 } from "./actions/actions";
 
@@ -94,6 +95,8 @@ export const dispatchs = (dispatch) =>
                     changeIsProgressCurrency: (v) => dispatch(actionChangeIsProgressCurrency(v)),
                     changeSetOrderCurrencyData: (v) => dispatch(actionChangeSetOrderCurrencyData(v)),
                     changeParamsAdditionalServicesInput: (v) => dispatch(actionChangeParamsAdditionalServicesInput(v)),
+                    changeIsProgressIsExistsOrderNumber: (v) => dispatch(actionChangeIsProgressIsExistsOrderNumber(v)),
+                    changeIsIsExistsOrderNumber: (v) => dispatch(actionChangeIsIsExistsOrderNumber(v)),
 
                 }
         }
