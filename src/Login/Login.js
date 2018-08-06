@@ -12,6 +12,8 @@ import {
     FormGroup, Label, Input, Form
 } from "reactstrap";
 import {doLogin} from "./serviceLogin";
+import {getCurrency, getServiceList} from "../Scan/serviceScan";
+import {AsyncLogin} from "../AsyncTypeaheads/Login";
 
 const Login = ({state, dispatch}) =>
     (
@@ -25,19 +27,27 @@ const Login = ({state, dispatch}) =>
                         <Form onSubmit={(e) => { e.preventDefault(); doLogin({state, dispatch});}}>
                             <FormGroup>
                                 <Label for="login">Имя пользователя:</Label>
-                                <Input type="text"
-                                       id="login"
-                                       placeholder="Логин"
-                                       value={state.loginReducer.login}
-                                       onChange={(e) => {
-                                           dispatch.changeLoginInput(e.target.value)
-                                       }}
+                                <AsyncLogin props={{state, dispatch}}
+                                            id={'login'}
+                                           bsSize={'sm'}
+                                           value={state.loginReducer.login}
+                                           onChange={
+                                               (e) => {
+                                                   dispatch.changeLoginInput(e)
+                                               }
+                                           }
+                                           onBlur={
+                                               () => {
+                                               }
+                                           }
+                                           placeholder={'Имя пользователя'}
                                 />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Пароль:</Label>
                                 <Input type="password"
                                        id="password"
+                                       bsSize={'sm'}
                                        placeholder="Пароль"
                                        value={state.loginReducer.password}
                                        onChange={(e) => {
@@ -46,7 +56,9 @@ const Login = ({state, dispatch}) =>
                                 />
                             </FormGroup>
                             <div style={{float: 'right'}}>
-                                <Button disabled={!state.loginReducer.login || !state.loginReducer.password}>
+                                <Button
+                                    size={'sm'}
+                                    disabled={!state.loginReducer.login || !state.loginReducer.password}>
                                     Войти
                                 </Button>
                             </div>
