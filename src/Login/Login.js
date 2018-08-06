@@ -12,7 +12,6 @@ import {
     FormGroup, Label, Input, Form
 } from "reactstrap";
 import {doLogin} from "./serviceLogin";
-import {getCurrency, getServiceList} from "../Scan/serviceScan";
 import {AsyncLogin} from "../AsyncTypeaheads/Login";
 
 const Login = ({state, dispatch}) =>

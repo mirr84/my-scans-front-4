@@ -27,6 +27,9 @@ export const loginReducer = (state = getLocalStorage('loginReducer', initState),
     }
 
     if (action.type === ACTION_IS_AUTH) {
+        if (action.payload) {
+            // newState = initState;
+        }
         newState.isAuth = action.payload;
     }
 

@@ -14,10 +14,10 @@
     font-size: 12px;
 }
 
-.col, .col-xl-8, .col-xl-4 {
-    padding-left: 5px;
-    padding-right: 5px;
-}
+/*.col, .col-xl-8, .col-xl-4 {*/
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+/*}*/
 
 .card, .img-thumbnail, div[id='imageContainer'], .navbar {
     margin-top: 10px;
