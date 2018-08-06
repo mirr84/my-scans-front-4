@@ -18,6 +18,7 @@ import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
 import Passport from "./Passport";
 import {getCurrency, getServiceList} from "./serviceScan";
+import StreetPanel from "./StreetPanel";
 
 const RequestSender = ({state, dispatch}) =>
     (
@@ -135,20 +136,7 @@ const RequestSender = ({state, dispatch}) =>
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
-                    <Col xl={3}>
-                        <FormGroup>
-                            <Label for="senderZipCode">Индекс:</Label>
-
-                        </FormGroup>
-                    </Col>
-                    <Col xl={9}>
-                        <FormGroup>
-                            <Label for="senderAddress">Адрес:</Label>
-
-                        </FormGroup>
-                    </Col>
-                </Row>
+                <StreetPanel />
                 {/*<Row>*/}
                     {/*<Col>*/}
                         {/*<FormGroup>*/}

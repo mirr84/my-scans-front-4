@@ -14,6 +14,7 @@ import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
 import Passport from "./Passport";
 import {getCurrency, getServiceList} from "./serviceScan";
+import StreetPanel from "./StreetPanel";
 
 const RequestReceiver = ({state, dispatch}) =>
     (
@@ -134,28 +135,19 @@ const RequestReceiver = ({state, dispatch}) =>
                 </Row>
 
                 {
-                    state.scanReducer.order.main.modeDelivery === '1' || state.scanReducer.order.main.modeDelivery === '3' ? (
-                            <Row>
-                                <Col xl={3}>
-                                    <FormGroup>
-                                        <Label for="receiverZipCode">Индекс:</Label>
-
-                                    </FormGroup>
-                                </Col>
-                                <Col xl={9}>
-                                    <FormGroup>
-                                        <Label for="receiverAddress">Адрес:</Label>
-
-                                    </FormGroup>
-                                </Col>
-                            </Row>
+                    state.scanReducer.order.main.modeDelivery === '1' || state.scanReducer.order.main.modeDelivery === '3' ?
+                        (
+                            <StreetPanel />
                         )
                         :
-                        (<div></div>)
+                        (
+                            <div/>
+                        )
                 }
 
                 {
-                    state.scanReducer.order.main.modeDelivery === '2' || state.scanReducer.order.main.modeDelivery === '4' ? (
+                    state.scanReducer.order.main.modeDelivery === '2' || state.scanReducer.order.main.modeDelivery === '4' ?
+                        (
                             <Row>
                                 <Col>
                                     <FormGroup>
@@ -166,7 +158,9 @@ const RequestReceiver = ({state, dispatch}) =>
                             </Row>
                         )
                         :
-                        (<div></div>)
+                        (
+                            <div/>
+                        )
                 }
 
                 {

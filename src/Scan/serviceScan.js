@@ -182,9 +182,13 @@ export const getCalculationAndAdditionalServices = (props, onlyCalc = false) => 
                     additionalServices: !onlyCalc ? resp.order.services.additionalServices : null,
                     calculator: resp.order.calculator
                 });
-                if (!onlyCalc) props.dispatch.changeIsProgressAdditionalServices(false);
+                if (!onlyCalc) {
+                    props.dispatch.changeIsProgressAdditionalServices(false);
+                } else {
+                    messages(resp);
+                }
+
                 props.dispatch.changeIsProgressCalculation(false);
-                // messages(resp);
             },
         )
 
