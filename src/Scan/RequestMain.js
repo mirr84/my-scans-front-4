@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Col, Container, FormGroup, Input, Label, Row} from "reactstrap";
+import {Button, Col, Container, FormGroup, Input, InputGroup, InputGroupAddon, Label, Row} from "reactstrap";
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import {getServiceList} from "./serviceScan";
+import {FaHandPointer} from 'react-icons/fa';
 
 const RequestMain = ({state, dispatch}) =>
     (
@@ -14,6 +15,7 @@ const RequestMain = ({state, dispatch}) =>
                 <Col>
                     <FormGroup>
                         <Label for="orderNumber">Номер заказа:</Label>
+                        <InputGroup>
                         <Input type="text"
                                bsSize={'sm'}
                                id="orderNumber"
@@ -23,6 +25,22 @@ const RequestMain = ({state, dispatch}) =>
                                    dispatch.changeScanOrderNumberInput(e.target.value);
                                }}
                         />
+                            {
+                                state.scanReducer.order.main.request ?
+                                    <Button color="secondary"
+                                            disabled={
+                                                !state.scanReducer.order.main.orderNumber ||
+                                                (''+state.scanReducer.order.main.orderNumber).length < 7 ||
+                                                (''+state.scanReducer.order.main.orderNumber).length > 11
+                                            }
+                                            size={'sm'}>
+                                        <FaHandPointer />
+                                    </Button>
+                                    :
+                                    <div></div>
+                            }
+
+                        </InputGroup>
                     </FormGroup>
                 </Col>
                 <Col>
@@ -30,7 +48,7 @@ const RequestMain = ({state, dispatch}) =>
                         <Label for="dateFrom">Дата заказа:</Label>
                         <DatePicker
                             id="dateFrom"
-                            className="form-control"
+                            className="form-control form-control-sm width-100"
                             dateFormat="DD.MM.YYYY"
                             readOnly={true}
                             selected={moment(state.scanReducer.order.main.date, 'DD.MM.YYYY')}

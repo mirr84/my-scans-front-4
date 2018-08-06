@@ -29,6 +29,10 @@
     margin: 0px;
 }
 
+.width-100, .react-datepicker__input-container, .react-datepicker-wrapper {
+    width: 100%;
+}
+
 label {
     font-size: 14px!important;
 }
