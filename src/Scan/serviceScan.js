@@ -293,3 +293,31 @@ export const operationLinkFirstWithOrder = (props) => {
         )
 
 }
+
+export const genPvzList = (props) => {
+
+    const body = {
+        apiName: "pvz",
+        apiPath: "/deliveryPoint",
+        filter: {city: props.state.scanReducer.order.receiver.city },
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+    }
+
+    axios.post('/api/preback',
+        {...body}
+    )
+        .then(
+            resp => {
+                props.dispatch.changeSetPvzList(resp.data.items);
+                return resp.data;
+            },
+            err => err.response.data
+        )
+        .then(
+            resp => {
+                messages(resp);
+            },
+        )
+
+}

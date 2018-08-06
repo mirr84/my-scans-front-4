@@ -22,6 +22,7 @@ store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getStat
 
 axios.interceptors.request.use(
     (config) => {
+        config = Object.assign({}, config);
         config.headers.PWT = store.getState().loginReducer.pwt;
         return Promise.resolve(config);
     },

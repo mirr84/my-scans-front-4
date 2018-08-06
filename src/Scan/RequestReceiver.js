@@ -13,8 +13,9 @@ import {AsyncCity} from "../AsyncTypeaheads/City";
 import {AsyncContragent} from "../AsyncTypeaheads/Contragent";
 import TablePhones from "./TablePhones";
 import Passport from "./Passport";
-import {getCurrency, getServiceList} from "./serviceScan";
+import {genPvzList, getCurrency, getServiceList} from "./serviceScan";
 import StreetPanel from "./StreetPanel";
+import {AsyncPvz, ListPvz} from "../AsyncTypeaheads/Pvz";
 
 const RequestReceiver = ({state, dispatch}) =>
     (
@@ -37,6 +38,8 @@ const RequestReceiver = ({state, dispatch}) =>
                                            () => {
                                                getServiceList({state, dispatch});
                                                getCurrency({state, dispatch});
+                                               genPvzList({state, dispatch});
+                                               dispatch.changeOrderPvzInput(null);
                                            }
                                        }
                                        placeholder={'Город получателя'}
@@ -152,7 +155,28 @@ const RequestReceiver = ({state, dispatch}) =>
                                 <Col>
                                     <FormGroup>
                                         <Label for="receiverPvz">ПВЗ:</Label>
-
+                                        <ListPvz props={{state, dispatch}}
+                                                         bsSize={'sm'}
+                                                         disabled={
+                                                             !state.scanReducer.order ||
+                                                             !state.scanReducer.order.receiver ||
+                                                             !state.scanReducer.order.receiver.city ||
+                                                             !state.scanReducer.order.receiver.city.code
+                                                         }
+                                                         value={state.scanReducer.order.receiver.pvz}
+                                                         onChange={
+                                                             (e) => {
+                                                                 dispatch.changeOrderPvzInput(e);
+                                                             }
+                                                         }
+                                                         onBlur={
+                                                             () => {
+                                                                 getServiceList({state, dispatch});
+                                                                 getCurrency({state, dispatch});
+                                                             }
+                                                         }
+                                                         placeholder={'ПВЗ'}
+                                        />
                                     </FormGroup>
                                 </Col>
                             </Row>

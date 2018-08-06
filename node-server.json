@@ -11,7 +11,8 @@
     "loginAutocomplete": "http://172.16.100.27:8095",
 
     "orderPhoto": "http://172.16.100.27:8050/ordersPhoto",
-    "order": "http://172.16.100.27:8022"
+    "order": "http://172.16.100.27:8022",
+    "pvz": "http://172.16.100.27:8099"
 
   },
   "help_url": "help-url.json",

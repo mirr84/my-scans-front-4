@@ -36,9 +36,13 @@ import {
     ACTION_CHANGE_IS_PROGRESS_ADDITIONAL_SERVICE,
     ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE,
     ACTION_CHANGE_IS_PROGRESS_CURRENCY,
-    ACTION_CHANGE_CURRENCY, ACTION_CHANGE_IS_PROGRESS_CALCULATION,
+    ACTION_CHANGE_CURRENCY,
+    ACTION_CHANGE_IS_PROGRESS_CALCULATION,
     ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT,
-    ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER, ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER,
+    ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER,
+    ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER,
+    ACTION_CHANGE_SCAN_ORDER_PVZ_INPUT,
+    ACTION_CHANGE_SET_PVZ_LIST
 
 } from "../actions/actionConst";
 
@@ -101,7 +105,8 @@ const order = {
                 ]
             }
         },
-        phones: []
+        phones: [],
+        pvz: null
     },
     cargo: {
         places: []
@@ -148,6 +153,8 @@ const initState = {
 
     isOpenDropdownSenderFio: false,
     isOpenDropdownReceiverFio: false,
+
+    pvzList: []
 
 }
 
@@ -238,7 +245,11 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
     }
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_RECEIVER_INPUT) {
-        newState.order.receiver.contragent = action.payload;
+        newState.order.receiver.pvz = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SCAN_ORDER_PVZ_INPUT) {
+        newState.order.receiver.pvz = action.payload;
     }
 
     if (action.type === ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO) {
@@ -328,6 +339,10 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER) {
         newState.isExistsOrderNumber = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_SET_PVZ_LIST) {
+        newState.pvzList = action.payload;
     }
 
     return newState;

@@ -17,7 +17,8 @@ import {
     ACTION_CHANGE_SCAN_ORDER_CONTRAGENT_OTHER_INPUT, ACTION_CHANGE_SCAN_ORDER_PAYER_PAY_TYPE, ACTION_CHANGE_SCAN_ORDER_PAYER_TYPE,
     ACTION_CHANGE_SCAN_ORDER_TARIFFS_DATA, ACTION_CHANGE_IS_PROGRESS_TARIFFS, ACTION_CHANGE_IS_PROGRESS_ADDITIONAL_SERVICE,
     ACTION_CHANGE_SCAN_ORDER_CALCULATION_AND_ADDITIONAL_SERVICE, ACTION_CHANGE_IS_PROGRESS_CURRENCY, ACTION_CHANGE_CURRENCY, ACTION_CHANGE_IS_PROGRESS_CALCULATION,
-    ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT, ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER, ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER
+    ACTION_CHANGE_PARAMS_ADDITIONAL_SERVICES_INPUT, ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER, ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER,
+    ACTION_CHANGE_SCAN_ORDER_PVZ_INPUT, ACTION_CHANGE_SET_PVZ_LIST
 
 } from "./actionConst";
 
@@ -326,6 +327,13 @@ export const actionChangeOrderContragentReceiverInput = (payload) => (
     }
 )
 
+export const actionChangeOrderPvzInput = (payload) => (
+    {
+        type: ACTION_CHANGE_SCAN_ORDER_PVZ_INPUT,
+        payload
+    }
+)
+
 export const actionChangeIsOpenDropdownSenderFio = (payload) => (
     {
         type: ACTION_CHANGE_SCAN_ORDER_IS_OPEN_DROPDOWN_SENDER_FIO,
@@ -497,6 +505,14 @@ export const actionChangeIsProgressIsExistsOrderNumber = (payload) => (
 export const actionChangeIsIsExistsOrderNumber = (payload) => (
     {
         type: ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER,
+        payload
+    }
+)
+
+
+export const actionChangeSetPvzList = (payload) => (
+    {
+        type: ACTION_CHANGE_SET_PVZ_LIST,
         payload
     }
 )
