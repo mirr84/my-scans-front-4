@@ -14,10 +14,21 @@ import 'react-viewer/dist/index.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import './index.css';
+import * as axios from "axios";
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getState())));
+
+axios.interceptors.request.use(
+    (config) => {
+        config.headers.PWT = store.getState().loginReducer.pwt;
+        return Promise.resolve(config);
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+  );
 
 ReactDOM.render(
     <Provider store={store}>

@@ -28,8 +28,7 @@ export const doFilter = (props, isUnSelect = true, size = LIMIT_ROW_PAGE) => {
     props.dispatch.changeIsJournalProgress(true);
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -61,8 +60,7 @@ export const getImage = (value, props) => {
     }
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -89,8 +87,7 @@ export const getRephotoReasons = (props) => {
     }
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -130,8 +127,7 @@ export const operationRephoto = (props) => {
     }
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -159,8 +155,7 @@ export const getStatusList = (props) => {
     }
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {

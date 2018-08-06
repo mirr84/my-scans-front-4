@@ -16,8 +16,7 @@ const makeAndHandleRequest = (value, props) => {
     }
 
     return axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => resp.data.items,

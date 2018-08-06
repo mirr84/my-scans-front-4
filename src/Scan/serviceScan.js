@@ -17,8 +17,7 @@ export const getTaskByKey = (props, movedFrom = 'journal') => {
     props.dispatch.changeIsGetTaskByKeyProgress(true);
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -50,8 +49,7 @@ export const getTaskAndLock = (props, movedFrom = 'journal') => {
     props.dispatch.changeIsGetTaskByKeyProgress(true);
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -87,8 +85,7 @@ export const operationStop = (props) => {
     }
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => {
@@ -143,8 +140,7 @@ export const getCurrency = (props) => {
     props.dispatch.changeIsProgressCurrency(true);
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => resp.data,
@@ -172,8 +168,7 @@ export const getCalculationAndAdditionalServices = (props, onlyCalc = false) => 
     props.dispatch.changeIsProgressCalculation(true);
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => resp.data,
@@ -203,8 +198,7 @@ export const getServiceList = (props) => {
     props.dispatch.changeIsProgressTariffs(true);
 
     axios.post('/api/preback',
-        {...body},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {...body}
     )
         .then(
             resp => resp.data,

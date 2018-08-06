@@ -3,8 +3,7 @@ import axios from "axios";
 
 export const checkLogin = (props) => {
     axios.post('/api/auth/checkLogin',
-        {lang: props.state.loginReducer.lang},
-        {headers: {PWT: props.state.loginReducer.pwt}}
+        {lang: props.state.loginReducer.lang}
     )
         .then(
             resp => {
