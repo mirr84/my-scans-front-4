@@ -14,6 +14,13 @@ import {getRephotoReasons} from "../Journal/serviceJournal";
 import Sticky from 'react-sticky-el';
 import {getTaskAndLock} from "./serviceScan";
 
+const secToMin = (n) => {
+    let m = (n - (n % 60))/60;
+    let s = n - m*60;
+        s = s<10 ? '0'+s:s;
+    return (m>0?(m + ' мин. '):'') + s + ' сек.';
+}
+
 const Scan = ({state, dispatch}) =>
     (
         <Container fluid={true}>
@@ -127,11 +134,15 @@ const Scan = ({state, dispatch}) =>
                                                         Стоп
                                                     </Button>
                                                     <Button color="info"
-                                                            style = { { float: 'right' } }
+                                                            style={{float: 'right'}}
                                                             size={'sm'}
-                                                            onClick={() => {}}
+                                                            onClick={() => {
+                                                            }}
                                                     >
-                                                        Время на внос: { state.scanReducer.timeout }
+                                                        Время на внос: {' '}
+                                                        {
+                                                            state.scanReducer.timeout > 0 ? secToMin(state.scanReducer.timeout) : 'Идет остановка вноса'
+                                                        }
                                                     </Button>
 
                                                 </div>

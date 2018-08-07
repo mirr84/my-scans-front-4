@@ -142,17 +142,17 @@ const order = {
 const initState = {
     timeout: 0,
 
+    isGetOrderFromWork: false,
+
     isProgressTariffs: false,
     isProgressAdditionalServices: false,
     isProgressCalculation: false,
     isProgressCurrency: false,
     isProgressIsExistsOrderNumber: false,
     isProgressGetTaskByKey: false,
-
     isExistsOrderNumber: false,
 
     order: Object.assign({}, order),
-    isGetOrderFromWork: false,
     isStopGetOrderFromWorkModal: false,
     movedFrom: 'journal',
     phoneTypes: [],
@@ -195,6 +195,9 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_IS_GET_ORDER_FROM_WORK) {
         newState.isGetOrderFromWork = action.payload;
+        if (newState.isGetOrderFromWork) {
+            newState.timeout = 600;
+        }
     }
 
     if (action.type === ACTION_IS_STOP_GET_ORDER_FROM_WORK_MODAL) {

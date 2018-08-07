@@ -15,6 +15,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import './index.css';
 import * as axios from "axios";
+import {actionChangeSetTimeOut} from "./store/actions/actions";
+import {operationStop} from "./Scan/serviceScan";
+import {dispatchs} from "./store/dispatchs";
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
@@ -31,9 +34,21 @@ axios.interceptors.request.use(
     }
   );
 
+setInterval(
+    () => {
+        if (store.getState().scanReducer.isGetOrderFromWork) {
+            store.dispatch(actionChangeSetTimeOut(store.getState().scanReducer.timeout - 1));
+            if (store.getState().scanReducer.timeout < 0) {
+                operationStop({state: store.getState(), dispatch: dispatchs(store.dispatch).dispatch});
+            }
+        }
+    },
+    1000
+)
+
 ReactDOM.render(
     <Provider store={store}>
-        <Main/>
+        <Main />
     </Provider>,
     document.getElementById('root')
 );

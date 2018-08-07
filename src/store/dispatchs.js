@@ -100,6 +100,7 @@ export const dispatchs = (dispatch) =>
                     changeIsIsExistsOrderNumber: (v) => dispatch(actionChangeIsIsExistsOrderNumber(v)),
                     changeSetPvzList: (v) => dispatch(actionChangeSetPvzList(v)),
                     changeAddressInput: (v) => dispatch(actionChangeAddressInput(v)),
+                    changeSetTimeOut: (v) => dispatch(actionChangeSetTimeOut(v)),
 
                 }
         }
