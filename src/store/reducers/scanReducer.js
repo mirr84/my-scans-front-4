@@ -42,7 +42,8 @@ import {
     ACTION_CHANGE_IS_PROGRESS_IS_EXISTS_ORDER_NUMBER,
     ACTION_CHANGE_IS_EXISTS_ORDER_NUMBER,
     ACTION_CHANGE_SCAN_ORDER_PVZ_INPUT,
-    ACTION_CHANGE_SET_PVZ_LIST
+    ACTION_CHANGE_SET_PVZ_LIST,
+    ACTION_CHANGE_ADDRESS_INPUT
 
 } from "../actions/actionConst";
 
@@ -78,6 +79,12 @@ const order = {
                         title: null
                     }
                 ]
+            },
+            address: {
+                zipCode: '',
+                street: '',
+                house: '',
+                flat: ''
             }
         },
         phones: []
@@ -103,6 +110,12 @@ const order = {
                         title: null
                     }
                 ]
+            },
+            address: {
+                zipCode: '',
+                street: '',
+                house: '',
+                flat: ''
             }
         },
         phones: [],
@@ -114,7 +127,7 @@ const order = {
     other: {
         contragent: null
     },
-    payer:{
+    payer: {
         payType: '', // cash, avans, by_contract
         type: '' // sender, receiver, other
     },
@@ -343,6 +356,9 @@ export const scanReducer = (state = getLocalStorage('scanReducer', initState), a
 
     if (action.type === ACTION_CHANGE_SET_PVZ_LIST) {
         newState.pvzList = action.payload;
+    }
+
+    if (action.type === ACTION_CHANGE_ADDRESS_INPUT) {
     }
 
     return newState;

@@ -136,7 +136,7 @@ const RequestSender = ({state, dispatch}) =>
                         </FormGroup>
                     </Col>
                 </Row>
-                <StreetPanel />
+                <StreetPanel order={state.scanReducer.order} contragent={'sender'} />
                 {/*<Row>*/}
                     {/*<Col>*/}
                         {/*<FormGroup>*/}

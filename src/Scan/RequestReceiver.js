@@ -138,9 +138,9 @@ const RequestReceiver = ({state, dispatch}) =>
                 </Row>
 
                 {
-                    state.scanReducer.order.main.modeDelivery === '1' || state.scanReducer.order.main.modeDelivery === '3' ?
+                    state.scanReducer.order.main.modeDelivery == '1' || state.scanReducer.order.main.modeDelivery == '3' ?
                         (
-                            <StreetPanel />
+                            <StreetPanel order={state.scanReducer.order} contragent={'receiver'}  />
                         )
                         :
                         (
@@ -211,7 +211,17 @@ const RequestReceiver = ({state, dispatch}) =>
                     <Col>
                         <FormGroup>
                             <Label for="receiverEmail">Email:</Label>
-
+                            {/*vm.orderModelFactory.receiver.contactPerson.email*/}
+                            <Input placeholder="Email получателя"
+                                   bsSize={'sm'}
+                                   value={state.scanReducer.order.receiver.contactPerson.email}
+                                   onChange={
+                                       (e) => {
+                                           state.scanReducer.order.receiver.contactPerson.email = e.target.value;
+                                           dispatch.changeAddressInput();
+                                       }
+                                   }
+                            />
                         </FormGroup>
                     </Col>
                 </Row>

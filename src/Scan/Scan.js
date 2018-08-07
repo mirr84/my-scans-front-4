@@ -154,6 +154,7 @@ const Scan = ({state, dispatch}) =>
                                         </Collapse>
                                     </CardBody>
                                 </Card>
+
                             </div>
                         </div>
                     </Sticky>
