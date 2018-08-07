@@ -6,10 +6,8 @@ export const messages = (data) => {
     if (!data.alerts) return null;
     if (!Array.isArray(data.alerts)) return null;
 
-    data.alerts.forEach(
-        item => {
-            toast.warn(item.msg);
-        }
-    )
+    let msgs = data.alerts.map( item => item.msg ).join(', ');
+
+    toast.warn(msgs);
 
 }

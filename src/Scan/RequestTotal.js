@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {connector} from "../store/utils/connector";
-import {Container} from "reactstrap";
+import {Button} from "reactstrap";
+import {handleTask} from "./serviceScan";
 
 const RequestTotal = ({state, dispatch}) =>
     (
@@ -102,6 +103,10 @@ const RequestTotal = ({state, dispatch}) =>
                                         (<div/>)
                                 }
                             </h4>
+
+                            <Button onClick={ () => handleTask({state, dispatch}) }>
+                                Создать заказ
+                            </Button>
 
                         </div>
                     )

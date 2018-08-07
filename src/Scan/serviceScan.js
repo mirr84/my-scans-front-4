@@ -321,3 +321,30 @@ export const genPvzList = (props) => {
         )
 
 }
+
+export const handleTask = (props) => {
+
+    const body = {
+        apiName: "orderPhoto",
+        apiPath: "/handleTask",
+        order: props.state.scanReducer.order,
+        lang: props.state.loginReducer.lang,
+        user: {lang: props.state.loginReducer.lang, login: props.state.loginReducer.login}
+    }
+
+    axios.post('/api/preback',
+        {...body}
+    )
+        .then(
+            resp => {
+                return resp.data;
+            },
+            err => err.response.data
+        )
+        .then(
+            resp => {
+                messages(resp);
+            },
+        )
+
+}
