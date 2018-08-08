@@ -7,7 +7,6 @@ export const messages = (data) => {
     if (!Array.isArray(data.alerts)) return null;
 
     let msgs = data.alerts.map( item => item.msg ).join(', ');
-
-    toast.warn(msgs);
+    if (msgs.trim().length > 0) toast.warn(msgs);
 
 }

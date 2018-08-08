@@ -6,8 +6,9 @@
 .list-group-item:first-child, .list-group-item:last-child,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child), .input-group > .input-group-append:not(:last-child) > .btn, .input-group > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text,
 .input-group-sm > .form-control, .input-group-sm > .input-group-append > .btn, .input-group-sm > .input-group-append > .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm > .input-group-prepend > .input-group-text,
-.alert, .progress {
-    border-radius: 0px;
+.alert, .progress,
+.react-datepicker {
+    border-radius: 0px!important;
 }
 
 .table thead th {
